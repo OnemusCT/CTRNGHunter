@@ -55,13 +55,19 @@ int main(int argc, char* argv[]) {
     CLI::App* find_seeds = app.add_subcommand("find_seeds", "Finds seeds that match the requirements from the input file.");
     std::string filename;
     find_seeds->add_option("-f,--filename", filename, "The file")->required();
+    time_t start = 1700000000;
+    time_t end = 1800000000;
+    int max_seeds = 10;
+    find_seeds->add_option("-s,--start", start, "Unix time to start looking for seeds")->capture_default_str();
+    find_seeds->add_option("-e,--end", end, "Unix time to end looking for seeds")->capture_default_str();
+    find_seeds->add_option("-m,--max_seeds", max_seeds, "Maximum number of seeds to find.")->capture_default_str();
     find_seeds->callback([&]() {
-        RNGHunter hunter(5);
+        RNGHunter hunter(max_seeds);
         if (!hunter.parseFile(filename)) {
             std::cerr << "Unable to load file" << std::endl;
         }
         else {
-            std::vector<time_t> valid_seeds = hunter.findSeeds(1700000000, 1800000000);
+            std::vector<time_t> valid_seeds = hunter.findSeeds(start, end);
             for (time_t t : valid_seeds) {
                 hunter.logSeed(t);
             }
