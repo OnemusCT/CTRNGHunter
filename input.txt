@@ -1,0 +1,11 @@
+load
+battle_with_rng 0D
+battle_with_rng 2F
+room
+room
+room
+room
+room
+battle
+battle_with_crits 23 5 10
+battle_with_crits 23 5 10
