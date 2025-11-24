@@ -60,3 +60,10 @@ bool battle_with_crits(int threshold, int min_crits, int max_turns, bool log) {
 	if (crits >= min_crits) return true;
 	return false;
 }
+
+bool new_game(bool log) {
+	for (int i = 0; i < 35; i++) {
+		std::ignore = rand();
+	}
+	return true;
+}

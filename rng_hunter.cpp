@@ -3,12 +3,17 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <filesystem>
 
 #include "rng_util.h"
 #include "seed_parser.h"
 
 bool RNGHunter::parseFile(const std::string& filename) {
     std::cout << "Loading input file: " << filename << std::endl;
+    if (!std::filesystem::exists(filename)) {
+        std::cerr << "Error: File not found at path: " << filename << std::endl;
+        return false;
+    }
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Error opening file: " << filename << std::endl;
@@ -32,6 +37,9 @@ bool RNGHunter::parseFile(const std::string& filename) {
         }
         else if (funcName == "battle") {
             functions_.push_back(std::bind(battle, std::placeholders::_1));
+        }
+        else if (funcName == "new_game") {
+            functions_.push_back(std::bind(new_game, std::placeholders::_1));
         }
         else if (funcName == "battle_with_rng") {
             int rng_val;

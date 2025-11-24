@@ -6,7 +6,6 @@
 
 #include "CLI11.hpp"
 #include "rng_table.h"
-#include "seed_to_date.h"
 #include "seed_parser.h"
 #include "rng_hunter.h"
 
@@ -58,7 +57,7 @@ int main(int argc, char* argv[]) {
     find_seeds->add_option("-f,--filename", filename, "The file")->required();
     find_seeds->callback([&]() {
         RNGHunter hunter(5);
-        if (!hunter.parseFile("input.txt")) {
+        if (!hunter.parseFile(filename)) {
             std::cerr << "Unable to load file" << std::endl;
         }
         else {
@@ -74,7 +73,7 @@ int main(int argc, char* argv[]) {
     log_seed->add_option("-s,--seed", seed, "The seed to run");
     log_seed->callback([&]() {
         RNGHunter hunter(10);
-        if (!hunter.parseFile("input.txt")) {
+        if (!hunter.parseFile(filename)) {
             std::cerr << "Unable to load file" << std::endl;
         }
         hunter.logSeed(seed);
