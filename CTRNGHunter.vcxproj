@@ -139,7 +139,6 @@
     <ClInclude Include="rng_util.h" />
     <ClInclude Include="rng_table.h" />
     <ClInclude Include="seed_parser.h" />
-    <ClInclude Include="seed_to_date.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt" />
