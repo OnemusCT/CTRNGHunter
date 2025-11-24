@@ -49,6 +49,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="input.txt" />
+    <Text Include="input\new_game.txt" />
+    <Text Include="input\nagas.txt" />
   </ItemGroup>
 </Project>

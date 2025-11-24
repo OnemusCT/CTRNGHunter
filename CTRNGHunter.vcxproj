@@ -141,7 +141,8 @@
     <ClInclude Include="seed_parser.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="input.txt" />
+    <Text Include="input\nagas.txt" />
+    <Text Include="input\new_game.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -22,8 +22,9 @@ bool RNGHunter::parseFile(const std::string& filename) {
 
     std::string line;
     while (std::getline(file, line)) {
-        // Skip empty lines
+        // Skip empty lines and comments
         if (line.empty()) continue;
+        if (line.starts_with("#")) continue;
 
         std::istringstream iss(line);
         std::string funcName;
@@ -40,6 +41,9 @@ bool RNGHunter::parseFile(const std::string& filename) {
         }
         else if (funcName == "new_game") {
             functions_.push_back(std::bind(new_game, std::placeholders::_1));
+        }
+        else if (funcName == "portal") {
+            functions_.push_back(std::bind(portal, std::placeholders::_1));
         }
         else if (funcName == "battle_with_rng") {
             int rng_val;

@@ -1,0 +1,37 @@
+new_game
+room # kitchen 
+room # fair 1
+room # fair 2
+room # fair 1
+room # fair 2
+room # teleporter 
+portal # truce canyon
+battle #blue imps
+room # canyon
+room # forest
+room # throne room 
+room # stairs 1
+room # stairs 2 
+room # stairs 3 
+room # leene's room
+room # stairs 3
+room # stairs 2
+room # stairs 1
+room # throne room
+room # cutscene
+room # throne room
+room # forest
+battle_with_crits 10 2 2
+battle
+room # sanctuary
+battle_with_rng E4 # nagas
+room # cathedral 1
+room # strength capsule
+room # cathedral 1
+battle 
+battle
+room # cathedral 2
+room # cathedral 1
+battle
+room # cathedral 2
+battle_with_crits 10 2 2

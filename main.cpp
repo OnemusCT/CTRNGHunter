@@ -54,10 +54,10 @@ int main(int argc, char* argv[]) {
 
     CLI::App* find_seeds = app.add_subcommand("find_seeds", "Finds seeds that match the requirements from the input file.");
     std::string filename;
-    find_seeds->add_option("-f,--filename", filename, "The file")->required();
     time_t start = 1700000000;
     time_t end = 1800000000;
     int max_seeds = 10;
+    find_seeds->add_option("-f,--filename", filename, "The file")->required();
     find_seeds->add_option("-s,--start", start, "Unix time to start looking for seeds")->capture_default_str();
     find_seeds->add_option("-e,--end", end, "Unix time to end looking for seeds")->capture_default_str();
     find_seeds->add_option("-m,--max_seeds", max_seeds, "Maximum number of seeds to find.")->capture_default_str();
