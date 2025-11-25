@@ -128,14 +128,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="msvc_rand_wrapper.cpp" />
     <ClCompile Include="rng_hunter.cpp" />
+    <ClCompile Include="rng_sim.cpp" />
     <ClCompile Include="rng_table.cpp" />
     <ClCompile Include="rng_util.cpp" />
     <ClCompile Include="seed_parser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CLI11.hpp" />
+    <ClInclude Include="msvc_rand_wrapper.h" />
     <ClInclude Include="rng_hunter.h" />
+    <ClInclude Include="rng_sim.h" />
     <ClInclude Include="rng_util.h" />
     <ClInclude Include="rng_table.h" />
     <ClInclude Include="seed_parser.h" />

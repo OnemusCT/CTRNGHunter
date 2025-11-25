@@ -5,9 +5,15 @@
 #include <string>
 #include <time.h>
 
+#include "rng_sim.h"
+
 class RNGHunter {
   public:
-    explicit RNGHunter(int max_seeds) : max_seeds_(max_seeds) {}
+    explicit RNGHunter(int max_seeds, int pool_size=1) : max_seeds_(max_seeds) {
+        for (int i = 0; i < pool_size; i++) {
+            rng_sim_pool_.push_back({});
+        }
+    }
 
     bool parseFile(const std::string& filename);
     void logSeed(time_t seed);
@@ -19,4 +25,5 @@ class RNGHunter {
   private:
     int max_seeds_;
     std::vector<std::function<bool(bool)>> functions_;
+    std::vector<RNGSim> rng_sim_pool_;
 };
