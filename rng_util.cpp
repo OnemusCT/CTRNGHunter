@@ -58,16 +58,18 @@ bool battle_with_rng(int rng_val, bool log) {
 	return false;
 }
 
-bool battle_with_crits(int threshold, int min_crits, int max_turns, bool log) {
+bool battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, bool log) {
 	int crits = 0;
 	int r = rand();
 	int val = (r % 0xFF) + 1;
 	int initial_val = val;
+	int t_index = 0;
 	for (int i = 0; i < max_turns; i++) {
-		if (crit_table(val, threshold)) {
+		if (crit_table(val, threshold[t_index])) {
 			++crits;
 		}
 		val = (val + 1) % 0xFF;
+		t_index = (t_index+1) % threshold.size();
 	}
 	if(log) std::cout << std::format("\tbattle crits: {} in {} turns from {:02X} ({:04X})", crits, max_turns, initial_val, r) << std::endl;
 	if (crits >= min_crits) return true;

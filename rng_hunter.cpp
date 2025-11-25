@@ -59,12 +59,26 @@ bool RNGHunter::parseFile(const std::string& filename) {
             functions_.push_back(std::bind(battle_with_rng, rng_val, std::placeholders::_1));
         }
         else if (funcName == "battle_with_crits") {
-            int threshold, min_crits, max_turns;
-            if (!(iss >> threshold >> min_crits >> max_turns)) {
-                std::cerr << "Error: battle_with_crits requires 3 parameters" << std::endl;
+            std::string thresholds_str;
+            int min_crits, max_turns;
+            if (!(iss >> thresholds_str >> min_crits >> max_turns)) {
+                std::cerr << "Error: battle_with_crits requires 3 parameters (thresholds min_crits max_turns)" << std::endl;
                 return false;
             }
-            functions_.push_back(std::bind(battle_with_crits, threshold, min_crits, max_turns, std::placeholders::_1));
+
+            std::vector<int> thresholds;
+            std::stringstream thresh_stream(thresholds_str);
+            std::string thresh_token;
+            while (std::getline(thresh_stream, thresh_token, ',')) {
+                try {
+                    thresholds.push_back(std::stoi(thresh_token));
+                }
+                catch (const std::exception&) {
+                    std::cerr << "Error: Invalid threshold value: " << thresh_token << std::endl;
+                    return false;
+                }
+            }
+            functions_.push_back(std::bind(battle_with_crits, thresholds, min_crits, max_turns, std::placeholders::_1));
         }
         else {
             std::cerr << "Unknown function: " << funcName << std::endl;
@@ -90,8 +104,8 @@ void RNGHunter::clear() {
 
 std::vector<time_t> RNGHunter::findSeeds(time_t start, time_t end) {
     std::cout << "Finding seeds between " << start << " and " << end << std::endl;
-    time_t total = end-start;
-    time_t ten_percent = total/10;
+    time_t total = end - start;
+    time_t ten_percent = total / 10;
     int percentage = 0;
     std::vector<time_t> seeds;
     for (time_t seed = start; seed <= end && seeds.size() < max_seeds_; ++seed) {
@@ -114,4 +128,3 @@ std::vector<time_t> RNGHunter::findSeeds(time_t start, time_t end) {
     std::cout << "Done! " << seeds.size() << " seeds found!" << std::endl;
     return seeds;
 }
-

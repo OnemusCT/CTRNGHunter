@@ -21,13 +21,13 @@
     <ClCompile Include="seed_parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rng_hunter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="rng_util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="rng_table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rng_hunter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
