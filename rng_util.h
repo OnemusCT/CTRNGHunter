@@ -17,3 +17,5 @@ bool battle_with_crits(int threshold, int min_crits, int max_turns, bool log);
 bool new_game(bool log);
 
 bool portal(bool log);
+
+bool heal(int num, bool log);

@@ -78,3 +78,8 @@ bool new_game(bool log) {
 	roll_rng(35, "new_game", log);
 	return true;
 }
+
+bool heal(int num, bool log) {
+	roll_rng(num, "heal", log);
+	return true;
+}

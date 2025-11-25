@@ -45,6 +45,11 @@ bool RNGHunter::parseFile(const std::string& filename) {
         else if (funcName == "portal") {
             functions_.push_back(std::bind(portal, std::placeholders::_1));
         }
+        else if (funcName == "heal") {
+            int heal_num = 1;
+            iss >> heal_num;
+            functions_.push_back(std::bind(heal, heal_num, std::placeholders::_1));
+        }
         else if (funcName == "battle_with_rng") {
             int rng_val;
             if (!(iss >> std::hex >> rng_val >> std::dec)) {
