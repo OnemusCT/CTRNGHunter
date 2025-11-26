@@ -1,9 +1,13 @@
 #include "rng_hunter.h"
 
+#include <chrono>
+#include <thread>
 #include <iostream>
+#include <atomic>
 #include <fstream>
 #include <sstream>
 #include <filesystem>
+#include <mutex>
 
 #include "rng_util.h"
 #include "seed_parser.h"
@@ -32,24 +36,36 @@ bool RNGHunter::parseFile(const std::string& filename) {
         iss >> funcName;
 
         if (funcName == "load") {
-            functions_.push_back(std::bind(&RNGSim::load, &rng_sim_pool_[0], std::placeholders::_1));
+            for (int i = 0; i < rng_sim_pool_.size(); i++) {
+                functions_[i].push_back(std::bind(&RNGSim::load, &rng_sim_pool_[i], std::placeholders::_1));
+            }
         }
         else if (funcName == "room") {
-            functions_.push_back(std::bind(&RNGSim::room, &rng_sim_pool_[0], std::placeholders::_1));
+            for (int i = 0; i < rng_sim_pool_.size(); i++) {
+                functions_[i].push_back(std::bind(&RNGSim::room, &rng_sim_pool_[i], std::placeholders::_1));
+            }
         }
         else if (funcName == "battle") {
-            functions_.push_back(std::bind(&RNGSim::battle, &rng_sim_pool_[0], std::placeholders::_1));
+            for (int i = 0; i < rng_sim_pool_.size(); i++) {
+                functions_[i].push_back(std::bind(&RNGSim::battle, &rng_sim_pool_[i], std::placeholders::_1));
+            }
         }
         else if (funcName == "new_game") {
-            functions_.push_back(std::bind(&RNGSim::new_game, &rng_sim_pool_[0], std::placeholders::_1));
+            for (int i = 0; i < rng_sim_pool_.size(); i++) {
+                functions_[i].push_back(std::bind(&RNGSim::new_game, &rng_sim_pool_[i], std::placeholders::_1));
+            }
         }
         else if (funcName == "portal") {
-            functions_.push_back(std::bind(&RNGSim::portal, &rng_sim_pool_[0], std::placeholders::_1));
+            for (int i = 0; i < rng_sim_pool_.size(); i++) {
+                functions_[i].push_back(std::bind(&RNGSim::portal, &rng_sim_pool_[i], std::placeholders::_1));
+            }
         }
         else if (funcName == "heal") {
             int heal_num = 1;
             iss >> heal_num;
-            functions_.push_back(std::bind(&RNGSim::heal, &rng_sim_pool_[0], heal_num, std::placeholders::_1));
+            for (int i = 0; i < rng_sim_pool_.size(); i++) {
+                functions_[i].push_back(std::bind(&RNGSim::heal, &rng_sim_pool_[i], heal_num, std::placeholders::_1));
+            }
         }
         else if (funcName == "battle_with_rng") {
             int rng_val;
@@ -57,7 +73,9 @@ bool RNGHunter::parseFile(const std::string& filename) {
                 std::cerr << "Error: battle_with_rng requires 1 parameter" << std::endl;
                 return false;
             }
-            functions_.push_back(std::bind(&RNGSim::battle_with_rng, &rng_sim_pool_[0], rng_val, std::placeholders::_1));
+            for (int i = 0; i < rng_sim_pool_.size(); i++) {
+                functions_[i].push_back(std::bind(&RNGSim::battle_with_rng, &rng_sim_pool_[i], rng_val, std::placeholders::_1));
+            }
         }
         else if (funcName == "battle_with_crits") {
             std::string thresholds_str;
@@ -79,7 +97,9 @@ bool RNGHunter::parseFile(const std::string& filename) {
                     return false;
                 }
             }
-            functions_.push_back(std::bind(&RNGSim::battle_with_crits, &rng_sim_pool_[0], thresholds, min_crits, max_turns, std::placeholders::_1));
+            for (int i = 0; i < rng_sim_pool_.size(); i++) {
+                functions_[i].push_back(std::bind(&RNGSim::battle_with_crits, &rng_sim_pool_[i], thresholds, min_crits, max_turns, std::placeholders::_1));
+            }
         }
         else {
             std::cerr << "Unknown function: " << funcName << std::endl;
@@ -94,7 +114,7 @@ bool RNGHunter::parseFile(const std::string& filename) {
 void RNGHunter::logSeed(time_t seed) {
     rng_sim_pool_[0].init(seed);
     std::cout << "Seed: " << seed_to_string(seed) << " (" << seed << ")" << std::endl;
-    for (const auto& func : functions_) {
+    for (const auto& func : functions_[0]) {
         std::ignore = func(/*log=*/true);
     }
 }
@@ -104,28 +124,93 @@ void RNGHunter::clear() {
 }
 
 std::vector<time_t> RNGHunter::findSeeds(time_t start, time_t end) {
+    auto start_time = std::chrono::steady_clock::now();
     std::cout << "Finding seeds between " << start << " and " << end << std::endl;
-    time_t total = end - start;
-    time_t ten_percent = total / 10;
-    int percentage = 0;
+
+    size_t num_threads = rng_sim_pool_.size();
+    std::vector<std::thread> threads;
+    std::vector<std::vector<time_t>> thread_results(num_threads);
+    std::atomic<size_t> total_seeds_found(0);
+    std::atomic<size_t> seeds_processed(0);
+    std::mutex print_mutex;
+    int last_percentage = 0;
+
+    time_t total = end - start + 1;
+    time_t chunk_size = total / num_threads;
+
+    // Launch threads
+    for (size_t i = 0; i < num_threads; ++i) {
+        time_t thread_start = start + i * chunk_size;
+        time_t thread_end = (i == num_threads - 1) ? end : thread_start + chunk_size - 1;
+
+        threads.emplace_back([this, i, thread_start, thread_end, &thread_results, &total_seeds_found,
+            &seeds_processed, &print_mutex, &last_percentage, num_threads, total]() {
+                const size_t CHECK_INTERVAL = 1000; // Check atomics every 1000 seeds
+                size_t local_seeds_found = 0;
+                size_t local_processed = 0;
+
+                thread_results[i].reserve(max_seeds_ / num_threads); // Pre-allocate
+
+                for (time_t seed = thread_start; seed <= thread_end; ++seed) {
+                    // Periodically check if we should stop
+                    if (local_processed % CHECK_INTERVAL == 0) {
+                        if (total_seeds_found > max_seeds_) {
+                            break;
+                        }
+
+                        // Batch update progress
+                        size_t processed = seeds_processed.fetch_add(local_processed) + local_processed;
+                        local_processed = 0;
+
+                        int current_percentage = (processed * 100) / total;
+                        current_percentage = (current_percentage / 10) * 10;
+
+                        if (current_percentage > last_percentage && current_percentage <= 100) {
+                            std::lock_guard<std::mutex> lock(print_mutex);
+                            if (current_percentage > last_percentage) {
+                                last_percentage = current_percentage;
+                                std::cout << current_percentage << "% - " << total_seeds_found.load()
+                                    << " seeds found" << std::endl;
+                            }
+                        }
+                    }
+
+                    rng_sim_pool_[i].init(seed);
+                    bool all_pass = true;
+                    for (const auto& func : functions_[i]) {
+                        if (!func(/*log=*/false)) {
+                            all_pass = false;
+                            break;
+                        }
+                    }
+                    if (all_pass) {
+                        thread_results[i].push_back(seed);
+                        ++local_seeds_found;
+                    }
+
+                    ++local_processed;
+                }
+
+                // Final update
+                total_seeds_found.fetch_add(local_seeds_found);
+                seeds_processed.fetch_add(local_processed);
+            });
+    }
+
+    // Wait for all threads to complete
+    for (auto& thread : threads) {
+        thread.join();
+    }
+
+    // Combine results from all threads
     std::vector<time_t> seeds;
-    for (time_t seed = start; seed <= end && seeds.size() < max_seeds_; ++seed) {
-        if ((end - seed) % ten_percent == 0) {
-            std::cout << percentage << "% - " << seeds.size() << " seeds found" << std::endl;
-            percentage += 10;
-        }
-        rng_sim_pool_[0].init(seed);
-        bool all_pass = true;
-        for (const auto& func : functions_) {
-            if (!func(/*log=*/false)) {
-                all_pass = false;
-                break;
-            }
-        }
-        if (all_pass) {
-            seeds.push_back(seed);
-        }
+    for (const auto& thread_result : thread_results) {
+        seeds.insert(seeds.end(), thread_result.begin(), thread_result.end());
     }
     std::cout << "Done! " << seeds.size() << " seeds found!" << std::endl;
+
+    auto end_time = std::chrono::steady_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
+    std::cout << "Execution time: " << duration.count() << " ms" << std::endl;
     return seeds;
 }

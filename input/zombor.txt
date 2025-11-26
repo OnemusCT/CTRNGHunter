@@ -1,0 +1,4 @@
+load
+battle
+battle
+battle_with_crits 0,0,10,0,10 2 5

@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
     find_seeds->add_option("-e,--end", end, "Unix time to end looking for seeds")->capture_default_str();
     find_seeds->add_option("-m,--max_seeds", max_seeds, "Maximum number of seeds to find.")->capture_default_str();
     find_seeds->callback([&]() {
-        RNGHunter hunter(max_seeds);
+        RNGHunter hunter(max_seeds, 8);
         if (!hunter.parseFile(filename)) {
             std::cerr << "Unable to load file" << std::endl;
         }

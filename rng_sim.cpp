@@ -3,38 +3,53 @@
 #include <utility>
 #include <format>
 #include <iostream>
+#include <string_view>
 
 #include "rng_table.h"
+
+constexpr std::string_view kLoad = "load";
+constexpr std::string_view kRoom = "room";
+constexpr std::string_view kPortal = "portal";
+constexpr std::string_view kBattle = "battle";
+constexpr std::string_view kBattleWithRNG = "battle_with_rng";
+constexpr std::string_view kBattleWithCrits = "battle_with_crits";
+constexpr std::string_view kNewGame = "new_game";
+constexpr std::string_view kHeal = "heal";
 
 void RNGSim::init(unsigned int seed) {
 	rng_.srand(seed);
 }
 
-void RNGSim::roll_rng(int n, const std::string& type, bool log) {
-	std::vector<int> values(n);
-	for (int i = 0; i < n; i++) {
-		values[i] = rng_.rand();
-	}
+void RNGSim::roll_rng(int n, std::string_view type, bool log) {
 	if (log) {
+		std::vector<int> values(n);
+		for (int i = 0; i < n; i++) {
+			values[i] = rng_.rand();
+		}
 		std::cout << "\t" << type << ": (";
 		for (int i : values) {
 			std::cout << std::format("{:04X} ", i);
 		}
 		std::cout << ")" << std::endl;
 	}
+	else {
+		for (int i = 0; i < n; ++i) {
+			rng_.rand();
+		}
+	}
 }
 bool RNGSim::load(bool log) {
-	roll_rng(42, "load", log);
+	roll_rng(42, kLoad, log);
 	return true;
 }
 
 bool RNGSim::room(bool log) {
-	roll_rng(33, "room", log);
+	roll_rng(33, kRoom, log);
 	return true;
 }
 
 bool RNGSim::portal(bool log) {
-	roll_rng(1, "portal", log);
+	roll_rng(1, kPortal, log);
 	return true;
 }
 
@@ -75,11 +90,11 @@ bool RNGSim::battle_with_crits(std::vector<int> threshold, int min_crits, int ma
 }
 
 bool RNGSim::new_game(bool log) {
-	roll_rng(35, "new_game", log);
+	roll_rng(35, kNewGame, log);
 	return true;
 }
 
 bool RNGSim::heal(int num, bool log) {
-	roll_rng(num, "heal", log);
+	roll_rng(num, kHeal, log);
 	return true;
 }

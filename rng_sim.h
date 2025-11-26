@@ -3,6 +3,7 @@
 #include <time.h>
 #include <vector>
 #include <string>
+#include <string_view>
 
 #include "msvc_rand_wrapper.h"
 
@@ -28,7 +29,7 @@ class RNGSim {
 
 	bool heal(int num, bool log);
   private:
-	void roll_rng(int n, const std::string& type, bool log);
+	void roll_rng(int n, std::string_view type, bool log);
 
 	MSVCRandWrapper rng_;
 };
