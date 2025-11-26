@@ -16,11 +16,40 @@ constexpr std::string_view kBattleWithCrits = "battle_with_crits";
 constexpr std::string_view kNewGame = "new_game";
 constexpr std::string_view kHeal = "heal";
 
-void RNGSim::init(unsigned int seed) {
+class RNGSimImpl : public RNGSim {
+public:
+	RNGSimImpl() : rng_() {}
+
+	void init(unsigned int seed) override;
+
+	bool load(bool log) override;
+
+	bool room(bool log) override;
+
+	bool battle(bool log) override;
+
+	bool battle_with_rng(int rng_val, bool log) override;
+
+	bool battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, bool log) override;
+
+	bool new_game(bool log) override;
+
+	bool portal(bool log) override;
+
+	bool heal(int num, bool log) override;
+
+private:
+	void roll_rng(int n, std::string_view type, bool log);
+
+	MSVCRandWrapper rng_;
+};
+
+
+void RNGSimImpl::init(unsigned int seed) {
 	rng_.srand(seed);
 }
 
-void RNGSim::roll_rng(int n, std::string_view type, bool log) {
+void RNGSimImpl::roll_rng(int n, std::string_view type, bool log) {
 	if (log) {
 		std::vector<int> values(n);
 		for (int i = 0; i < n; i++) {
@@ -38,29 +67,29 @@ void RNGSim::roll_rng(int n, std::string_view type, bool log) {
 		}
 	}
 }
-bool RNGSim::load(bool log) {
+bool RNGSimImpl::load(bool log) {
 	roll_rng(42, kLoad, log);
 	return true;
 }
 
-bool RNGSim::room(bool log) {
+bool RNGSimImpl::room(bool log) {
 	roll_rng(33, kRoom, log);
 	return true;
 }
 
-bool RNGSim::portal(bool log) {
+bool RNGSimImpl::portal(bool log) {
 	roll_rng(1, kPortal, log);
 	return true;
 }
 
-bool RNGSim::battle(bool log) {
+bool RNGSimImpl::battle(bool log) {
 	int r = rng_.rand();
 	int val = (r % 0xFF) + 1;
 	if (log) std::cout << std::format("\tbattle: {:02X} ({:04X})", val, r) << std::endl;
 	return true;
 }
 
-bool RNGSim::battle_with_rng(int rng_val, bool log) {
+bool RNGSimImpl::battle_with_rng(int rng_val, bool log) {
 	int r = rng_.rand();
 	int val = (r % 0xFF) + 1;
 	if (val == rng_val) {
@@ -71,7 +100,7 @@ bool RNGSim::battle_with_rng(int rng_val, bool log) {
 	return false;
 }
 
-bool RNGSim::battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, bool log) {
+bool RNGSimImpl::battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, bool log) {
 	int crits = 0;
 	int r = rng_.rand();
 	int val = (r % 0xFF) + 1;
@@ -89,12 +118,17 @@ bool RNGSim::battle_with_crits(std::vector<int> threshold, int min_crits, int ma
 	return false;
 }
 
-bool RNGSim::new_game(bool log) {
+bool RNGSimImpl::new_game(bool log) {
 	roll_rng(35, kNewGame, log);
 	return true;
 }
 
-bool RNGSim::heal(int num, bool log) {
+bool RNGSimImpl::heal(int num, bool log) {
 	roll_rng(num, kHeal, log);
 	return true;
+}
+
+
+std::unique_ptr<RNGSim> RNGSim::Create() {
+	return std::make_unique<RNGSimImpl>();
 }

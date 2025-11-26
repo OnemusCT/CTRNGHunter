@@ -6,31 +6,30 @@
 #include <string_view>
 
 #include "msvc_rand_wrapper.h"
+#include <memory>
 
 class RNGSim {
   public:
 	RNGSim() = default;
 
-	void init(unsigned int seed);
+	virtual void init(unsigned int seed) = 0;
 
-	bool load(bool log);
+	virtual bool load(bool log) = 0;
 
-	bool room(bool log);
+	virtual bool room(bool log) = 0;
 
-	bool battle(bool log);
+	virtual bool battle(bool log) = 0;
 
-	bool battle_with_rng(int rng_val, bool log);
+	virtual bool battle_with_rng(int rng_val, bool log) = 0;
 
-	bool battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, bool log);
+	virtual bool battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, bool log) = 0;
 
-	bool new_game(bool log);
+	virtual bool new_game(bool log) = 0;
 
-	bool portal(bool log);
+	virtual bool portal(bool log) = 0;
 
-	bool heal(int num, bool log);
-  private:
-	void roll_rng(int n, std::string_view type, bool log);
+	virtual bool heal(int num, bool log) = 0;
 
-	MSVCRandWrapper rng_;
+	static std::unique_ptr<RNGSim> Create();
 };
 

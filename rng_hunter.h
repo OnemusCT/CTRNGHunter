@@ -11,7 +11,7 @@ class RNGHunter {
   public:
     explicit RNGHunter(int max_seeds, int pool_size=1) : max_seeds_(max_seeds), functions_(pool_size) {
         for (int i = 0; i < pool_size; i++) {
-            rng_sim_pool_.push_back({});
+            rng_sim_pool_.push_back(RNGSim::Create());
         }
     }
 
@@ -25,5 +25,5 @@ class RNGHunter {
   private:
     int max_seeds_;
     std::vector<std::vector<std::function<bool(bool)>>> functions_;
-    std::vector<RNGSim> rng_sim_pool_;
+    std::vector<std::unique_ptr<RNGSim>> rng_sim_pool_;
 };
