@@ -65,5 +65,6 @@
     <Text Include="input\nagas.txt" />
     <Text Include="input\flea.txt" />
     <Text Include="input\zombor.txt" />
+    <Text Include="input\dt.txt" />
   </ItemGroup>
 </Project>

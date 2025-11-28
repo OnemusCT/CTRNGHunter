@@ -9,16 +9,6 @@ int MSVCRandWrapper::rand() {
 	return (int)((seed_ >> 16) & 0x7FFF);
 }
 
-std::vector<int> MSVCRandWrapper::PopulateRandTable(unsigned int seed, int size) {
-	unsigned int curr_seed = seed_;
-
-	srand(seed);
-	std::vector<int> result(size);
-
-	for (int i = 0; i < size; i++) {
-		result[i] = rand();
-	}
-
-	seed_ = curr_seed;
-	return result;
+void MSVCRandWrapper::unrand() {
+	seed_ = (seed_ - 2531011U) * 3115528533U;
 }

@@ -10,9 +10,7 @@ class MSVCRandWrapper {
 
 	int rand();
 
-	// Generates |size| random values based on |seed| and returns them.
-	// The existing seed is not modified.
-	std::vector<int> PopulateRandTable(unsigned int seed, int size);
+	void unrand();
 
   private:
 	unsigned int seed_;

@@ -57,10 +57,12 @@ int main(int argc, char* argv[]) {
     time_t start = 1700000000;
     time_t end = 1800000000;
     int max_seeds = 10;
+    int pool = 8;
     find_seeds->add_option("-f,--filename", filename, "The file")->required();
     find_seeds->add_option("-s,--start", start, "Unix time to start looking for seeds")->capture_default_str();
     find_seeds->add_option("-e,--end", end, "Unix time to end looking for seeds")->capture_default_str();
     find_seeds->add_option("-m,--max_seeds", max_seeds, "Maximum number of seeds to find.")->capture_default_str();
+    find_seeds->add_option("-p,--pool",pool,"Pool size for RNG hunters")->capture_default_str();
     find_seeds->callback([&]() {
         RNGHunter hunter(max_seeds, 8);
         if (!hunter.parseFile(filename)) {
@@ -89,6 +91,19 @@ int main(int argc, char* argv[]) {
     convert_to_timestamp->add_option("-s,--seed", seed, "The seed to convert")->required();
     convert_to_timestamp->callback([&]() {
         std::cout << seed_to_string(seed) << std::endl;
+    });
+
+    int max_rolls = 660;
+    CLI::App* extend_seed = app.add_subcommand("extend_seed", "Finds the number of extra RNG rolls necessary for the final command in the seed to succeed");
+    extend_seed->add_option("-s,--seed", seed, "The seed to extend")->required();
+    extend_seed->add_option("-f,--filename", filename, "The filename to execute")->required();
+    extend_seed->add_option("-m,--max_rolls", max_rolls, "The maximum number of rolls to extend the seed");
+    extend_seed->callback([&]() {
+        RNGHunter hunter(1);
+        if (!hunter.parseFile(filename)) {
+            std::cerr << "Unable to load file" << std::endl;
+        }
+        hunter.extendSeed(seed, max_rolls);
     });
 
     CLI11_PARSE(app, argc, argv);

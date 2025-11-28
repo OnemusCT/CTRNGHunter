@@ -1,0 +1,4 @@
+load
+battle_with_rng 4C
+
+

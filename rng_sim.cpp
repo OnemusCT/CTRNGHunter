@@ -28,7 +28,7 @@ public:
 
 	bool battle(bool log) override;
 
-	bool battle_with_rng(int rng_val, bool log) override;
+	bool battle_with_rng(std::vector<int> rng_vals, bool log) override;
 
 	bool battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, bool log) override;
 
@@ -37,6 +37,8 @@ public:
 	bool portal(bool log) override;
 
 	bool heal(int num, bool log) override;
+
+	void roll_back_rng(int steps) override;
 
 private:
 	void roll_rng(int n, std::string_view type, bool log);
@@ -89,12 +91,14 @@ bool RNGSimImpl::battle(bool log) {
 	return true;
 }
 
-bool RNGSimImpl::battle_with_rng(int rng_val, bool log) {
+bool RNGSimImpl::battle_with_rng(std::vector<int> rng_vals, bool log) {
 	int r = rng_.rand();
 	int val = (r % 0xFF) + 1;
-	if (val == rng_val) {
-		if (log) std::cout << std::format("\tbattle rng: {:02X} ({:04X})", rng_val, r) << std::endl;
-		return true;
+	for (int rng_val : rng_vals) {
+		if (val == rng_val) {
+			if (log) std::cout << std::format("\tbattle rng: {:02X} ({:04X})", rng_val, r) << std::endl;
+			return true;
+		}
 	}
 	if (log) std::cout << std::format("\tbattle rng: {:02X} DOES NOT MATCH! ({:04X})", val, r) << std::endl;
 	return false;
@@ -128,6 +132,11 @@ bool RNGSimImpl::heal(int num, bool log) {
 	return true;
 }
 
+void RNGSimImpl::roll_back_rng(int steps) {
+	for (int i = 0; i < steps; i++) {
+		rng_.unrand();
+	}
+}
 
 std::unique_ptr<RNGSim> RNGSim::Create() {
 	return std::make_unique<RNGSimImpl>();

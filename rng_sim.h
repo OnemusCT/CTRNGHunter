@@ -20,7 +20,7 @@ class RNGSim {
 
 	virtual bool battle(bool log) = 0;
 
-	virtual bool battle_with_rng(int rng_val, bool log) = 0;
+	virtual bool battle_with_rng(std::vector<int> rng_vals, bool log) = 0;
 
 	virtual bool battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, bool log) = 0;
 
@@ -30,6 +30,9 @@ class RNGSim {
 
 	virtual bool heal(int num, bool log) = 0;
 
+	virtual void roll_back_rng(int steps) = 0;
+
 	static std::unique_ptr<RNGSim> Create();
+
 };
 

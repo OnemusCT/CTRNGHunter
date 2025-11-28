@@ -7,7 +7,7 @@ room # fair 2
 room # fair 1
 room # fair 2
 room # teleporter 
-portal # truce canyon
+portal # truce canyon, this might be the only portal that has different RNG from a room
 battle #blue imps
 room # canyon
 room # forest
@@ -37,8 +37,47 @@ room # cathedral 1
 battle
 room # cathedral 2
 battle_with_crits 10 2 2
-battle # actual a heal
-battle # also a heal
+heal 2
 room
 room
 battle_with_rng 3 # yakra
+room # throne room
+room # stairs 1
+room # stairs 2 
+room # stairs 3 
+room # leene's room
+room # stairs 3
+room # stairs 2
+room # stairs 1
+room # throne room
+room # forest
+room # truce
+battle
+room # truce portal
+room # portal # teleporter
+room # fair 2
+room # fair 1
+room # forest
+room # throne room
+room # trial
+room # fair 2 flashback
+room # trial
+room # prison bridge
+room # prison supervisor
+room # prison cell
+battle
+room # prison 1
+room # prison bridge
+battle
+room # prison 2
+room # prison bridge
+room # prison 3
+room # prison stairs
+room # prison supervisor
+battle
+room # bridge
+room # 4 extra rooms for rng
+room
+room
+room
+battle_with_rng D,12,25,3B,4C,60,6E,81,8E,9C,A8,B8,DA,EB,C,E,10,21,23,1F,1E,27,28,29 # dragon tank

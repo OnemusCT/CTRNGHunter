@@ -17,6 +17,7 @@ class RNGHunter {
 
     bool parseFile(const std::string& filename);
     void logSeed(time_t seed);
+    void extendSeed(time_t seed, int max_rolls);
 
     void clear();
 

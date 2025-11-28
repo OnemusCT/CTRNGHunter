@@ -14,7 +14,7 @@
 #include "msvc_rand_wrapper.h"
 #include "rng_sim.h"
 
-constexpr time_t CHECK_INTERVAL = 10000;
+constexpr time_t CHECK_INTERVAL = 1000;
 
 bool RNGHunter::parseFile(const std::string& filename) {
     std::cout << "Loading input file: " << filename << std::endl;
@@ -70,13 +70,26 @@ bool RNGHunter::parseFile(const std::string& filename) {
             }
         }
         else if (funcName == "battle_with_rng") {
-            int rng_val;
-            if (!(iss >> std::hex >> rng_val >> std::dec)) {
+            std::string rng_str;
+            
+            if (!(iss >> rng_str)) {
                 std::cerr << "Error: battle_with_rng requires 1 parameter" << std::endl;
                 return false;
             }
+            std::vector<int> rng_vals;
+            std::stringstream rng_stream(rng_str);
+            std::string rng_token;
+            while (std::getline(rng_stream, rng_token, ',')) {
+                try {
+                    rng_vals.push_back(std::stoi(rng_token, nullptr, 16));
+                }
+                catch (const std::exception&) {
+                    std::cerr << "Error: Invalid rng value: " << rng_token << std::endl;
+                    return false;
+                }
+            }
             for (int i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].push_back(std::bind(&RNGSim::battle_with_rng, rng_sim_pool_[i].get(), rng_val, std::placeholders::_1));
+                functions_[i].push_back(std::bind(&RNGSim::battle_with_rng, rng_sim_pool_[i].get(), rng_vals, std::placeholders::_1));
             }
         }
         else if (funcName == "battle_with_crits") {
@@ -118,6 +131,19 @@ void RNGHunter::logSeed(time_t seed) {
     std::cout << "Seed: " << seed_to_string(seed) << " (" << seed << ")" << std::endl;
     for (const auto& func : functions_[0]) {
         std::ignore = func(/*log=*/true);
+    }
+}
+
+void RNGHunter::extendSeed(time_t seed, int max_rolls) {
+    rng_sim_pool_[0]->init(seed);
+    for(int i = 0; i < functions_[0].size() - 1; i++) {
+        std::ignore = functions_[0][i](/*log=*/true);
+    }
+    auto func = functions_[0][functions_[0].size()-1];
+    for(int i = 0; i < max_rolls; i++) {
+        if (func(false) && (i%66 <= 4)) {
+            std::cout << std::format("Rolls: {}, ({} rooms, {} heals)", i+1, (i/66)*2, i%66) << std::endl;
+        }
     }
 }
 
@@ -185,6 +211,9 @@ std::vector<time_t> RNGHunter::findSeeds(time_t start, time_t end) {
                     if (all_pass) {
                         thread_results[i].push_back(seed);
                         ++local_seeds_found;
+                    }
+                    if (local_seeds_found >= max_seeds_) {
+                        break;
                     }
 
                     ++local_processed;
