@@ -141,7 +141,7 @@ void RNGHunter::extendSeed(time_t seed, int max_rolls) {
     }
     auto func = functions_[0][functions_[0].size()-1];
     for(int i = 0; i < max_rolls; i++) {
-        if (func(false) && (i%66 <= 4)) {
+        if (func(false)) {
             std::cout << std::format("Rolls: {}, ({} rooms, {} heals)", i+1, (i/66)*2, i%66) << std::endl;
         }
     }

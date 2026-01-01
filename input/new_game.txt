@@ -76,8 +76,7 @@ room # prison stairs
 room # prison supervisor
 battle
 room # bridge
-room # 4 extra rooms for rng
-room
-room
-room
-battle_with_rng D,12,25,3B,4C,60,6E,81,8E,9C,A8,B8,DA,EB,C,E,10,21,23,1F,1E,27,28,29 # dragon tank
+room # extra transitions
+room 
+battle #dt
+#battle_with_rng D,12,25,30,3B,4C,60,6E,81,8E,9C,A8,B8,DA,EB,C,E,10,21,23,1F,1E,27,28,29 # dragon tank
