@@ -19,7 +19,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(SOURCES
     main.cpp
     seed_parser.cpp
-    rng_util.cpp
+    
     rng_table.cpp
     rng_hunter.cpp
     msvc_rand_wrapper.cpp
@@ -32,7 +32,7 @@ set(HEADERS
     msvc_rand_wrapper.h
     rng_hunter.h
     rng_sim.h
-    rng_util.h
+    
     rng_table.h
     seed_parser.h
 )

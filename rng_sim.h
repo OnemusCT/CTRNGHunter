@@ -12,7 +12,7 @@ class RNGSim {
   public:
 	RNGSim() = default;
 
-	virtual void init(unsigned int seed) = 0;
+	virtual void init(time_t seed) = 0;
 
 	virtual bool load(bool log) = 0;
 

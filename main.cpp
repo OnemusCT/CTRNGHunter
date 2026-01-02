@@ -8,11 +8,13 @@
 #include "rng_table.h"
 #include "seed_parser.h"
 #include "rng_hunter.h"
+#include "msvc_rand_wrapper.h"
 
 void print_rng_values(time_t seed, int num_output) {
-    srand(seed);
+    MSVCRandWrapper rand;
+    rand.srand(seed);
     for (int i = 0; i < num_output; i++) {
-        int r = rand();
+        int r = rand.rand();
         int rng_index = (r % 0xFF) + 1;
         std::cout << std::format("{:4}: 0x{:04X}, 0x{:02X}\n", i, r, rng_index);
     }

@@ -1,6 +1,6 @@
 #include "msvc_rand_wrapper.h"
 
-void MSVCRandWrapper::srand(unsigned int seed) {
+void MSVCRandWrapper::srand(time_t seed) {
 	seed_ = seed;
 }
 

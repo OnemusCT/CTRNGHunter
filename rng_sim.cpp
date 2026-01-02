@@ -20,7 +20,7 @@ class RNGSimImpl : public RNGSim {
 public:
 	RNGSimImpl() : rng_() {}
 
-	void init(unsigned int seed) override;
+	void init(time_t seed) override;
 
 	bool load(bool log) override;
 
@@ -47,7 +47,7 @@ private:
 };
 
 
-void RNGSimImpl::init(unsigned int seed) {
+void RNGSimImpl::init(time_t seed) {
 	rng_.srand(seed);
 }
 

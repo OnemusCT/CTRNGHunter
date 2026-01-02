@@ -6,13 +6,13 @@ class MSVCRandWrapper {
   public:
 	MSVCRandWrapper() = default;
 
-	void srand(unsigned int seed);
+	void srand(time_t seed);
 
 	int rand();
 
 	void unrand();
 
   private:
-	unsigned int seed_;
+	time_t seed_;
 };
 
