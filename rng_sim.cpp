@@ -1,6 +1,5 @@
 #include "rng_sim.h"
 
-#include <utility>
 #include <format>
 #include <iostream>
 #include <string_view>
@@ -10,9 +9,6 @@
 constexpr std::string_view kLoad = "load";
 constexpr std::string_view kRoom = "room";
 constexpr std::string_view kPortal = "portal";
-constexpr std::string_view kBattle = "battle";
-constexpr std::string_view kBattleWithRNG = "battle_with_rng";
-constexpr std::string_view kBattleWithCrits = "battle_with_crits";
 constexpr std::string_view kNewGame = "new_game";
 constexpr std::string_view kHeal = "heal";
 constexpr std::string_view kBurn = "burn";

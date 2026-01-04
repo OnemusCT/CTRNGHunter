@@ -6,7 +6,7 @@ void MSVCRandWrapper::srand(time_t seed) {
 
 int MSVCRandWrapper::rand() {
 	seed_ = (seed_ * 214013) + 2531011;
-	return (int)((seed_ >> 16) & 0x7FFF);
+	return static_cast<int>((seed_ >> 16) & 0x7FFF);
 }
 
 void MSVCRandWrapper::unrand() {
