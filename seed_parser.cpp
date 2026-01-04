@@ -1,6 +1,5 @@
 #include "seed_parser.h"
 
-#include <ctime>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
