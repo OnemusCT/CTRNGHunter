@@ -15,6 +15,8 @@ class RNGSim {
 
 	virtual bool room(bool log) = 0;
 
+	virtual bool extra_rooms(bool log) = 0;
+
 	virtual bool battle(bool log) = 0;
 
 	virtual bool battle_with_rng(std::vector<int> rng_vals, bool log) = 0;

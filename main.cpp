@@ -113,5 +113,8 @@ int main(int argc, char* argv[]) {
     });
 
     CLI11_PARSE(app, argc, argv);
+    if (argc == 1) {
+        std::cout << app.help() << std::endl;
+    }
     return 0;
 }
