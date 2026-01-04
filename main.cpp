@@ -1,8 +1,8 @@
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
 #include <vector>
 #include <format>
-#include <time.h>
+#include <ctime>
 
 #include "CLI11.hpp"
 #include "rng_table.h"
@@ -11,7 +11,7 @@
 #include "msvc_rand_wrapper.h"
 
 void print_rng_values(time_t seed, int num_output) {
-    MSVCRandWrapper rand;
+    MSVCRandWrapper rand = {};
     rand.srand(seed);
     for (int i = 0; i < num_output; i++) {
         int r = rand.rand();
@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
     int num_output=20;
     list_rng->add_option("-n,--num", num_output, "The number of RNG values to print for the seed")->capture_default_str();
 
-    list_rng->callback([&]() {
+    list_rng->callback([&] {
         print_rng_values(seed, num_output);
     });
 
@@ -43,14 +43,14 @@ int main(int argc, char* argv[]) {
     int threshold = 10;
     list_crits->add_option("-t,--threshold", threshold, "The threshold for a crit (or % chance of crit, for example by default Crono's value would be 10 for a 10% crit")->capture_default_str();
 
-    list_crits->callback([&]() {
+    list_crits->callback([&] {
         print_crit_values(threshold);
     });
 
     CLI::App* convert_to_seed = app.add_subcommand("convert_to_seed", "Converts a CTManip Time to a unix timestamp seed");
     std::string timestamp;
     convert_to_seed->add_option("-t,--timestamp", timestamp, "The timestamp to convert")->required();
-    convert_to_seed->callback([&]() {
+    convert_to_seed->callback([&] {
         std::cout << string_to_seed(timestamp) << std::endl;
     });
 
@@ -67,7 +67,7 @@ int main(int argc, char* argv[]) {
     find_seeds->add_option("-m,--max_seeds", max_seeds, "Maximum number of seeds to find.")->capture_default_str();
     find_seeds->add_option("-p,--pool",pool,"Pool size for RNG hunters")->capture_default_str();
     find_seeds->add_option("-r,--rooms", max_rooms, "Maximum number of room transition pairs")->capture_default_str();
-    find_seeds->callback([&]() {
+    find_seeds->callback([&] {
         RNGHunter hunter(max_seeds, 8);
         if (!hunter.parseFile(filename)) {
             std::cerr << "Unable to load file" << std::endl;
@@ -75,9 +75,9 @@ int main(int argc, char* argv[]) {
         }
         for(int i = 0; i <= max_rooms; i++) {
             std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> valid_seeds = hunter.findSeeds(start, end, 0, i);
-            if(valid_seeds.size() > 0) {
-                for (const auto& [seed, functions] : valid_seeds) {
-                    hunter.logSeedFromFunctions(seed, functions);
+            if(!valid_seeds.empty()) {
+                for (const auto& [curr_seed, functions] : valid_seeds) {
+                    hunter.logSeedFromFunctions(curr_seed, functions);
                 }
                 break;
             }
@@ -87,7 +87,7 @@ int main(int argc, char* argv[]) {
     CLI::App* log_seed = app.add_subcommand("log_seed", "Executes and logs the results of the given seed");
     log_seed->add_option("-f,--filename", filename, "The file to execute")->required();
     log_seed->add_option("-s,--seed", seed, "The seed to run");
-    log_seed->callback([&]() {
+    log_seed->callback([&] {
         RNGHunter hunter(10);
         if (!hunter.parseFile(filename)) {
             std::cerr << "Unable to load file" << std::endl;
@@ -106,7 +106,7 @@ int main(int argc, char* argv[]) {
     extend_seed->add_option("-s,--seed", seed, "The seed to extend")->required();
     extend_seed->add_option("-f,--filename", filename, "The filename to execute")->required();
     extend_seed->add_option("-m,--max_rolls", max_rolls, "The maximum number of rolls to extend the seed");
-    extend_seed->callback([&]() {
+    extend_seed->callback([&] {
         RNGHunter hunter(1);
         if (!hunter.parseFile(filename)) {
             std::cerr << "Unable to load file" << std::endl;

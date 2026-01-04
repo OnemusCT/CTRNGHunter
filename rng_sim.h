@@ -10,6 +10,8 @@
 
 class RNGSim {
   public:
+	virtual ~RNGSim() = default;
+
 	RNGSim() = default;
 
 	virtual void init(time_t seed) = 0;

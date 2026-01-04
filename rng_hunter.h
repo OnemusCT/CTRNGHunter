@@ -3,7 +3,7 @@
 #include <vector>
 #include <functional>
 #include <string>
-#include <time.h>
+#include <ctime>
 #include <unordered_map>
 #include <set>
 
@@ -27,7 +27,7 @@ class RNGHunter {
     std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> findSeeds(time_t start, time_t end, int allowable_heals = 0, int allowable_room_pairs = 0);
 
   private:
-    int max_seeds_;
+    size_t max_seeds_;
     std::vector<std::vector<std::function<bool(bool)>>> functions_;
     std::vector<std::unique_ptr<RNGSim>> rng_sim_pool_;
     std::set<time_t> debug_seeds_;

@@ -32,7 +32,7 @@ Lists the RNG values that result in a crit for a given threshold
 
 #### Parameters
 
-`-t --threshold` The threshold for a crit (or % chance for a crit, for example, by default Crono's value would be 10% crit"
+`-t --threshold` The threshold for a crit (or % chance for a crit, for example, by default Crono's value would be 10% crit)
 
 #### Example
 
@@ -141,15 +141,15 @@ Advanced actions are used for searching for RNG values that match certain criter
 
 ##### Parameters
 
-The first parameter is a comma delimited list of crit thresholds. This should match the crit threshold for the party members based on their turn order. This list is repeated if additional rounds are included in the search.
+The first parameter is a comma-delimited list of crit thresholds. This should match the crit threshold for the party members based on their turn order. This list is repeated if additional rounds are included in the search.
 
 For example, with a party of Frog, Crono, Robo, this parameter could be `23,10,10` if Frog goes first and their speeds are equal
 
 If speeds are not equal and eventually the turn order changes a longer string of thresholds can be provided to account for this, for example, `23,10,10,23,10,10,23,10,23` for a fight where Frog has a higher speed than Crono and Robo and gets an additional turn.
 
-The second paramter is the minimum number of crits to search for. 
+The second parameter is the minimum number of crits to search for. 
 
-The third parameter is the number of attacks to consider. If the second and third parameters are `3 6` then a seed will be found that gets at least 3 crits in the first 6 attacks using the threholds provided in the first parameter.
+The third parameter is the number of attacks to consider. If the second and third parameters are `3 6` then a seed will be found that gets at least 3 crits in the first 6 attacks using the thresholds provided in the first parameter.
 
 NOTE: If multiple values are provided for the first parameter there must not be any additional spaces between numbers (for example, `10,23,10` not `10, 23, 10`)
 
@@ -159,9 +159,9 @@ NOTE: If multiple values are provided for the first parameter there must not be 
 
 ##### Parameter
 
-The only parameter is hex value of the the specific RNG value to look for.
+The only parameter is hex value of the specific RNG value to look for.
 
-If multiple RNG values are permitted then a comma delimited list can be supplied.
+If multiple RNG values are permitted then a comma-delimited list can be supplied.
 
 Example:
 `battle_with_rng D,12,25,30,3B,4C,60,6E,81,8E,9C,A8,B8,DA,EB,C,E,10,21,23,1F,1E,27,28,29` would search for a seed that results in any of the given RNG values for this battle.
