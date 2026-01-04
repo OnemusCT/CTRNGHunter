@@ -1,8 +1,6 @@
 #include <iostream>
-#include <cstdlib>
 #include <vector>
 #include <format>
-#include <ctime>
 
 #include "CLI11.hpp"
 #include "rng_table.h"

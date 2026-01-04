@@ -5,6 +5,7 @@
 #include <string_view>
 
 #include "rng_table.h"
+#include "msvc_rand_wrapper.h"
 
 constexpr std::string_view kLoad = "load";
 constexpr std::string_view kRoom = "room";

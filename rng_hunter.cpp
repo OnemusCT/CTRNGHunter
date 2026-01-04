@@ -11,7 +11,6 @@
 #include <stack>
 
 #include "seed_parser.h"
-#include "msvc_rand_wrapper.h"
 #include "rng_sim.h"
 
 constexpr time_t CHECK_INTERVAL = 1000;
