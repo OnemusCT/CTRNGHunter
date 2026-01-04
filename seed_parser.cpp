@@ -14,7 +14,7 @@ const std::map<std::string, time_t> tz_offsets = {
     {"TimeZones.CEST", 2 * 3600}  // UTC+2
 };
 
-char* strptime(char* s,
+char* strptime(const char* s,
     const char* f,
     tm* tm) {
     std::istringstream input(s);
@@ -23,7 +23,7 @@ char* strptime(char* s,
     if (input.fail()) {
         return nullptr;
     }
-    return (s + input.tellg());
+    return const_cast<char*>(s + input.tellg());
 }
 
 time_t string_to_seed(const std::string& in) {
