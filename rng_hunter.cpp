@@ -8,12 +8,67 @@
 #include <sstream>
 #include <filesystem>
 #include <mutex>
+#include <stack>
 
 #include "seed_parser.h"
 #include "msvc_rand_wrapper.h"
 #include "rng_sim.h"
 
 constexpr time_t CHECK_INTERVAL = 1000;
+
+// A thread safe class to track current statistics for RNG hunting
+class HunterStatistics {
+  public:
+    // total is the total number of seeds being processed. Used for calculating percentages.
+    HunterStatistics(time_t total) : 
+        total_seeds_found_(0),
+        seeds_processed_(0), total_(total), last_percentage_(0) {}
+
+    size_t total_seeds_found() {
+        return total_seeds_found_;
+    }
+
+    size_t seeds_processed() {
+        return seeds_processed_;
+    }
+
+    size_t add_seeds_found(size_t seeds) {
+        // fetch_add returns the value prior to the addition
+        return total_seeds_found_.fetch_add(seeds) + seeds;
+    }
+
+    size_t add_seeds_processed(size_t seeds) {
+        // fetch_add returns the value prior to the addition
+        return seeds_processed_.fetch_add(seeds) + seeds;
+    }
+
+    void maybe_print_progress() {
+        size_t processed = seeds_processed_.load();
+        size_t current_percentage = (processed * 100) / total_;
+        current_percentage = (current_percentage / 10) * 10;
+
+        if (current_percentage > last_percentage_ && current_percentage <= 100) {
+            std::lock_guard<std::mutex> lock(print_mutex_);
+            if (current_percentage > last_percentage_) {
+                last_percentage_ = current_percentage;
+                std::cout << current_percentage << "% - " << total_seeds_found_.load()
+                    << " seeds found" << std::endl;
+            }
+        }
+    }
+
+   private:
+    std::atomic<size_t> total_seeds_found_;
+    std::atomic<size_t> seeds_processed_;
+    std::mutex print_mutex_;
+
+    const time_t total_;
+    std::atomic<size_t> last_percentage_;
+};
+
+void RNGHunter::addDebugSeed(time_t seed) {
+    debug_seeds_.insert(seed);
+}
 
 bool RNGHunter::parseFile(const std::string& filename) {
     std::cout << "Loading input file: " << filename << std::endl;
@@ -146,69 +201,116 @@ void RNGHunter::extendSeed(time_t seed, int max_rolls) {
     }
 }
 
+void RNGHunter::logSeedFromFunctions(time_t seed, const std::vector<std::function<bool(bool)>>& functions) {
+    // We don't know which sim was used to generate the functions, so just seed them all
+    for (int i = 0; i < rng_sim_pool_.size(); i++) {
+        rng_sim_pool_[i]->init(seed);
+    }
+    std::cout << "Seed: " << seed_to_string(seed) << " (" << seed << ")" << std::endl;
+    for (const auto& func : functions) {
+        std::ignore = func(/*log=*/true);
+    }
+}
+
 void RNGHunter::clear() {
     functions_.clear();
 }
 
-std::vector<time_t> RNGHunter::findSeeds(time_t start, time_t end) {
+std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> RNGHunter::findSeeds(time_t start, time_t end, int allowable_heals, int allowable_room_pairs) {
     auto start_time = std::chrono::steady_clock::now();
     std::cout << "Finding seeds between " << start << " and " << end << std::endl;
     size_t num_threads = rng_sim_pool_.size();
     std::vector<std::thread> threads;
-    std::vector<std::vector<time_t>> thread_results(num_threads);
+    std::vector<std::unordered_map<time_t, std::vector<std::function<bool(bool)>>>> thread_results(num_threads);
     std::atomic<size_t> total_seeds_found(0);
     std::atomic<size_t> seeds_processed(0);
     std::mutex print_mutex;
     int last_percentage = 0;
 
     time_t total = end - start + 1;
+    HunterStatistics statistics(total);
     time_t chunk_size = total / num_threads;
 
     for (size_t i = 0; i < num_threads; ++i) {
         time_t thread_start = start + i * chunk_size;
         time_t thread_end = (i == num_threads - 1) ? end : thread_start + chunk_size - 1;
 
-        threads.emplace_back([this, i, thread_start, thread_end, &thread_results, &total_seeds_found,
-            &seeds_processed, &print_mutex, &last_percentage, num_threads, total]() {
+        threads.emplace_back([this, i, thread_start, thread_end, allowable_heals, allowable_room_pairs, &thread_results, &statistics]() {
                 
                 size_t local_seeds_found = 0;
                 size_t local_processed = 0;
 
-                thread_results[i].reserve(max_seeds_);
 
                 for (time_t seed = thread_start; seed <= thread_end; ++seed) {
+                    bool debug = debug_seeds_.find(seed) != debug_seeds_.end();
                     if (local_processed % CHECK_INTERVAL == 0) {
-                        total_seeds_found += local_seeds_found;
+                        size_t total_seeds_found = statistics.add_seeds_found(local_seeds_found);
                         local_seeds_found = 0;
                         if (total_seeds_found > max_seeds_) {
                             break;
                         }
-                        size_t processed = seeds_processed.fetch_add(local_processed) + local_processed;
+                        size_t processed = statistics.add_seeds_processed(local_processed);
                         local_processed = 0;
 
-                        int current_percentage = (processed * 100) / total;
-                        current_percentage = (current_percentage / 10) * 10;
-
-                        if (current_percentage > last_percentage && current_percentage <= 100) {
-                            std::lock_guard<std::mutex> lock(print_mutex);
-                            if (current_percentage > last_percentage) {
-                                last_percentage = current_percentage;
-                                std::cout << current_percentage << "% - " << total_seeds_found.load()
-                                    << " seeds found" << std::endl;
-                            }
-                        }
+                        statistics.maybe_print_progress();
                     }
 
                     rng_sim_pool_[i]->init(seed);
+                    int curr_allowable_heals = allowable_heals;
+                    int curr_allowable_room_pairs = allowable_room_pairs;
+                    std::vector<std::function<bool(bool)>> curr_results;
+                    curr_results.reserve(functions_[i].size() + 50);
                     bool all_pass = true;
                     for (const auto& func : functions_[i]) {
-                        if (!func(/*log=*/false)) {
-                            all_pass = false;
-                            break;
+                        if (!func(/*log=*/debug)) {
+                            if (curr_allowable_heals == 0 && curr_allowable_room_pairs == 0) {
+                                all_pass = false;
+                                break;
+                            }
+                            if (debug) std::cout << "Trying to extend" << std::endl;
+                            std::stack<std::function<bool(bool)>> extra_funcs;
+                            rng_sim_pool_[i]->roll_back_last_rng();
+                            // Heals are more expensive than room transitions due to the time required to open the tech menu
+                            // so prioritize finding options that use room pairs instead.
+                            bool passed = false;
+                            for (int heals = 0; heals <= curr_allowable_heals; heals++) {
+                                for (int rooms = 1; rooms <= curr_allowable_room_pairs; rooms++) {
+                                    if (debug) std::cout << "Adding " << ((rooms+1)*2) << " rooms" << std::endl;
+                                    std::function<bool(bool)> room_func = std::bind(&RNGSim::room, rng_sim_pool_[i].get(), std::placeholders::_1);
+                                    std::ignore = room_func(debug);
+                                    std::ignore = room_func(debug);
+                                    extra_funcs.push(room_func);
+                                    extra_funcs.push(room_func);
+                                    if (func(/*log=*/debug)) {
+                                        if (debug) std::cout << "Found extention!" << std::endl;
+                                        passed = true;
+                                        curr_allowable_room_pairs -= rooms;
+                                        curr_allowable_heals -= heals;
+                                        break;
+                                    }
+                                    else {
+                                        if (debug) std::cout << "Rolling back to try again" << std::endl;
+                                        rng_sim_pool_[i]->roll_back_last_rng();
+                                    }
+                                }
+                                if (passed) {
+                                    while (!extra_funcs.empty()) {
+                                        curr_results.push_back(std::move(extra_funcs.top()));
+                                        extra_funcs.pop();
+                                    }
+                                    break;
+                                }
+                                // TODO: Implement heals
+                            }
+                            if (!passed) {
+                                all_pass = false;
+                                break;
+                            }
                         }
+                        curr_results.push_back(func);
                     }
                     if (all_pass) {
-                        thread_results[i].push_back(seed);
+                        thread_results[i][seed] = std::move(curr_results);
                         ++local_seeds_found;
                     }
                     if (local_seeds_found >= max_seeds_) {
@@ -218,8 +320,8 @@ std::vector<time_t> RNGHunter::findSeeds(time_t start, time_t end) {
                     ++local_processed;
                 }
 
-                total_seeds_found.fetch_add(local_seeds_found);
-                seeds_processed.fetch_add(local_processed);
+                statistics.add_seeds_found(local_seeds_found);
+                statistics.add_seeds_processed(local_processed);
             });
     }
 
@@ -227,9 +329,9 @@ std::vector<time_t> RNGHunter::findSeeds(time_t start, time_t end) {
         thread.join();
     }
 
-    std::vector<time_t> seeds;
-    for (const auto& thread_result : thread_results) {
-        seeds.insert(seeds.end(), thread_result.begin(), thread_result.end());
+    std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> seeds;
+    for (auto& results : thread_results) {
+        seeds.merge(results);
     }
     std::cout << "Done! " << seeds.size() << " seeds found!" << std::endl;
 

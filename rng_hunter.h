@@ -4,6 +4,8 @@
 #include <functional>
 #include <string>
 #include <time.h>
+#include <unordered_map>
+#include <set>
 
 #include "rng_sim.h"
 
@@ -14,17 +16,19 @@ class RNGHunter {
             rng_sim_pool_.push_back(RNGSim::Create());
         }
     }
-
+    void addDebugSeed(time_t seed);
     bool parseFile(const std::string& filename);
     void logSeed(time_t seed);
+    void logSeedFromFunctions(time_t seed, const std::vector<std::function<bool(bool)>>& functions);
     void extendSeed(time_t seed, int max_rolls);
 
     void clear();
 
-    std::vector<time_t> findSeeds(time_t start, time_t end);
+    std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> findSeeds(time_t start, time_t end, int allowable_heals = 0, int allowable_room_pairs = 0);
 
   private:
     int max_seeds_;
     std::vector<std::vector<std::function<bool(bool)>>> functions_;
     std::vector<std::unique_ptr<RNGSim>> rng_sim_pool_;
+    std::set<time_t> debug_seeds_;
 };

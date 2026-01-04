@@ -26,7 +26,7 @@ room # forest
 battle_with_crits 10 2 2
 battle
 room # sanctuary
-battle_with_rng E4 # nagas
+battle_with_rng D,E,F,10,E4	 # nagas, checked through 2F
 room # cathedral 1
 room # strength capsule
 room # cathedral 1
@@ -76,7 +76,4 @@ room # prison stairs
 room # prison supervisor
 battle
 room # bridge
-room # extra transitions
-room 
-battle #dt
-#battle_with_rng D,12,25,30,3B,4C,60,6E,81,8E,9C,A8,B8,DA,EB,C,E,10,21,23,1F,1E,27,28,29 # dragon tank
+battle_with_rng D,12,25,30,3B,4C,60,6E,81,8E,9C,A8,B8,DA,EB,C,E,10,21,23,1F,1E,27,28,29 # dragon tank

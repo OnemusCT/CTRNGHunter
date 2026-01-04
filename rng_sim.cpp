@@ -15,6 +15,7 @@ constexpr std::string_view kBattleWithRNG = "battle_with_rng";
 constexpr std::string_view kBattleWithCrits = "battle_with_crits";
 constexpr std::string_view kNewGame = "new_game";
 constexpr std::string_view kHeal = "heal";
+constexpr std::string_view kBurn = "burn";
 
 class RNGSimImpl : public RNGSim {
 public:
@@ -40,10 +41,16 @@ public:
 
 	void roll_back_rng(int steps) override;
 
+	void burn(int num, bool log) override;
+
+	void roll_back_last_rng() override;
+
 private:
 	void roll_rng(int n, std::string_view type, bool log);
 
 	MSVCRandWrapper rng_;
+
+	int last_steps = 0;
 };
 
 
@@ -52,6 +59,7 @@ void RNGSimImpl::init(time_t seed) {
 }
 
 void RNGSimImpl::roll_rng(int n, std::string_view type, bool log) {
+	last_steps = n;
 	if (log) {
 		std::vector<int> values(n);
 		for (int i = 0; i < n; i++) {
@@ -85,6 +93,7 @@ bool RNGSimImpl::portal(bool log) {
 }
 
 bool RNGSimImpl::battle(bool log) {
+	last_steps = 1;
 	int r = rng_.rand();
 	int val = (r % 0xFF) + 1;
 	if (log) std::cout << std::format("\tbattle: {:02X} ({:04X})", val, r) << std::endl;
@@ -92,6 +101,7 @@ bool RNGSimImpl::battle(bool log) {
 }
 
 bool RNGSimImpl::battle_with_rng(std::vector<int> rng_vals, bool log) {
+	last_steps = 1;
 	int r = rng_.rand();
 	int val = (r % 0xFF) + 1;
 	for (int rng_val : rng_vals) {
@@ -105,6 +115,7 @@ bool RNGSimImpl::battle_with_rng(std::vector<int> rng_vals, bool log) {
 }
 
 bool RNGSimImpl::battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, bool log) {
+	last_steps = 1;
 	int crits = 0;
 	int r = rng_.rand();
 	int val = (r % 0xFF) + 1;
@@ -136,6 +147,15 @@ void RNGSimImpl::roll_back_rng(int steps) {
 	for (int i = 0; i < steps; i++) {
 		rng_.unrand();
 	}
+}
+
+void RNGSimImpl::roll_back_last_rng() {
+	roll_back_rng(last_steps);
+	last_steps = 0;
+}
+
+void RNGSimImpl::burn(int num, bool log) {
+	roll_rng(num, kBurn, log);
 }
 
 std::unique_ptr<RNGSim> RNGSim::Create() {
