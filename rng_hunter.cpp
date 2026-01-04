@@ -154,7 +154,7 @@ bool RNGHunter::parseFile(const std::string& filename) {
                 }
             }
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i, &rng_vals](bool log) {
+                functions_[i].emplace_back([this, i, rng_vals](bool log) {
                     return rng_sim_pool_[i]->battle_with_rng(rng_vals, log);
                 });
             }
@@ -180,7 +180,7 @@ bool RNGHunter::parseFile(const std::string& filename) {
                 }
             }
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i, &thresholds, min_crits, max_turns](bool log) {
+                functions_[i].emplace_back([this, i, thresholds, min_crits, max_turns](bool log) {
                     return rng_sim_pool_[i]->battle_with_crits(thresholds, min_crits, max_turns, log);
                 });
             }
@@ -288,13 +288,11 @@ std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> RNGHunter::fi
                             for (int heals = 0; heals <= curr_allowable_heals; heals++) {
                                 for (int rooms = 1; rooms <= curr_allowable_room_pairs; rooms++) {
                                     if (debug) std::cout << "Adding " << ((rooms+1)*2) << " rooms" << std::endl;
-                                    std::function room_func = [this, i](bool log) {
-                                        return rng_sim_pool_[i]->room(log);
+                                    std::function extra_rooms_func = [this, i](bool log) {
+                                        return rng_sim_pool_[i]->extra_rooms(log);
                                     };
-                                    std::ignore = room_func(debug);
-                                    std::ignore = room_func(debug);
-                                    extra_funcs.push(room_func);
-                                    extra_funcs.push(room_func);
+                                    std::ignore = extra_rooms_func(debug);
+                                    extra_funcs.push(extra_rooms_func);
                                     if (func(/*log=*/debug)) {
                                         if (debug) std::cout << "Found extension!" << std::endl;
                                         passed = true;

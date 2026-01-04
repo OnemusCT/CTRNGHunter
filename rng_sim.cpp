@@ -13,6 +13,7 @@ constexpr std::string_view kPortal = "portal";
 constexpr std::string_view kNewGame = "new_game";
 constexpr std::string_view kHeal = "heal";
 constexpr std::string_view kBurn = "burn";
+constexpr std::string_view kExtraRooms = "extra_rooms";
 
 class RNGSimImpl : public RNGSim {
 public:
@@ -23,6 +24,8 @@ public:
 	bool load(bool log) override;
 
 	bool room(bool log) override;
+
+	bool extra_rooms(bool log) override;
 
 	bool battle(bool log) override;
 
@@ -81,6 +84,11 @@ bool RNGSimImpl::load(bool log) {
 
 bool RNGSimImpl::room(bool log) {
 	roll_rng(33, kRoom, log);
+	return true;
+}
+
+bool RNGSimImpl::extra_rooms(bool log) {
+	roll_rng(66, kExtraRooms, log);
 	return true;
 }
 
