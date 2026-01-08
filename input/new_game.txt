@@ -26,7 +26,7 @@ room # forest
 battle_with_crits 10 2 2
 battle
 room # sanctuary
-battle_with_rng D,E,F,10,E4	 # nagas, checked through 2F
+battle_with_rng D,E,F,10,35,36,37,38,39,3A,3B,3C,3D,5E,5F,61,62,63,64,65,66,67,68,69,6A,6B,6C,6D,6E,6F,70,71,72,73,74,75,E4	 # nagas, checked through 76
 room # cathedral 1
 room # strength capsule
 room # cathedral 1
