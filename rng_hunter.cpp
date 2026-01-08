@@ -229,6 +229,7 @@ void RNGHunter::logSeedFromFunctions(time_t seed, const std::vector<std::functio
     for (const auto& func : functions) {
         std::ignore = func(/*log=*/true);
     }
+    std::cout << std::endl << std::endl;
 }
 
 void RNGHunter::clear() {

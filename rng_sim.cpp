@@ -61,13 +61,10 @@ void RNGSimImpl::init(time_t seed) {
 void RNGSimImpl::roll_rng(int n, std::string_view type, bool log) {
 	last_steps = n;
 	if (log) {
-		std::vector<int> values(n);
-		for (int i = 0; i < n; i++) {
-			values[i] = rng_.rand();
-		}
 		std::cout << "\t" << type << ": (";
-		for (int i : values) {
-			std::cout << std::format("{:04X} ", i);
+		for (int i = 0; i < n; i++) {
+			if (i != 0 && i%33 == 0) std::cout << std::endl << "\t\t";
+			std::cout << std::format("{:04X} ", rng_.rand());
 		}
 		std::cout << ")" << std::endl;
 	}
