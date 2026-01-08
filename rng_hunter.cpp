@@ -98,10 +98,13 @@ bool RNGHunter::parseFile(const std::string& filename) {
             }
         }
         else if (funcName == "room") {
+            int rooms_num = 1;
+            iss >> rooms_num;
+            if (rooms_num == 0) rooms_num = 1;
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i](bool log) {
-                    return rng_sim_pool_[i]->room(log);
-                });
+                functions_[i].emplace_back([this, i, rooms_num](bool log) {
+                    return rng_sim_pool_[i]->room(rooms_num, log);
+                 });
             }
         }
         else if (funcName == "battle") {
@@ -128,6 +131,7 @@ bool RNGHunter::parseFile(const std::string& filename) {
         else if (funcName == "heal") {
             int heal_num = 1;
             iss >> heal_num;
+            if (heal_num == 0) heal_num = 1;
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
                 functions_[i].emplace_back([this, i, heal_num](bool log) {
                     return rng_sim_pool_[i]->heal(heal_num, log);

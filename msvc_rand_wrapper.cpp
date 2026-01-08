@@ -26,12 +26,13 @@ std::pair<uint32_t, uint32_t> calcLCGParams(int n) {
 }
 
 MSVCRandWrapper::MSVCRandWrapper() {
-    // Add precomputed values
-	a_[33] = 912984189u;
-	c_[33] = 2202588003u;
-	a_[66] = 3569749257u;
-	c_[66] = 550773434u;
-
+    // Precompute up to 20 room transitions
+    for (int i = 2; i <= 20; i++) {
+        uint32_t a,c;
+        std::tie(a,c) = calcLCGParams(i);
+        a_.insert({i, a});
+        c_.insert({i, c});
+    }
 }
 
 void MSVCRandWrapper::srand(time_t seed) {

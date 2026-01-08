@@ -13,7 +13,7 @@ class RNGSim {
 
 	virtual bool load(bool log) = 0;
 
-	virtual bool room(bool log) = 0;
+	virtual bool room(int num, bool log) = 0;
 
 	virtual bool extra_rooms(bool log) = 0;
 

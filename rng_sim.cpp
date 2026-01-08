@@ -23,7 +23,7 @@ public:
 
 	bool load(bool log) override;
 
-	bool room(bool log) override;
+	bool room(int num, bool log) override;
 
 	bool extra_rooms(bool log) override;
 
@@ -80,8 +80,8 @@ bool RNGSimImpl::load(bool log) {
 	return true;
 }
 
-bool RNGSimImpl::room(bool log) {
-	roll_rng(33, kRoom, log);
+bool RNGSimImpl::room(int num, bool log) {
+	roll_rng(33*num, kRoom, log);
 	return true;
 }
 

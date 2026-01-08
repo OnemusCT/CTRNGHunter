@@ -66,11 +66,12 @@ int main(int argc, char* argv[]) {
     find_seeds->add_option("-p,--pool",pool,"Pool size for RNG hunters")->capture_default_str();
     find_seeds->add_option("-r,--rooms", max_rooms, "Maximum number of room transition pairs")->capture_default_str();
     find_seeds->callback([&] {
-        RNGHunter hunter(max_seeds, 8);
+        RNGHunter hunter(max_seeds, pool);
         if (!hunter.parseFile(filename)) {
             std::cerr << "Unable to load file" << std::endl;
             return;
         }
+        //hunter.addDebugSeed(1467165297);
         for(int i = 0; i <= max_rooms; i++) {
             std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> valid_seeds = hunter.findSeeds(start, end, 0, i);
             if(!valid_seeds.empty()) {
