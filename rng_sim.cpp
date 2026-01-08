@@ -72,9 +72,7 @@ void RNGSimImpl::roll_rng(int n, std::string_view type, bool log) {
 		std::cout << ")" << std::endl;
 	}
 	else {
-		for (int i = 0; i < n; ++i) {
-			rng_.rand();
-		}
+		rng_.rand(n);
 	}
 }
 bool RNGSimImpl::load(bool log) {
