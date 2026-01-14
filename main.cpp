@@ -24,6 +24,73 @@ void print_crit_values(int threshold) {
     }
 }
 
+void print_init_table(int players = 3, int enemies = 1) {
+    std::cout << std::format("RNG Post initialization for {} characters and {} enemies", players, enemies) << std::endl;
+    std::cout << "\t";
+    for (int i = 0; i < 16; i++) {
+        std::cout << std::format("x{:1X}\t", i);
+    }
+    std::cout << std::endl;
+    for (int i = 0; i < 256; i++) {
+        if (i % 16 == 0) {
+            std::cout << std::format("{:1X}x", i/16) << "\t";
+        }
+        std::set<int> seen;
+        int t = 10;
+        for (int j = 3; j > players; j--) {
+            seen.insert(t--);
+        }
+        for (int j = i; j != i - 1; j++) {
+            if(j == 256) j = 0;
+            //std::cout << std::format("j: {:02X} ({:02X})", j, rng_table(j));
+            seen.insert(rng_table(j)%11);
+            if (seen.size() == 11) {
+                j = (j+1)%256;
+                while (rng_table(j) % 8 >= enemies) j = (j + 1) % 256;
+                j = (j + 1) % 256;
+                std::cout << std::format("{:02X}\t", j);
+                break;
+            }
+        }
+        if (i % 16 == 15) std::cout << std::endl;
+    }
+}
+
+void print_init_order(int rng, int players, int enemies) {
+    std::set<int> exist;
+    std::vector<int> order;
+    std::vector<int> entities;
+    for (int i = 0; i < players; i++) {
+        entities.push_back(i);
+        exist.insert(i);
+    }
+    for (int i = 0; i < 8; i++) {
+        entities.push_back(10-i);
+    }
+    for (int i = 0; i < enemies; i++) {
+        exist.insert(3+i);
+    }
+    while(entities.size() < 11 ) {
+        entities.push_back(0xFF);
+    }
+    while (order.size() < 11 - (3-players)) {
+        int c = rng_table(rng)%11;
+        if (entities[c] != 0xFF) {
+            order.push_back(entities[c]);
+            entities[c] = 0xFF;
+        }
+        ++rng;
+    }
+    std::cout << "[ ";
+    for (int e : order) {
+        if (exist.find(e) != exist.end())
+            std::cout << std::format("**0x{:1X}** ", e);
+        else
+            std::cout << std::format("0x{:1X} ", e);
+    }
+    std::cout << "]" << std::endl;
+}
+
 int main(int argc, char* argv[]) {
     CLI::App app("CT RNG Hunter");
     CLI::App* list_rng = app.add_subcommand("list_rng", "List the RNG values for a given seed");
@@ -64,7 +131,7 @@ int main(int argc, char* argv[]) {
     find_seeds->add_option("-e,--end", end, "Unix time to end looking for seeds")->capture_default_str();
     find_seeds->add_option("-m,--max_seeds", max_seeds, "Maximum number of seeds to find.")->capture_default_str();
     find_seeds->add_option("-p,--pool",pool,"Pool size for RNG hunters")->capture_default_str();
-    find_seeds->add_option("-r,--rooms", max_rooms, "Maximum number of room transition pairs")->capture_default_str();
+    find_seeds->add_option("-r,--rooms", max_rooms, "Maximum number of extra room transition pairs")->capture_default_str();
     find_seeds->callback([&] {
         RNGHunter hunter(max_seeds, pool);
         if (!hunter.parseFile(filename)) {
@@ -111,6 +178,32 @@ int main(int argc, char* argv[]) {
             std::cerr << "Unable to load file" << std::endl;
         }
         hunter.extendSeed(seed, max_rolls);
+    });
+
+    int players = 3;
+    int enemies = 1;
+    CLI::App* print_init = app.add_subcommand("print_init_table", "Prints the post initialization RNG seed for each possible starting RNG seed for a number of players and enemies");
+    print_init->add_option("-p,--players", players, "The number of player characters in the party");
+    print_init->add_option("-e,--enemies", enemies, "The number of enemies in the fight");
+    print_init->callback([&] {
+        print_init_table(players, enemies);
+    });
+
+    std::string rng = "0";
+    CLI::App* print_turn_order = app.add_subcommand("print_turn_order", "Prints the processing order for enemy and player turns in battle for a given RNG seed");
+    print_turn_order->add_option("-p,--players", players, "The number of player characters in the party");
+    print_turn_order->add_option("-e,--enemies", enemies, "The number of enemies in the fight");
+    print_turn_order->add_option("-r,--rng", rng, "The RNG value that the battle starts on");
+    print_turn_order->callback([&] {
+        int rng_val = 0;
+        try {
+            rng_val = std::stoi(rng, 0, 16);
+        }
+        catch (const std::exception&) {
+            std::cerr << "Invalid rng value, must be a hex value: " << rng << std::endl;
+            return;
+        }
+        print_init_order(rng_val, players, enemies);
     });
 
     CLI11_PARSE(app, argc, argv);
