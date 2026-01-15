@@ -26,3 +26,53 @@ int rng_table(int i) {
 bool crit_table(int i, int threshold) {
     return rng_table(i) % 100 <= threshold;
 }
+
+void RNGTable::seed(int i) {
+    seed_ = i;
+}
+
+int RNGTable::roll(int limit) {
+    int val = rng_table(seed_);
+    seed_ = (seed_ + 1) % 256;
+    return val % limit;
+}
+
+std::pair<int, int> RNGTable::roll_with_seed(int limit) {
+    int seed = seed_;
+    int val = roll(limit);
+    return { seed, val };
+}
+
+int RNGTable::get_seed() const {
+    return seed_;
+}
+
+int RNGTable::peek(int limit) const {
+    return rng_table(seed_) % limit;
+}
+
+RollResult RNGTable::roll_result(int limit) {
+    int seed = seed_;
+    int val = roll(limit);
+    return { seed, val };
+}
+
+std::vector<RollResult> RNGTable::roll_multiple(int count, int limit) {
+    std::vector<RollResult> results;
+    results.reserve(count);
+
+    for (int i = 0; i < count; i++) {
+        results.push_back(roll_result(limit));
+    }
+
+    return results;
+}
+
+RollResult RNGTable::roll_until(std::function<bool(int)> condition, int limit) {
+    RollResult result;
+    do {
+        result = roll_result(limit);
+    } while (!condition(result.value));
+
+    return result;
+}

@@ -23,7 +23,7 @@ set(SOURCES
     rng_hunter.cpp
     msvc_rand_wrapper.cpp
     rng_sim.cpp
-)
+    battle_sim.cpp)
 
 # Header files
 set(HEADERS
@@ -33,7 +33,7 @@ set(HEADERS
     rng_sim.h
     rng_table.h
     seed_parser.h
-)
+    battle_sim.h)
 
 # Create executable
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})

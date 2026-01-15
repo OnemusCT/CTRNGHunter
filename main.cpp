@@ -7,6 +7,7 @@
 #include "seed_parser.h"
 #include "rng_hunter.h"
 #include "msvc_rand_wrapper.h"
+#include "battle_sim.h"
 
 void print_rng_values(time_t seed, int num_output) {
     MSVCRandWrapper rand = {};
@@ -210,5 +211,7 @@ int main(int argc, char* argv[]) {
     if (argc == 1) {
         std::cout << app.help() << std::endl;
     }
+
+    sim_magus();
     return 0;
 }
