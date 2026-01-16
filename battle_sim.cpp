@@ -7,6 +7,7 @@
 #include <set>
 #include <vector>
 #include <string>
+#include <cmath>
 
 constexpr int kNumPartyMembers = 3;
 constexpr int kMaxEntities = 11;
@@ -20,7 +21,7 @@ RollResult select_live_target(RNGTable& rng, const std::set<int>& dead_pcs) {
     auto get_target = [](int value) { return (value % kPlayerTargetRNGLimit) / kPlayerTargetDivisor; };
 
     RollResult result = rng.roll_result();
-    while (dead_pcs.find(get_target(result.value)) != dead_pcs.end()) {
+    while (dead_pcs.contains(get_target(result.value))) {
         result = rng.roll_result();
         std::cout << std::format("Target: {} - Dead ({}), reroll - ", get_target(result.value), result.to_string());
     }
@@ -37,16 +38,25 @@ void print_roll_sequence(RNGTable& rng, const std::string& label, int count) {
     }
 }
 
-void berserk_attack(RNGTable& rng) {
+void berserk_attack(RNGTable& rng, RNGTable& crit) {
     std::cout << std::format("Berserk attack - Start RNG {:02X}", rng.get_seed()) << std::endl;
 
+    int defense = 230;
+    int weapon_power = 75;
+    int power = 22;
     // Roll until we find a target (value == 0)
     auto target = rng.roll_until([](int val) { return val == 0; }, 8);
     auto hit = rng.roll_result();
-    auto damage = rng.roll_result();
+    auto damage_modifier = rng.roll_result(power/3 + 1);
 
-    std::cout << std::format("\tTarget found at {}, hit {}, damage {}",
-        target.to_string(), hit.to_string(), damage.to_string()) << std::endl;
+    int crit_multiplier = crit.roll() % 100 <= 23 ? 2 : 1;
+    double damage = 6 * (weapon_power*(5.0/9.0) + power * (12.0/9.0));
+
+    damage = damage * ((256.0-defense)/256.0) + damage_modifier.value;
+    damage *= crit_multiplier;
+
+    std::cout << std::format("\tTarget found at {}, hit {}, damage {} ({})",
+        target.to_string(), hit.to_string(), damage_modifier.to_string(), damage) << std::endl;
 }
 
 void wander_random_target(RNGTable& rng, const std::set<int>& dead_pcs) {
@@ -64,10 +74,18 @@ void basic_attack(RNGTable& rng) {
         rolls[0].seed, rolls[1].seed) << std::endl;
 }
 
-void plasma_attack(RNGTable& rng) {
+void plasma_attack(RNGTable& rng, RNGTable& crit) {
     auto rolls = rng.roll_multiple(3);
-    std::cout << std::format("Plasma Attack - Hit {:02X}, damage {:02X}, status {:02X}",
-        rolls[0].seed, rolls[1].seed, rolls[2].seed) << std::endl;
+    int crit_multiplier = crit.roll() <= 20 ? 2 : 1;
+    int hit = 13;
+    int defense = 230;
+    int weapon_power = 25;
+    int damage_modifier = rolls[1].value % (hit/3 + 1);
+    double damage = 4*(std::floor(weapon_power * (6.0/9.0)) + std::floor(hit * (6.0/9.0)));
+    damage = std::floor(damage * ((256.0-defense)/256.0) + damage_modifier);
+    damage *= crit_multiplier;
+    std::cout << std::format("Plasma Attack - Hit {:02X}, damage {:02X} ({}), status {:02X}",
+        rolls[0].seed, rolls[1].seed, damage, rolls[2].seed) << std::endl;
 }
 
 void geyser(RNGTable& rng, int players_alive = kNumPartyMembers) {
@@ -78,9 +96,6 @@ void geyser(RNGTable& rng, int players_alive = kNumPartyMembers) {
 }
 
 void enemy_attack(RNGTable& rng, const std::set<int>& dead_pcs) {
-    constexpr int kPlayerTargetRNGLimit = 99;
-    constexpr int kPlayerTargetDivisor = 33;
-
     std::cout << "Enemy attack" << std::endl;
     std::cout << "\t";
 
@@ -156,7 +171,7 @@ void initialize(RNGTable& rng, int players, int enemies) {
     // Print turn order
     std::cout << "\t[ ";
     for (int entity : order) {
-        if (exist.find(entity) != exist.end()) {
+        if (exist.contains(entity)) {
             std::cout << std::format("**0x{:1X}** ", entity);
         }
         else {
@@ -174,27 +189,28 @@ void initialize(RNGTable& rng, int players, int enemies) {
 }
 
 void sim_magus() {
-    RNGTable rng(0x0D);
+    RNGTable rng(0x10);
+    RNGTable crit(0x10);
     initialize(rng, kNumPartyMembers, 1);
-    berserk_attack(rng);
+    berserk_attack(rng, crit);
     wander_random_target(rng, {});
-    plasma_attack(rng);
+    plasma_attack(rng, crit);
     magus_counter(rng);
     wander_random_target(rng, {});
-    berserk_attack(rng);
+    berserk_attack(rng, crit);
     geyser(rng);
     wander_random_target(rng, {});
     fire_sword(rng);
     magus_counter(rng);
     wander_random_target(rng, {1});
     enemy_attack(rng, {1});
-    berserk_attack(rng);
+    berserk_attack(rng, crit);
     fire_sword(rng);
     magus_counter(rng);
     geyser(rng);
-    berserk_attack(rng);
+    berserk_attack(rng, crit);
     wander_random_target(rng, {});
-    plasma_attack(rng);
+    plasma_attack(rng, crit);
     magus_counter(rng);
     enemy_attack(rng, {1});
     wander_random_target(rng, {});
@@ -203,6 +219,6 @@ void sim_magus() {
     magus_counter(rng, 2);
     wander_random_target(rng, {1});
     enemy_attack(rng, {1});
-    berserk_attack(rng);
+    berserk_attack(rng, crit);
     fire_sword(rng);
 }

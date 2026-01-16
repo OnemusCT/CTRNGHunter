@@ -246,7 +246,7 @@ std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> RNGHunter::fi
 
     time_t total = end - start + 1;
     HunterStatistics statistics(total);
-    time_t chunk_size = total / num_threads;
+    size_t chunk_size = total / num_threads;
 
     for (size_t i = 0; i < num_threads; ++i) {
         time_t thread_start = start + i * chunk_size;

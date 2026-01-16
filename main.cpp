@@ -57,7 +57,7 @@ void print_init_table(int players = 3, int enemies = 1) {
     }
 }
 
-void print_init_order(int rng, int players, int enemies) {
+void print_init_order(u_int8_t rng, u_int8_t players, u_int8_t enemies) {
     std::set<int> exist;
     std::vector<int> order;
     std::vector<int> entities;
@@ -181,8 +181,8 @@ int main(int argc, char* argv[]) {
         hunter.extendSeed(seed, max_rolls);
     });
 
-    int players = 3;
-    int enemies = 1;
+    u_int8_t players = 3;
+    u_int8_t enemies = 1;
     CLI::App* print_init = app.add_subcommand("print_init_table", "Prints the post initialization RNG seed for each possible starting RNG seed for a number of players and enemies");
     print_init->add_option("-p,--players", players, "The number of player characters in the party");
     print_init->add_option("-e,--enemies", enemies, "The number of enemies in the fight");
@@ -196,9 +196,9 @@ int main(int argc, char* argv[]) {
     print_turn_order->add_option("-e,--enemies", enemies, "The number of enemies in the fight");
     print_turn_order->add_option("-r,--rng", rng, "The RNG value that the battle starts on");
     print_turn_order->callback([&] {
-        int rng_val = 0;
+        u_int8_t rng_val = 0;
         try {
-            rng_val = std::stoi(rng, 0, 16);
+            rng_val = std::stoi(rng, nullptr, 16);
         }
         catch (const std::exception&) {
             std::cerr << "Invalid rng value, must be a hex value: " << rng << std::endl;

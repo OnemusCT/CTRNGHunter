@@ -33,6 +33,7 @@ MSVCRandWrapper::MSVCRandWrapper() {
         a_.insert({i, a});
         c_.insert({i, c});
     }
+    seed_ = 0;
 }
 
 void MSVCRandWrapper::srand(time_t seed) {
