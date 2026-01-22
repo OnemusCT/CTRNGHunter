@@ -1,0 +1,16 @@
+####################################
+####							####
+####			Zombor			####
+####							####
+####################################
+battle
+battle
+battle_with_rng B3 # zombor
+room 4 # shop, mountain 1,2,1
+battle # tata battles
+battle
+room # mountain 2
+battle
+room # mountain 3
+battle
+room 11 #mountain 4, 5, gauntlet, waterfall, 6, gauntlet, waterfall, summit, save, 7, masamune

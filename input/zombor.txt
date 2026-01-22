@@ -1,26 +1,3 @@
 load
-####################################
-####							####
-####			Zombor			####
-####							####
-####################################
-battle
-battle
-battle_with_rng B3 # zombor
-room 4 # shop, mountain 1,2,1
-battle # tata battles
-battle
-room # mountain 2
-battle
-room # mountain 3
-battle
-room 11 #mountain 4, 5, gauntlet, waterfall, 6, gauntlet, waterfall, summit, save, 7, masamune
-####################################
-####							####
-####		  Masamune			####
-####							####
-####################################
-battle_with_rng C4,C6,C7,C8,C9,CA,CB,CC,CD,CE,CF,D0,D1,D2 #masa twins
-disable_extra_rooms
-battle_with_rng 01 #masamune
-enable_extra_rooms
+import sections/zombor.txt
+import sections/masamune.txt

@@ -121,8 +121,8 @@ int main(int argc, char* argv[]) {
 
     CLI::App* find_seeds = app.add_subcommand("find_seeds", "Finds seeds that match the requirements from the input file.");
     std::string filename;
-    time_t start = 1700000000;
-    time_t end = 1800000000;
+    time_t start = 315550800;
+    time_t end = 2147403600;
     int max_seeds = 10;
     int pool = 8;
     int max_rooms = 0;

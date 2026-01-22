@@ -84,7 +84,12 @@ bool RNGSimImpl::load(bool log) {
 }
 
 bool RNGSimImpl::room(int num, bool log) {
-	roll_rng(33*num, kRoom, log);
+	if (log) {
+		roll_rng(33*num, std::format("{} x{}", kRoom, num), log);
+	}
+	else {
+		roll_rng(33*num, kRoom, log);
+	}
 	return true;
 }
 

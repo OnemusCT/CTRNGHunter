@@ -56,12 +56,13 @@ room 13
 ####		   Guardian			####
 ####							####
 ####################################
-battle # guardian
+battle	 # guardian
 # storage, guardian, rat, switch, rats, robots, control, cutscene x2, robots, rats, switch, arris
 # johnny 1, johnny 2, proto
 room 16
 battle # shocker things
 room 6 # cutscene 1, 2, 3, 4, 5, factory 1
+portal # there's a 1 that I missed somewhere... probably in the cutscene
 battle # first slime
 room # factory 2
 battle # 3 slimes
@@ -102,7 +103,8 @@ room 2 # fair 2, gato
 battle
 room 2 # fair 2, teleporter
 portal # eot
-room 9 # truce portal, truce canyon, bridge, forest, throneroom, kitchen, throneroom, forest, bridge
+portal # truce portal still counts as 1, weird
+room 8 # truce canyon, bridge, forest, throneroom, kitchen, throneroom, forest, bridge
 ####################################
 ####							####
 ####			Zombor			####
