@@ -1,0 +1,19 @@
+####################################
+####							####
+####		   R-Series 		####
+####							####
+####################################
+battle # R-Series
+room # cutscene
+portal # (1?)
+portal # eot only took 1
+room # spekkio
+portal # going back only took 1
+room 6 # medina cabinet, mayor, upstairs, mayor, melchior, cave 1
+battle # hench
+battle # squids
+room # cave 2
+battle # bug things
+room # cave 3
+battle # rolys
+room 3 # cave 4, 5, heckran

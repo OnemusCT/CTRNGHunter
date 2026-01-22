@@ -140,7 +140,7 @@ int main(int argc, char* argv[]) {
             std::cerr << "Unable to load file" << std::endl;
             return;
         }
-        //hunter.addDebugSeed(1467165297);
+        //hunter.addDebugSeed(1097631540);
         for(int i = min_rooms; i <= max_rooms; i++) {
             std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> valid_seeds = hunter.findSeeds(start, end, 0, i);
             if(!valid_seeds.empty()) {

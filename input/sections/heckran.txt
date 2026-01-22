@@ -1,0 +1,16 @@
+####################################
+####							####
+####			Heckran			####
+####							####
+####################################
+battle # heckran
+room 8 # Lucca's house 1, 2, 3, 2, 1, fair 1, 2, gato
+battle
+room 2 # fair 2, gato
+battle
+room 2 # fair 2, gato
+battle
+room 2 # fair 2, teleporter
+portal # eot
+portal # truce portal still counts as 1, weird
+room 8 # truce canyon, bridge, forest, throneroom, kitchen, throneroom, forest, bridge

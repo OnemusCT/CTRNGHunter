@@ -1,7 +1,4 @@
-new_game
-import sections/start.txt
-import sections/nagas.txt
-import sections/yakra.txt
+load
 import sections/dragontank.txt
 import sections/guardian.txt
 import sections/rseries.txt

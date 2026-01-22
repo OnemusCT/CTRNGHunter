@@ -227,7 +227,6 @@ bool RNGHunter::parseFile(const std::string& filename) {
         }
     }
     file.close();
-    std::cout << "Done loading" << std::endl;
     return true;
 }
 
