@@ -1,27 +1,26 @@
 load
+####################################
+####							####
+####			Zombor			####
+####							####
+####################################
 battle
 battle
-battle_with_rng B3
-#battle_with_crits 0,0,10,0,10 2 5
+battle_with_rng B3 # zombor
 room 4 # shop, mountain 1,2,1
 battle # tata battles
 battle
 room # mountain 2
 battle
-room #mountain 3
+room # mountain 3
 battle
-room 11 #mountain 4, 5, guantlet, waterfall, 6, waterfall, summit, save, 7, masamune
-battle_with_rng C8 #masa twins
+room 11 #mountain 4, 5, gauntlet, waterfall, 6, gauntlet, waterfall, summit, save, 7, masamune
+####################################
+####							####
+####		  Masamune			####
+####							####
+####################################
+battle_with_rng C4,C6,C7,C8,C9,CA,CB,CC,CD,CE,CF,D0,D1,D2 #masa twins
+disable_extra_rooms
 battle_with_rng 01 #masamune
-room # tata's house
-room # woods
-room # frog's house
-room # woods
-room # truce canyon
-battle # bird
-room 8 # truce portal, eot, cabinet, melchior, cabinet, eot, mountain portal, mountain base
-battle # reptites
-battle
-room #mountain entrance
-battle
-room #ayla's hut, party 1, party 2, soup?
+enable_extra_rooms

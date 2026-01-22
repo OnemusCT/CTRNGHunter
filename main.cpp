@@ -126,12 +126,14 @@ int main(int argc, char* argv[]) {
     int max_seeds = 10;
     int pool = 8;
     int max_rooms = 0;
+    int min_rooms = 0;
     find_seeds->add_option("-f,--filename", filename, "The file")->required();
     find_seeds->add_option("-s,--start", start, "Unix time to start looking for seeds")->capture_default_str();
     find_seeds->add_option("-e,--end", end, "Unix time to end looking for seeds")->capture_default_str();
     find_seeds->add_option("-m,--max_seeds", max_seeds, "Maximum number of seeds to find.")->capture_default_str();
     find_seeds->add_option("-p,--pool",pool,"Pool size for RNG hunters")->capture_default_str();
     find_seeds->add_option("-r,--rooms", max_rooms, "Maximum number of extra room transition pairs")->capture_default_str();
+    find_seeds->add_option("--rooms_min", min_rooms, "Minimum number of extra room transition pairs")->capture_default_str();
     find_seeds->callback([&] {
         RNGHunter hunter(max_seeds, pool);
         if (!hunter.parseFile(filename)) {
@@ -139,7 +141,7 @@ int main(int argc, char* argv[]) {
             return;
         }
         //hunter.addDebugSeed(1467165297);
-        for(int i = 0; i <= max_rooms; i++) {
+        for(int i = min_rooms; i <= max_rooms; i++) {
             std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> valid_seeds = hunter.findSeeds(start, end, 0, i);
             if(!valid_seeds.empty()) {
                 for (const auto& [curr_seed, functions] : valid_seeds) {
