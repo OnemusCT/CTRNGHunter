@@ -1,0 +1,11 @@
+# kitchen, fair 1, fair 2, fair 1, fair 2, teleporter
+room 6
+portal # truce canyon, this might be the only portal that has different RNG from a room
+battle #blue imps
+# canyon, forest, throne room, stairs 1, stairs 2, stairs 3
+# leene's room, stairs 3, stairs 2, stairs 1, throne room
+# cutscene, throne room, forest
+room 14
+battle
+battle
+room # sanctuary
