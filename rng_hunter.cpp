@@ -121,7 +121,7 @@ bool RNGHunter::parseFile(const std::string& filename) {
                 });
             }
         }
-        else if (funcName == "portal") {
+        else if (funcName == "portal" || funcName=="eot" || funcName=="special_room") {
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
                 functions_[i].emplace_back([this, i](bool log) {
                     return rng_sim_pool_[i]->portal(log);
@@ -187,6 +187,20 @@ bool RNGHunter::parseFile(const std::string& filename) {
                 functions_[i].emplace_back([this, i, thresholds, min_crits, max_turns](bool log) {
                     return rng_sim_pool_[i]->battle_with_crits(thresholds, min_crits, max_turns, log);
                 });
+            }
+        }
+        else if (funcName == "disable_extra_rooms") {
+            for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
+                functions_[i].emplace_back([this, i](bool log) {
+                    return rng_sim_pool_[i]->disable_extra_rooms(log);
+                });
+            }
+        }
+        else if (funcName == "enable_extra_rooms") {
+            for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
+                functions_[i].emplace_back([this, i](bool log) {
+                    return rng_sim_pool_[i]->enable_extra_rooms(log);
+                    });
             }
         }
         else {
@@ -296,7 +310,9 @@ std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> RNGHunter::fi
                                     std::function extra_rooms_func = [this, i](bool log) {
                                         return rng_sim_pool_[i]->extra_rooms(log);
                                     };
-                                    std::ignore = extra_rooms_func(debug);
+                                    // If we can't add extra rooms right now, break
+                                    if(!extra_rooms_func(debug)) break;
+
                                     extra_funcs.push(extra_rooms_func);
                                     if (func(/*log=*/debug)) {
                                         if (debug) std::cout << "Found extension!" << std::endl;

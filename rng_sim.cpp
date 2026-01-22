@@ -45,17 +45,23 @@ public:
 
 	void roll_back_last_rng() override;
 
+	bool disable_extra_rooms(bool log) override;
+
+	bool enable_extra_rooms(bool log) override;
+
 private:
 	void roll_rng(int n, std::string_view type, bool log);
 
 	MSVCRandWrapper rng_;
 
 	int last_steps = 0;
+	bool extra_rooms_enabled_ = true;
 };
 
 
 void RNGSimImpl::init(time_t seed) {
 	rng_.srand(seed);
+	extra_rooms_enabled_ = true;
 }
 
 void RNGSimImpl::roll_rng(int n, std::string_view type, bool log) {
@@ -83,6 +89,7 @@ bool RNGSimImpl::room(int num, bool log) {
 }
 
 bool RNGSimImpl::extra_rooms(bool log) {
+	if (!extra_rooms_enabled_) return false;
 	roll_rng(66, kExtraRooms, log);
 	return true;
 }
@@ -156,6 +163,16 @@ void RNGSimImpl::roll_back_last_rng() {
 
 void RNGSimImpl::burn(int num, bool log) {
 	roll_rng(num, kBurn, log);
+}
+
+bool RNGSimImpl::disable_extra_rooms(bool log) {
+	extra_rooms_enabled_ = false;
+	return true;
+}
+
+bool RNGSimImpl::enable_extra_rooms(bool log) {
+	extra_rooms_enabled_ = true;
+	return true;
 }
 
 std::unique_ptr<RNGSim> RNGSim::Create() {

@@ -29,11 +29,16 @@ class RNGSim {
 
 	virtual bool heal(int num, bool log) = 0;
 
+	virtual bool disable_extra_rooms(bool log) = 0;
+
+	virtual bool enable_extra_rooms(bool log) = 0;
+
 	virtual void roll_back_rng(int steps) = 0;
 
 	virtual void roll_back_last_rng() = 0;
 
 	virtual void burn(int num, bool log) = 0;
+
 
 	static std::unique_ptr<RNGSim> Create();
 
