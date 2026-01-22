@@ -1,18 +1,10 @@
 load
 ####################################
 ####							####
-####		 Dragon Tank		####
-####							####
-####################################
-battle_with_crits 10,0,10,0,10 2 5
-# Stairs x3, throne room, forest, portal, future portal, site 13x2, arris dome, switch room, rat room, guardian room
-room 13
-####################################
-####							####
 ####		   Guardian			####
 ####							####
 ####################################
-battle	 # guardian
+battle_with_crits 10,20 4 10	 # guardian
 # storage, guardian, rat, switch, rats, robots, control, cutscene x2, robots, rats, switch, arris
 # johnny 1, johnny 2, proto
 room 16
@@ -59,8 +51,7 @@ room 2 # fair 2, gato
 battle
 room 2 # fair 2, teleporter
 portal # eot
-portal # truce portal still counts as 1, weird
-room 8 # truce canyon, bridge, forest, throneroom, kitchen, throneroom, forest, bridge
+room 9 # truce portal, truce canyon, bridge, forest, throneroom, kitchen, throneroom, forest, bridge
 ####################################
 ####							####
 ####			Zombor			####

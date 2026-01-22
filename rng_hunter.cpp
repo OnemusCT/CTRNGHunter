@@ -97,6 +97,24 @@ bool RNGHunter::parseFile(const std::string& filename) {
                 });
             }
         }
+        else if (funcName == "import") {
+            std::string importFilename;
+            std::string importRaw;
+            if (iss >> importRaw) {
+                // Construct path relative to the current file's location
+                std::filesystem::path currentPath(filename);
+                std::filesystem::path importPath = currentPath.parent_path() / importRaw;
+
+                if (!parseFile(importPath.string())) {
+                    std::cerr << "Error: Failed to import file: " << importPath << std::endl;
+                    return false;
+                }
+            }
+            else {
+                std::cerr << "Error: 'import' command requires a filename argument." << std::endl;
+                return false;
+            }
+        }
         else if (funcName == "room") {
             int rooms_num = 1;
             iss >> rooms_num;

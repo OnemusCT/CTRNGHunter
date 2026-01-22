@@ -1,0 +1,9 @@
+####################################
+####							####
+####		  Masamune			####
+####							####
+####################################
+battle_with_rng C4,C6,C7,C8,C9,CA,CB,CC,CD,CE,CF,D0,D1,D2 #masa twins
+disable_extra_rooms
+battle_with_rng 01 #masamune
+enable_extra_rooms
