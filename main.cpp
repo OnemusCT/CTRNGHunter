@@ -7,6 +7,7 @@
 #include "seed_parser.h"
 #include "rng_hunter.h"
 #include "msvc_rand_wrapper.h"
+#include "walkthrough_gen/walkthrough_gen.h"
 
 void print_rng_values(time_t seed, int num_output) {
     MSVCRandWrapper rand = {};
@@ -212,5 +213,6 @@ int main(int argc, char* argv[]) {
     if (argc == 1) {
         std::cout << app.help() << std::endl;
     }
+    generate_walkthrough();
     return 0;
 }
