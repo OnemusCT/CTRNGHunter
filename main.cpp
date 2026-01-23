@@ -74,7 +74,7 @@ void print_init_order(int rng, int players, int enemies) {
     while(entities.size() < 11 ) {
         entities.push_back(0xFF);
     }
-    while (order.size() < 11 - (3-players)) {
+    while (order.size() < 11UL - (3-players)) {
         int c = rng_table(rng)%11;
         if (entities[c] != 0xFF) {
             order.push_back(entities[c]);
@@ -157,7 +157,7 @@ int main(int argc, char* argv[]) {
     log_seed->add_option("-f,--filename", filename, "The file to execute")->required();
     log_seed->add_option("-s,--seed", seed, "The seed to run");
     log_seed->callback([&] {
-        RNGHunter hunter(10);
+        RNGHunter hunter(1);
         if (!hunter.parseFile(filename)) {
             std::cerr << "Unable to load file" << std::endl;
         }
@@ -213,6 +213,6 @@ int main(int argc, char* argv[]) {
     if (argc == 1) {
         std::cout << app.help() << std::endl;
     }
-    generate_walkthrough();
+    //generate_walkthrough();
     return 0;
 }

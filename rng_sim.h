@@ -42,10 +42,8 @@ class RNGSim {
 
 	virtual void burn(int num, bool log) = 0;
 
-	virtual int extra_room_count() = 0;
-	virtual void reset_extra_room_count() = 0;
-
 	virtual std::unordered_map<std::string, int> get_extra_rooms_per_encounter() = 0;
+	virtual std::unordered_map<std::string, int> get_battle_rng_per_encounter() = 0;
 
 
 	static std::unique_ptr<RNGSim> Create();

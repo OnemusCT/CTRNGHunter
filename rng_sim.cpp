@@ -48,11 +48,9 @@ public:
 	bool disable_extra_rooms(bool log) override;
 
 	bool enable_extra_rooms(bool log) override;
-	
-	int extra_room_count() override;
-	void reset_extra_room_count() override;
 
 	std::unordered_map<std::string, int> get_extra_rooms_per_encounter() override;
+	std::unordered_map<std::string, int> get_battle_rng_per_encounter() override;
 
 private:
 	void roll_rng(int n, std::string_view type, bool log);
@@ -64,23 +62,23 @@ private:
 	int extra_room_count_ = 0;
 	int last_battle_rng_ = 0;
 	std::unordered_map<std::string, int> extra_room_map_;
+	std::unordered_map<std::string, int> battle_rng_map_;
 };
 
 
 void RNGSimImpl::init(time_t seed) {
 	rng_.srand(seed);
 	extra_rooms_enabled_ = true;
-}
-
-int RNGSimImpl::extra_room_count() {
-	return extra_room_count_;
-}
-void RNGSimImpl::reset_extra_room_count() {
 	extra_room_count_ = 0;
+	extra_room_map_.clear();
 }
 
 std::unordered_map<std::string, int> RNGSimImpl::get_extra_rooms_per_encounter() {
 	return extra_room_map_;
+}
+
+std::unordered_map<std::string, int> RNGSimImpl::get_battle_rng_per_encounter() {
+	return battle_rng_map_;
 }
 
 void RNGSimImpl::roll_rng(int n, std::string_view type, bool log) {
@@ -141,13 +139,14 @@ bool RNGSimImpl::battle_with_rng(std::vector<int> rng_vals, std::string_view nam
 		if (val == rng_val) {
 			last_battle_rng_ = val;
 			extra_room_map_.insert({std::string(name), extra_room_count_});
-			reset_extra_room_count();
-			if (log) std::cout << std::format("\tbattle rng: {:02X} ({:04X})", rng_val, r) << std::endl;
+			battle_rng_map_.insert({std::string(name), val});
+			extra_room_count_ = 0;
+			if (log) std::cout << std::format("\tbattle rng {}: {:02X} ({:04X})", name, rng_val, r) << std::endl;
 			return true;
 		}
 	}
 	last_battle_rng_ = val;
-	if (log) std::cout << std::format("\tbattle rng: {:02X} DOES NOT MATCH! ({:04X})", val, r) << std::endl;
+	if (log) std::cout << std::format("\tbattle rng {}: {:02X} DOES NOT MATCH! ({:04X})", name, val, r) << std::endl;
 	return false;
 }
 
@@ -157,7 +156,7 @@ bool RNGSimImpl::battle_with_crits(std::vector<int> threshold, int min_crits, in
 	int r = rng_.rand();
 	int val = (r % 0xFF) + 1;
 	int initial_val = val;
-	int t_index = 0;
+	unsigned long t_index = 0;
 	for (int i = 0; i < max_turns; i++) {
 		if (crit_table(val, threshold[t_index])) {
 			++crits;
@@ -166,10 +165,11 @@ bool RNGSimImpl::battle_with_crits(std::vector<int> threshold, int min_crits, in
 		t_index = (t_index + 1) % threshold.size();
 	}
 	last_battle_rng_ = val;
-	if (log) std::cout << std::format("\tbattle crits: {} in {} turns from {:02X} ({:04X})", crits, max_turns, initial_val, r) << std::endl;
-	if (crits >= min_crits) { 
-		extra_room_map_.insert({ std::string(name), extra_room_count_ });
-		reset_extra_room_count();
+	if (log) std::cout << std::format("\tbattle crits {}: {} in {} turns from {:02X} ({:04X})", name, crits, max_turns, initial_val, r) << std::endl;
+	if (crits >= min_crits) {
+		extra_room_map_.insert({std::string(name), extra_room_count_ });
+		battle_rng_map_.insert({std::string(name), val});
+		extra_room_count_ = 0;
 		return true;
 	}
 	return false;
@@ -200,12 +200,12 @@ void RNGSimImpl::burn(int num, bool log) {
 	roll_rng(num, kBurn, log);
 }
 
-bool RNGSimImpl::disable_extra_rooms(bool log) {
+bool RNGSimImpl::disable_extra_rooms(bool) {
 	extra_rooms_enabled_ = false;
 	return true;
 }
 
-bool RNGSimImpl::enable_extra_rooms(bool log) {
+bool RNGSimImpl::enable_extra_rooms(bool) {
 	extra_rooms_enabled_ = true;
 	return true;
 }
