@@ -5,7 +5,7 @@
 ####################################
 battle
 battle
-battle_with_rng B3 # zombor
+battle_with_rng B3 zombor
 room 4 # shop, mountain 1,2,1
 battle # tata battles
 battle

@@ -9,14 +9,14 @@ Go to Truce Canyon (avoid Frog to skip dialogue)
 
 **Fiendillo, Green Imp**
 
-* Escape (don’t attack)
+* Escape (don't attack)
 
 Enter portal back to Leene Square and go to Guardia Castle
 
 ## Guardia Castle
 
 Just mash during the trial  
-2nd jury is random, better be not guilty because it’s less walk distance
+2nd jury is random, better be not guilty because itï¿½s less walk distance
 
 Drink to restore HP/MP, touch the gate three times
 
@@ -63,7 +63,7 @@ Settings
     * Wait Heal  
   * (Heal) \+ Crono Attack  
   * (Stomp), Lucca Attack \+ Crono Attack  
-    * Wait Crono’s ATB  
+    * Wait Cronoï¿½s ATB  
   * (Missiles), (Flames), Crono Attack, Lucca Attack  
   * (Missiles), (Flames), Crono Cyclone  
 * Wheel  

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <filesystem>
 #include <inja/inja.hpp>
 #include <nlohmann/json.hpp>
 

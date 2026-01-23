@@ -25,7 +25,7 @@ std::pair<uint32_t, uint32_t> calcLCGParams(int n) {
     return {final_a, final_c};
 }
 
-MSVCRandWrapper::MSVCRandWrapper() {
+MSVCRandWrapper::MSVCRandWrapper() : seed_(0) {
     // Precompute up to 20 room transitions
     for (int i = 2; i <= 20; i++) {
         uint32_t a,c;
