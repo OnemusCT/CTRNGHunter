@@ -160,8 +160,14 @@ bool RNGHunter::parseFile(const std::string& filename) {
             std::string rng_str;
 
             if (!(iss >> rng_str)) {
-                std::cerr << "Error: battle_with_rng requires 1 parameter" << std::endl;
+                std::cerr << "Error: battle_with_rng requires at least 1 parameter" << std::endl;
                 return false;
+            }
+            std::string battle_name = "";
+            if (!(iss >> battle_name)) {
+                if (battle_name.starts_with("#")) {
+                    battle_name = "";
+                }
             }
             std::vector<int> rng_vals;
             std::stringstream rng_stream(rng_str);
@@ -177,7 +183,7 @@ bool RNGHunter::parseFile(const std::string& filename) {
             }
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
                 functions_[i].emplace_back([this, i, rng_vals](bool log) {
-                    return rng_sim_pool_[i]->battle_with_rng(rng_vals, log);
+                    return rng_sim_pool_[i]->battle_with_rng(rng_vals, "", log);
                 });
             }
         }
@@ -203,7 +209,7 @@ bool RNGHunter::parseFile(const std::string& filename) {
             }
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
                 functions_[i].emplace_back([this, i, thresholds, min_crits, max_turns](bool log) {
-                    return rng_sim_pool_[i]->battle_with_crits(thresholds, min_crits, max_turns, log);
+                    return rng_sim_pool_[i]->battle_with_crits(thresholds, min_crits, max_turns, "", log);
                 });
             }
         }
@@ -358,6 +364,10 @@ std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> RNGHunter::fi
                         curr_results.push_back(func);
                     }
                     if (all_pass) {
+                        auto extra_rooms = rng_sim_pool_[i]->get_extra_rooms_per_encounter();
+                        for (auto& [fight, rooms] : extra_rooms) {
+                            std::cout << fight << " " << rooms << std::endl;
+                        }
                         thread_results[i][seed] = std::move(curr_results);
                         ++local_seeds_found;
                     }

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.15)
 
 project(rng_hunter VERSION 1.0.0 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -33,14 +33,53 @@ set(HEADERS
     rng_sim.h
     rng_table.h
     seed_parser.h
+    nlohmann/json.hpp
+    inja/inja.hpp
+    walkthrough_gen/walkthrough_gen.h )
+
+set(WALKTHROUGH_TEMPLATE_FILE "${CMAKE_SOURCE_DIR}/walkthrough_gen/templates/walkthrough.md")
+set(YAKRA_TEMPLATE_FILE "${CMAKE_SOURCE_DIR}/walkthrough_gen/templates/yakra.md")
+set(DRAGONTANK_TEMPLATE_FILE "${CMAKE_SOURCE_DIR}/walkthrough_gen/templates/dragontank.md")
+
+configure_file(
+    ${YAKRA_TEMPLATE_FILE}
+    "${CMAKE_BINARY_DIR}/templates_copy/yakra.md"
+    COPYONLY
 )
 
+configure_file(
+    ${DRAGONTANK_TEMPLATE_FILE}
+    "${CMAKE_BINARY_DIR}/templates_copy/dragontank.md"
+    COPYONLY
+)
+
+configure_file(
+    ${WALKTHROUGH_TEMPLATE_FILE}
+    "${CMAKE_BINARY_DIR}/templates_copy/walkthrough.md"
+    COPYONLY
+)
+
+file(READ ${YAKRA_TEMPLATE_FILE} YAKRA_TEMPLATE)
+file(READ ${DRAGONTANK_TEMPLATE_FILE} DRAGONTANK_TEMPLATE)
+file(READ ${WALKTHROUGH_TEMPLATE_FILE} WALKTHROUGH_TEMPLATE)
+
+configure_file(
+    "${CMAKE_SOURCE_DIR}/walkthrough_gen/templates.h.in"
+    "${CMAKE_BINARY_DIR}/generated/templates.h"
+    @ONLY
+)
+include_directories("${CMAKE_BINARY_DIR}/generated")
+ 
 # Create executable
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
+target_include_directories(rng_hunter 
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
 # Set target properties
 set_target_properties(${PROJECT_NAME} PROPERTIES
-    CXX_STANDARD 20
+    CXX_STANDARD 23
     CXX_STANDARD_REQUIRED ON
 )
 

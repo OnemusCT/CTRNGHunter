@@ -29,9 +29,9 @@ public:
 
 	bool battle(bool log) override;
 
-	bool battle_with_rng(std::vector<int> rng_vals, bool log) override;
+	bool battle_with_rng(std::vector<int> rng_vals, std::string_view name, bool log) override;
 
-	bool battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, bool log) override;
+	bool battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, std::string_view name, bool log) override;
 
 	bool new_game(bool log) override;
 
@@ -48,6 +48,11 @@ public:
 	bool disable_extra_rooms(bool log) override;
 
 	bool enable_extra_rooms(bool log) override;
+	
+	int extra_room_count() override;
+	void reset_extra_room_count() override;
+
+	std::unordered_map<std::string, int> get_extra_rooms_per_encounter() override;
 
 private:
 	void roll_rng(int n, std::string_view type, bool log);
@@ -56,12 +61,26 @@ private:
 
 	int last_steps = 0;
 	bool extra_rooms_enabled_ = true;
+	int extra_room_count_ = 0;
+	int last_battle_rng_ = 0;
+	std::unordered_map<std::string, int> extra_room_map_;
 };
 
 
 void RNGSimImpl::init(time_t seed) {
 	rng_.srand(seed);
 	extra_rooms_enabled_ = true;
+}
+
+int RNGSimImpl::extra_room_count() {
+	return extra_room_count_;
+}
+void RNGSimImpl::reset_extra_room_count() {
+	extra_room_count_ = 0;
+}
+
+std::unordered_map<std::string, int> RNGSimImpl::get_extra_rooms_per_encounter() {
+	return extra_room_map_;
 }
 
 void RNGSimImpl::roll_rng(int n, std::string_view type, bool log) {
@@ -96,6 +115,7 @@ bool RNGSimImpl::room(int num, bool log) {
 bool RNGSimImpl::extra_rooms(bool log) {
 	if (!extra_rooms_enabled_) return false;
 	roll_rng(66, kExtraRooms, log);
+	++extra_room_count_;
 	return true;
 }
 
@@ -108,25 +128,30 @@ bool RNGSimImpl::battle(bool log) {
 	last_steps = 1;
 	int r = rng_.rand();
 	int val = (r % 0xFF) + 1;
+	last_battle_rng_ = val;
 	if (log) std::cout << std::format("\tbattle: {:02X} ({:04X})", val, r) << std::endl;
 	return true;
 }
 
-bool RNGSimImpl::battle_with_rng(std::vector<int> rng_vals, bool log) {
+bool RNGSimImpl::battle_with_rng(std::vector<int> rng_vals, std::string_view name, bool log) {
 	last_steps = 1;
 	int r = rng_.rand();
 	int val = (r % 0xFF) + 1;
 	for (int rng_val : rng_vals) {
 		if (val == rng_val) {
+			last_battle_rng_ = val;
+			extra_room_map_.insert({std::string(name), extra_room_count_});
+			reset_extra_room_count();
 			if (log) std::cout << std::format("\tbattle rng: {:02X} ({:04X})", rng_val, r) << std::endl;
 			return true;
 		}
 	}
+	last_battle_rng_ = val;
 	if (log) std::cout << std::format("\tbattle rng: {:02X} DOES NOT MATCH! ({:04X})", val, r) << std::endl;
 	return false;
 }
 
-bool RNGSimImpl::battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, bool log) {
+bool RNGSimImpl::battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, std::string_view name, bool log) {
 	last_steps = 1;
 	int crits = 0;
 	int r = rng_.rand();
@@ -140,8 +165,13 @@ bool RNGSimImpl::battle_with_crits(std::vector<int> threshold, int min_crits, in
 		val = (val + 1) % 0xFF;
 		t_index = (t_index + 1) % threshold.size();
 	}
+	last_battle_rng_ = val;
 	if (log) std::cout << std::format("\tbattle crits: {} in {} turns from {:02X} ({:04X})", crits, max_turns, initial_val, r) << std::endl;
-	if (crits >= min_crits) return true;
+	if (crits >= min_crits) { 
+		extra_room_map_.insert({ std::string(name), extra_room_count_ });
+		reset_extra_room_count();
+		return true;
+	}
 	return false;
 }
 
