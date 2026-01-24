@@ -12,6 +12,7 @@
 
 #include "seed_parser.h"
 #include "rng_sim.h"
+#include "walkthrough_gen/walkthrough_gen.h"
 
 constexpr time_t CHECK_INTERVAL = 1000;
 
@@ -243,6 +244,7 @@ bool RNGHunter::parseFile(const std::string& filename) {
 void RNGHunter::logSeed(time_t seed) {
     std::cout << "Seed: " << seed_to_string(seed) << " (" << seed << ")" << std::endl;
     findSeedHelper(0, seed, 0, 999, true);
+    generate_walkthrough(rng_sim_pool_[0]->get_battle_rng_per_encounter(), rng_sim_pool_[0]->get_extra_rooms_per_encounter());
 }
 
 void RNGHunter::extendSeed(time_t seed, int max_rolls) {

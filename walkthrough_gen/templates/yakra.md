@@ -143,18 +143,18 @@ Tech
 Go up and between last enemies to next screen
 
 **Yakra**
-{% if yakra >= 3 and yakra <= 8 %}
+{% if rng.yakra >= 3 and rng.yakra <= 8 %}
 * Auto battle x6 attacks  
 * Wait until Needles  
 * Auto battle to end
-{% else if yakra >= 62 and yakra <= 87 %}
+{% else if rng.yakra >= 62 and rng.yakra <= 87 %}
 * Auto battle x3  
 * Crono attack  
 * Wait until Needles  
 * Auto battle to end
-{% else if (yakra >= 9 and yakra <= 12) or (yakra >= 152 and yakra <= 158) or (yakra >= 161 and yakra <= 163) %}
+{% else if (rng.yakra >= 9 and rng.yakra <= 12) or (rng.yakra >= 152 and rng.yakra <= 158) or (rng.yakra >= 161 and rng.yakra <= 163) %}
 * Auto battle
-{% else if yakra >= 88 and yakra <= 96 %}
+{% else if rng.yakra >= 88 and rng.yakra <= 96 %}
 * Auto battle x3  
 * Wait until Needles  
 * Auto battle to end

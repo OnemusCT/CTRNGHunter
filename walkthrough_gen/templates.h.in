@@ -1,4 +1,5 @@
 #pragma once
+
 namespace templates {
     constexpr const char* walkthrough = R"(@WALKTHROUGH_TEMPLATE@)";
     constexpr const char* yakra = R"(@YAKRA_TEMPLATE@)";

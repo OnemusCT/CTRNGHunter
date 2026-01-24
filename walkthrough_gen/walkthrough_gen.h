@@ -5,11 +5,19 @@
 
 #include "templates.h"
 
-void generate_walkthrough() {
+#include <string>
+#include <unordered_map>
+
+void generate_walkthrough(const std::unordered_map<std::string, int>& rng_map, const std::unordered_map<std::string, int>& rooms_map) {
 	inja::Environment env;
 	env.set_line_statement("$$"); // Line statements ## (just an opener)
 	nlohmann::json data;
-	data["yakra"] = 0x03;
+	for (const auto& [battle, rng] : rng_map) {
+		data["rng"][battle] = rng;
+	}
+	for (const auto& [battle, rooms] : rooms_map) {
+		data["rooms"][battle] = rooms;
+	}
 	try {
 		inja::Template yakra = env.parse(templates::yakra);
 		env.include_template("yakra", yakra);
