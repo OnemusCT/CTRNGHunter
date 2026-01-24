@@ -36,6 +36,7 @@ void add_templates(inja::Environment& env) {
 void generate_walkthrough(const std::unordered_map<std::string, int>& rng_map, const std::unordered_map<std::string, int>& rooms_map, std::ostream& out) {
 	inja::Environment env;
 	env.set_line_statement("$$"); // Change line statements so they don't conflict with markdown headers
+	env.set_expression("{$", "$}");
 	nlohmann::json data;
 	for (const auto& [battle, rng] : rng_map) {
 		data["rng"][battle] = rng;
