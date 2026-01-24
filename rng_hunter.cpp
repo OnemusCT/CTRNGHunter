@@ -12,6 +12,7 @@
 
 #include "seed_parser.h"
 #include "rng_sim.h"
+#include "walkthrough_gen/walkthrough_gen.h"
 
 constexpr time_t CHECK_INTERVAL = 1000;
 
@@ -160,9 +161,14 @@ bool RNGHunter::parseFile(const std::string& filename) {
             std::string rng_str;
 
             if (!(iss >> rng_str)) {
-                std::cerr << "Error: battle_with_rng requires 1 parameter" << std::endl;
+                std::cerr << "Error: battle_with_rng requires at least 1 parameter" << std::endl;
                 return false;
             }
+            std::string battle_name;
+            if (iss >> battle_name && battle_name.starts_with("#")) {
+                battle_name = "";
+            }
+            std::cout << battle_name << std::endl;
             std::vector<int> rng_vals;
             std::stringstream rng_stream(rng_str);
             std::string rng_token;
@@ -176,8 +182,8 @@ bool RNGHunter::parseFile(const std::string& filename) {
                 }
             }
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i, rng_vals](bool log) {
-                    return rng_sim_pool_[i]->battle_with_rng(rng_vals, log);
+                functions_[i].emplace_back([this, i, rng_vals, battle_name](bool log) {
+                    return rng_sim_pool_[i]->battle_with_rng(rng_vals, battle_name, log);
                 });
             }
         }
@@ -188,6 +194,11 @@ bool RNGHunter::parseFile(const std::string& filename) {
                 std::cerr << "Error: battle_with_crits requires 3 parameters (thresholds min_crits max_turns)" << std::endl;
                 return false;
             }
+            std::string battle_name;
+            if (iss >> battle_name && battle_name.starts_with("#")) {
+                battle_name = "";
+            }
+            std::cout << battle_name << std::endl;
 
             std::vector<int> thresholds;
             std::stringstream thresh_stream(thresholds_str);
@@ -202,8 +213,8 @@ bool RNGHunter::parseFile(const std::string& filename) {
                 }
             }
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i, thresholds, min_crits, max_turns](bool log) {
-                    return rng_sim_pool_[i]->battle_with_crits(thresholds, min_crits, max_turns, log);
+                functions_[i].emplace_back([this, i, thresholds, min_crits, max_turns, battle_name](bool log) {
+                    return rng_sim_pool_[i]->battle_with_crits(thresholds, min_crits, max_turns, battle_name, log);
                 });
             }
         }
@@ -231,11 +242,14 @@ bool RNGHunter::parseFile(const std::string& filename) {
 }
 
 void RNGHunter::logSeed(time_t seed) {
-    rng_sim_pool_[0]->init(seed);
     std::cout << "Seed: " << seed_to_string(seed) << " (" << seed << ")" << std::endl;
-    for (const auto& func : functions_[0]) {
-        std::ignore = func(/*log=*/true);
-    }
+    findSeedHelper(0, seed, 0, 999, true);
+}
+
+void RNGHunter::generateWalkthrough(time_t seed, std::ostream& out) {
+    std::cout << "Seed: " << seed_to_string(seed) << " (" << seed << ")" << std::endl;
+    findSeedHelper(0, seed, 0, 999, false);
+    generate_walkthrough(rng_sim_pool_[0]->get_battle_rng_per_encounter(), rng_sim_pool_[0]->get_extra_rooms_per_encounter(), out);
 }
 
 void RNGHunter::extendSeed(time_t seed, int max_rolls) {
@@ -265,6 +279,67 @@ void RNGHunter::logSeedFromFunctions(time_t seed, const std::vector<std::functio
 
 void RNGHunter::clear() {
     functions_.clear();
+}
+
+std::vector<std::function<bool(bool)>> RNGHunter::findSeedHelper(int sim_index, int seed, int allowable_heals, int allowable_room_pairs, bool debug) {
+    rng_sim_pool_[sim_index]->init(seed);
+    int curr_allowable_heals = allowable_heals;
+    int curr_allowable_room_pairs = allowable_room_pairs;
+    std::vector<std::function<bool(bool)>> curr_results;
+    curr_results.reserve(functions_[sim_index].size() + 50);
+    bool all_pass = true;
+    for (const auto& func : functions_[sim_index]) {
+        if (!func(/*log=*/debug)) {
+            if (curr_allowable_heals == 0 && curr_allowable_room_pairs == 0) {
+                all_pass = false;
+                break;
+            }
+            if (debug) std::cout << "Trying to extend" << std::endl;
+            std::stack<std::function<bool(bool)>> extra_funcs;
+            rng_sim_pool_[sim_index]->roll_back_last_rng();
+            // Heals are more expensive than room transitions due to the time required to open the tech menu
+            // so prioritize finding options that use room pairs instead.
+            bool passed = false;
+            for (int heals = 0; heals <= curr_allowable_heals; heals++) {
+                for (int rooms = 1; rooms <= curr_allowable_room_pairs; rooms++) {
+                    if (debug) std::cout << "Adding " << (rooms*2) << " rooms" << std::endl;
+                    std::function extra_rooms_func = [this, sim_index](bool log) {
+                        return rng_sim_pool_[sim_index]->extra_rooms(log);
+                    };
+                    // If we can't add extra rooms right now, break
+                    if(!extra_rooms_func(debug)) break;
+
+                    extra_funcs.push(extra_rooms_func);
+                    if (func(/*log=*/debug)) {
+                        if (debug) std::cout << "Found extension!" << std::endl;
+                        passed = true;
+                        curr_allowable_room_pairs -= rooms;
+                        curr_allowable_heals -= heals;
+                        break;
+                    }
+                    if (debug) std::cout << "Rolling back to try again" << std::endl;
+                    rng_sim_pool_[sim_index]->roll_back_last_rng();
+                }
+                if (passed) {
+                    while (!extra_funcs.empty()) {
+                        curr_results.push_back(std::move(extra_funcs.top()));
+                        extra_funcs.pop();
+                    }
+                    break;
+                }
+                // TODO: Implement heals
+            }
+            if (!passed) {
+                all_pass = false;
+                break;
+            }
+        }
+        curr_results.push_back(func);
+    }
+    if (!all_pass) {
+        return {};
+    }
+    return curr_results;
 }
 
 std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> RNGHunter::findSeeds(time_t start, time_t end, int allowable_heals, int allowable_room_pairs) {
@@ -303,61 +378,8 @@ std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> RNGHunter::fi
                         statistics.maybe_print_progress();
                     }
 
-                    rng_sim_pool_[i]->init(seed);
-                    int curr_allowable_heals = allowable_heals;
-                    int curr_allowable_room_pairs = allowable_room_pairs;
-                    std::vector<std::function<bool(bool)>> curr_results;
-                    curr_results.reserve(functions_[i].size() + 50);
-                    bool all_pass = true;
-                    for (const auto& func : functions_[i]) {
-                        if (!func(/*log=*/debug)) {
-                            if (curr_allowable_heals == 0 && curr_allowable_room_pairs == 0) {
-                                all_pass = false;
-                                break;
-                            }
-                            if (debug) std::cout << "Trying to extend" << std::endl;
-                            std::stack<std::function<bool(bool)>> extra_funcs;
-                            rng_sim_pool_[i]->roll_back_last_rng();
-                            // Heals are more expensive than room transitions due to the time required to open the tech menu
-                            // so prioritize finding options that use room pairs instead.
-                            bool passed = false;
-                            for (int heals = 0; heals <= curr_allowable_heals; heals++) {
-                                for (int rooms = 1; rooms <= curr_allowable_room_pairs; rooms++) {
-                                    if (debug) std::cout << "Adding " << ((rooms+1)*2) << " rooms" << std::endl;
-                                    std::function extra_rooms_func = [this, i](bool log) {
-                                        return rng_sim_pool_[i]->extra_rooms(log);
-                                    };
-                                    // If we can't add extra rooms right now, break
-                                    if(!extra_rooms_func(debug)) break;
-
-                                    extra_funcs.push(extra_rooms_func);
-                                    if (func(/*log=*/debug)) {
-                                        if (debug) std::cout << "Found extension!" << std::endl;
-                                        passed = true;
-                                        curr_allowable_room_pairs -= rooms;
-                                        curr_allowable_heals -= heals;
-                                        break;
-                                    }
-                                    if (debug) std::cout << "Rolling back to try again" << std::endl;
-                                    rng_sim_pool_[i]->roll_back_last_rng();
-                                }
-                                if (passed) {
-                                    while (!extra_funcs.empty()) {
-                                        curr_results.push_back(std::move(extra_funcs.top()));
-                                        extra_funcs.pop();
-                                    }
-                                    break;
-                                }
-                                // TODO: Implement heals
-                            }
-                            if (!passed) {
-                                all_pass = false;
-                                break;
-                            }
-                        }
-                        curr_results.push_back(func);
-                    }
-                    if (all_pass) {
+                    std::vector<std::function<bool(bool)>> curr_results = findSeedHelper(i, seed, allowable_heals, allowable_room_pairs, debug);
+                    if (!curr_results.empty()) {
                         thread_results[i][seed] = std::move(curr_results);
                         ++local_seeds_found;
                     }

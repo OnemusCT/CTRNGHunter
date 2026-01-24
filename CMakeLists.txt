@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.15)
 
 project(rng_hunter VERSION 1.0.0 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -23,7 +23,7 @@ set(SOURCES
     rng_hunter.cpp
     msvc_rand_wrapper.cpp
     rng_sim.cpp
-)
+    walkthrough_gen/walkthrough_gen.cpp)
 
 # Header files
 set(HEADERS
@@ -33,14 +33,44 @@ set(HEADERS
     rng_sim.h
     rng_table.h
     seed_parser.h
+    nlohmann/json.hpp
+    inja/inja.hpp
+    walkthrough_gen/walkthrough_gen.h )
+
+
+file(GLOB TEMPLATE_FILES 
+    CONFIGURE_DEPENDS
+    "${CMAKE_SOURCE_DIR}/walkthrough_gen/templates/*.md"
 )
 
+# Generate header with dependency tracking
+add_custom_command(
+    OUTPUT "${CMAKE_BINARY_DIR}/generated/templates.h"
+    COMMAND ${CMAKE_COMMAND}
+        -DTEMPLATE_DIR="${CMAKE_SOURCE_DIR}/walkthrough_gen/templates"
+        -DOUTPUT_FILE="${CMAKE_BINARY_DIR}/generated/templates.h"
+        -P "${CMAKE_SOURCE_DIR}/cmake/generate_templates.cmake"
+    DEPENDS ${TEMPLATE_FILES}
+    COMMENT "Generating embedded templates"
+)
+
+add_custom_target(generate_templates ALL
+    DEPENDS "${CMAKE_BINARY_DIR}/generated/templates.h"
+)
+ 
 # Create executable
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
+add_dependencies(rng_hunter generate_templates)
+target_include_directories(rng_hunter 
+    PRIVATE 
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_BINARY_DIR}/generated
+)
+
 # Set target properties
 set_target_properties(${PROJECT_NAME} PROPERTIES
-    CXX_STANDARD 20
+    CXX_STANDARD 23
     CXX_STANDARD_REQUIRED ON
 )
 

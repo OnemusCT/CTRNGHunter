@@ -73,7 +73,7 @@ void print_init_order(int rng, int players, int enemies) {
     while(entities.size() < 11 ) {
         entities.push_back(0xFF);
     }
-    while (order.size() < 11 - (3-players)) {
+    while (order.size() < 11UL - (3-players)) {
         int c = rng_table(rng)%11;
         if (entities[c] != 0xFF) {
             order.push_back(entities[c]);
@@ -156,11 +156,30 @@ int main(int argc, char* argv[]) {
     log_seed->add_option("-f,--filename", filename, "The file to execute")->required();
     log_seed->add_option("-s,--seed", seed, "The seed to run");
     log_seed->callback([&] {
-        RNGHunter hunter(10);
+        RNGHunter hunter(1);
         if (!hunter.parseFile(filename)) {
             std::cerr << "Unable to load file" << std::endl;
         }
         hunter.logSeed(seed);
+    });
+
+    std::string out;
+    CLI::App* generate_walkthrough = app.add_subcommand("generate_walkthrough", "Executes and logs the results of the given seed");
+    generate_walkthrough->add_option("-f,--filename", filename, "The file to execute")->required();
+    generate_walkthrough->add_option("-s,--seed", seed, "The seed to run");
+    generate_walkthrough->add_option("-o,--out", out, "The output file to write")->required();
+    generate_walkthrough->callback([&] {
+        RNGHunter hunter(1);
+        if (!hunter.parseFile(filename)) {
+            std::cerr << "Unable to load file" << std::endl;
+        }
+        std::ofstream out_file(out);
+        if (!out_file) {
+            std::cerr << "Error opening file " << out << std::endl;
+            return 1;
+        }
+        hunter.generateWalkthrough(seed, out_file);
+        out_file.close();
     });
 
     CLI::App* convert_to_timestamp = app.add_subcommand("convert_to_timestamp", "Converts a seed to a CTManip timestamp");
