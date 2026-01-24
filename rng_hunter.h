@@ -20,6 +20,7 @@ class RNGHunter {
     void logSeed(time_t seed);
     void logSeedFromFunctions(time_t seed, const std::vector<std::function<bool(bool)>>& functions);
     void extendSeed(time_t seed, int max_rolls);
+    void generateWalkthrough(time_t seed, std::ostream& out);
 
     void clear();
 
