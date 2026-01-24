@@ -127,12 +127,14 @@ int main(int argc, char* argv[]) {
     int pool = 8;
     int max_rooms = 0;
     int min_rooms = 0;
+    bool verbose = false;
     find_seeds->add_option("-f,--filename", filename, "The file")->required();
     find_seeds->add_option("-s,--start", start, "Unix time to start looking for seeds")->capture_default_str();
     find_seeds->add_option("-e,--end", end, "Unix time to end looking for seeds")->capture_default_str();
     find_seeds->add_option("-m,--max_seeds", max_seeds, "Maximum number of seeds to find.")->capture_default_str();
     find_seeds->add_option("-p,--pool",pool,"Pool size for RNG hunters")->capture_default_str();
     find_seeds->add_option("-r,--rooms", max_rooms, "Maximum number of extra room transition pairs")->capture_default_str();
+    find_seeds->add_option("-v,--verbose", verbose, "Verbose logging");
     find_seeds->add_option("--rooms_min", min_rooms, "Minimum number of extra room transition pairs")->capture_default_str();
     find_seeds->callback([&] {
         RNGHunter hunter(max_seeds, pool);
@@ -142,10 +144,10 @@ int main(int argc, char* argv[]) {
         }
         //hunter.addDebugSeed(1097631540);
         for(int i = min_rooms; i <= max_rooms; i++) {
-            std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> valid_seeds = hunter.findSeeds(start, end, 0, i);
+            std::unordered_map<time_t, std::vector<RNGSimFunc>> valid_seeds = hunter.findSeeds(start, end, 0, i, RNGSim::LogLevel::NONE);
             if(!valid_seeds.empty()) {
                 for (const auto& [curr_seed, functions] : valid_seeds) {
-                    hunter.logSeedFromFunctions(curr_seed, functions);
+                    hunter.logSeedFromFunctions(curr_seed, functions, verbose ? RNGSim::LogLevel::FULL : RNGSim::LogLevel::PARTIAL);
                 }
                 break;
             }
@@ -155,12 +157,13 @@ int main(int argc, char* argv[]) {
     CLI::App* log_seed = app.add_subcommand("log_seed", "Executes and logs the results of the given seed");
     log_seed->add_option("-f,--filename", filename, "The file to execute")->required();
     log_seed->add_option("-s,--seed", seed, "The seed to run");
+    log_seed->add_flag("-v,--verbose", verbose, "Verbose logging");
     log_seed->callback([&] {
         RNGHunter hunter(1);
         if (!hunter.parseFile(filename)) {
             std::cerr << "Unable to load file" << std::endl;
         }
-        hunter.logSeed(seed);
+        hunter.logSeed(seed, verbose ? RNGSim::LogLevel::FULL : RNGSim::LogLevel::PARTIAL);
     });
 
     std::string out;

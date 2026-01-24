@@ -93,8 +93,8 @@ bool RNGHunter::parseFile(const std::string& filename) {
 
         if (funcName == "load") {
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i](bool log) {
-                    return rng_sim_pool_[i]->load(log);
+                functions_[i].emplace_back([this, i](RNGSim::LogLevel log_level) {
+                    return rng_sim_pool_[i]->load(log_level);
                 });
             }
         }
@@ -121,29 +121,29 @@ bool RNGHunter::parseFile(const std::string& filename) {
             iss >> rooms_num;
             if (rooms_num == 0) rooms_num = 1;
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i, rooms_num](bool log) {
-                    return rng_sim_pool_[i]->room(rooms_num, log);
+                functions_[i].emplace_back([this, i, rooms_num](RNGSim::LogLevel log_level) {
+                    return rng_sim_pool_[i]->room(rooms_num, log_level);
                  });
             }
         }
         else if (funcName == "battle") {
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i](bool log) {
-                    return rng_sim_pool_[i]->battle(log);
+                functions_[i].emplace_back([this, i](RNGSim::LogLevel log_level) {
+                    return rng_sim_pool_[i]->battle(log_level);
                 });
             }
         }
         else if (funcName == "new_game") {
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i](bool log) {
-                    return rng_sim_pool_[i]->new_game(log);
+                functions_[i].emplace_back([this, i](RNGSim::LogLevel log_level) {
+                    return rng_sim_pool_[i]->new_game(log_level);
                 });
             }
         }
         else if (funcName == "portal" || funcName=="eot" || funcName=="special_room") {
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i](bool log) {
-                    return rng_sim_pool_[i]->portal(log);
+                functions_[i].emplace_back([this, i](RNGSim::LogLevel log_level) {
+                    return rng_sim_pool_[i]->portal(log_level);
                 });
             }
         }
@@ -152,8 +152,8 @@ bool RNGHunter::parseFile(const std::string& filename) {
             iss >> heal_num;
             if (heal_num == 0) heal_num = 1;
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i, heal_num](bool log) {
-                    return rng_sim_pool_[i]->heal(heal_num, log);
+                functions_[i].emplace_back([this, i, heal_num](RNGSim::LogLevel log_level) {
+                    return rng_sim_pool_[i]->heal(heal_num, log_level);
                 });
             }
         }
@@ -168,7 +168,6 @@ bool RNGHunter::parseFile(const std::string& filename) {
             if (iss >> battle_name && battle_name.starts_with("#")) {
                 battle_name = "";
             }
-            std::cout << battle_name << std::endl;
             std::vector<int> rng_vals;
             std::stringstream rng_stream(rng_str);
             std::string rng_token;
@@ -182,8 +181,8 @@ bool RNGHunter::parseFile(const std::string& filename) {
                 }
             }
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i, rng_vals, battle_name](bool log) {
-                    return rng_sim_pool_[i]->battle_with_rng(rng_vals, battle_name, log);
+                functions_[i].emplace_back([this, i, rng_vals, battle_name](RNGSim::LogLevel log_level) {
+                    return rng_sim_pool_[i]->battle_with_rng(rng_vals, battle_name, log_level);
                 });
             }
         }
@@ -198,8 +197,6 @@ bool RNGHunter::parseFile(const std::string& filename) {
             if (iss >> battle_name && battle_name.starts_with("#")) {
                 battle_name = "";
             }
-            std::cout << battle_name << std::endl;
-
             std::vector<int> thresholds;
             std::stringstream thresh_stream(thresholds_str);
             std::string thresh_token;
@@ -213,22 +210,22 @@ bool RNGHunter::parseFile(const std::string& filename) {
                 }
             }
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i, thresholds, min_crits, max_turns, battle_name](bool log) {
-                    return rng_sim_pool_[i]->battle_with_crits(thresholds, min_crits, max_turns, battle_name, log);
+                functions_[i].emplace_back([this, i, thresholds, min_crits, max_turns, battle_name](RNGSim::LogLevel log_level) {
+                    return rng_sim_pool_[i]->battle_with_crits(thresholds, min_crits, max_turns, battle_name, log_level);
                 });
             }
         }
         else if (funcName == "disable_extra_rooms") {
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i](bool log) {
-                    return rng_sim_pool_[i]->disable_extra_rooms(log);
+                functions_[i].emplace_back([this, i](RNGSim::LogLevel log_level) {
+                    return rng_sim_pool_[i]->disable_extra_rooms(log_level);
                 });
             }
         }
         else if (funcName == "enable_extra_rooms") {
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i](bool log) {
-                    return rng_sim_pool_[i]->enable_extra_rooms(log);
+                functions_[i].emplace_back([this, i](RNGSim::LogLevel log_level) {
+                    return rng_sim_pool_[i]->enable_extra_rooms(log_level);
                     });
             }
         }
@@ -241,38 +238,38 @@ bool RNGHunter::parseFile(const std::string& filename) {
     return true;
 }
 
-void RNGHunter::logSeed(time_t seed) {
-    std::cout << "Seed: " << seed_to_string(seed) << " (" << seed << ")" << std::endl;
-    findSeedHelper(0, seed, 0, 999, true);
+void RNGHunter::logSeed(time_t seed, RNGSim::LogLevel log_level) {
+    auto result = findSeedHelper(0, seed, 0, 999, RNGSim::LogLevel::NONE);
+    logSeedFromFunctions(seed, result, log_level);
 }
 
 void RNGHunter::generateWalkthrough(time_t seed, std::ostream& out) {
     std::cout << "Seed: " << seed_to_string(seed) << " (" << seed << ")" << std::endl;
-    findSeedHelper(0, seed, 0, 999, false);
+    findSeedHelper(0, seed, 0, 999, RNGSim::LogLevel::NONE);
     generate_walkthrough(rng_sim_pool_[0]->get_battle_rng_per_encounter(), rng_sim_pool_[0]->get_extra_rooms_per_encounter(), out);
 }
 
 void RNGHunter::extendSeed(time_t seed, int max_rolls) {
     rng_sim_pool_[0]->init(seed);
     for(size_t i = 0; i < functions_[0].size() - 1; i++) {
-        std::ignore = functions_[0][i](/*log=*/true);
+        std::ignore = functions_[0][i](RNGSim::LogLevel::FULL);
     }
     auto func = functions_[0][functions_[0].size()-1];
     for(int i = 0; i < max_rolls; i++) {
-        if (func(false)) {
+        if (func(RNGSim::LogLevel::NONE)) {
             std::cout << std::format("Rolls: {}, ({} rooms, {} heals)", i+1, (i/66)*2, i%66) << std::endl;
         }
     }
 }
 
-void RNGHunter::logSeedFromFunctions(time_t seed, const std::vector<std::function<bool(bool)>>& functions) {
+void RNGHunter::logSeedFromFunctions(time_t seed, const std::vector<RNGSimFunc>& functions, RNGSim::LogLevel log_level) {
     // We don't know which sim was used to generate the functions, so just seed them all
     for (const auto & sim : rng_sim_pool_) {
         sim->init(seed);
     }
     std::cout << "Seed: " << seed_to_string(seed) << " (" << seed << ")" << std::endl;
     for (const auto& func : functions) {
-        std::ignore = func(/*log=*/true);
+        std::ignore = func(log_level);
     }
     std::cout << std::endl << std::endl;
 }
@@ -281,43 +278,47 @@ void RNGHunter::clear() {
     functions_.clear();
 }
 
-std::vector<std::function<bool(bool)>> RNGHunter::findSeedHelper(int sim_index, int seed, int allowable_heals, int allowable_room_pairs, bool debug) {
+std::vector<RNGSimFunc> RNGHunter::findSeedHelper(int sim_index, int seed, int allowable_heals, int allowable_room_pairs, RNGSim::LogLevel log_level) {
     rng_sim_pool_[sim_index]->init(seed);
     int curr_allowable_heals = allowable_heals;
     int curr_allowable_room_pairs = allowable_room_pairs;
-    std::vector<std::function<bool(bool)>> curr_results;
+    std::vector<RNGSimFunc> curr_results;
     curr_results.reserve(functions_[sim_index].size() + 50);
     bool all_pass = true;
     for (const auto& func : functions_[sim_index]) {
-        if (!func(/*log=*/debug)) {
+        if (!func(log_level)) {
             if (curr_allowable_heals == 0 && curr_allowable_room_pairs == 0) {
                 all_pass = false;
                 break;
             }
-            if (debug) std::cout << "Trying to extend" << std::endl;
-            std::stack<std::function<bool(bool)>> extra_funcs;
+            if (log_level == RNGSim::LogLevel::FULL) { 
+                std::cout << "Trying to extend" << std::endl; 
+            }
+            std::stack<RNGSimFunc> extra_funcs;
             rng_sim_pool_[sim_index]->roll_back_last_rng();
             // Heals are more expensive than room transitions due to the time required to open the tech menu
             // so prioritize finding options that use room pairs instead.
             bool passed = false;
             for (int heals = 0; heals <= curr_allowable_heals; heals++) {
                 for (int rooms = 1; rooms <= curr_allowable_room_pairs; rooms++) {
-                    if (debug) std::cout << "Adding " << (rooms*2) << " rooms" << std::endl;
-                    std::function extra_rooms_func = [this, sim_index](bool log) {
-                        return rng_sim_pool_[sim_index]->extra_rooms(log);
+                    if (log_level == RNGSim::LogLevel::FULL) { 
+                        std::cout << "Adding " << (rooms*2) << " rooms" << std::endl; 
+                    }
+                    std::function extra_rooms_func = [this, sim_index](RNGSim::LogLevel log_level) {
+                        return rng_sim_pool_[sim_index]->extra_rooms(log_level);
                     };
                     // If we can't add extra rooms right now, break
-                    if(!extra_rooms_func(debug)) break;
+                    if(!extra_rooms_func(log_level)) break;
 
                     extra_funcs.push(extra_rooms_func);
-                    if (func(/*log=*/debug)) {
-                        if (debug) std::cout << "Found extension!" << std::endl;
+                    if (func(log_level)) {
+                        if (log_level == RNGSim::LogLevel::FULL) { std::cout << "Found extension!" << std::endl; }
                         passed = true;
                         curr_allowable_room_pairs -= rooms;
                         curr_allowable_heals -= heals;
                         break;
                     }
-                    if (debug) std::cout << "Rolling back to try again" << std::endl;
+                    if (log_level == RNGSim::LogLevel::FULL) { std::cout << "Rolling back to try again" << std::endl; }
                     rng_sim_pool_[sim_index]->roll_back_last_rng();
                 }
                 if (passed) {
@@ -342,12 +343,12 @@ std::vector<std::function<bool(bool)>> RNGHunter::findSeedHelper(int sim_index, 
     return curr_results;
 }
 
-std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> RNGHunter::findSeeds(time_t start, time_t end, int allowable_heals, int allowable_room_pairs) {
+std::unordered_map<time_t, std::vector<RNGSimFunc>> RNGHunter::findSeeds(time_t start, time_t end, int allowable_heals, int allowable_room_pairs, RNGSim::LogLevel log_level) {
     auto start_time = std::chrono::steady_clock::now();
     std::cout << "Finding seeds between " << start << " and " << end << std::endl;
     size_t num_threads = rng_sim_pool_.size();
     std::vector<std::thread> threads;
-    std::vector<std::unordered_map<time_t, std::vector<std::function<bool(bool)>>>> thread_results(num_threads);
+    std::vector<std::unordered_map<time_t, std::vector<RNGSimFunc>>> thread_results(num_threads);
     std::mutex print_mutex;
 
     time_t total = end - start + 1;
@@ -358,7 +359,7 @@ std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> RNGHunter::fi
         time_t thread_start = start + i * chunk_size;
         time_t thread_end = (i == num_threads - 1) ? end : thread_start + chunk_size - 1;
 
-        threads.emplace_back([this, i, thread_start, thread_end, allowable_heals, allowable_room_pairs, &thread_results, &statistics] {
+        threads.emplace_back([this, i, thread_start, thread_end, allowable_heals, allowable_room_pairs, &thread_results, &statistics, log_level] {
 
                 size_t local_seeds_found = 0;
                 size_t local_processed = 0;
@@ -378,7 +379,7 @@ std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> RNGHunter::fi
                         statistics.maybe_print_progress();
                     }
 
-                    std::vector<std::function<bool(bool)>> curr_results = findSeedHelper(i, seed, allowable_heals, allowable_room_pairs, debug);
+                    std::vector<RNGSimFunc> curr_results = findSeedHelper(i, seed, allowable_heals, allowable_room_pairs, log_level);
                     if (!curr_results.empty()) {
                         thread_results[i][seed] = std::move(curr_results);
                         ++local_seeds_found;
@@ -399,7 +400,7 @@ std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> RNGHunter::fi
         thread.join();
     }
 
-    std::unordered_map<time_t, std::vector<std::function<bool(bool)>>> seeds;
+    std::unordered_map<time_t, std::vector<RNGSimFunc>> seeds;
     for (auto& results : thread_results) {
         seeds.merge(results);
     }
