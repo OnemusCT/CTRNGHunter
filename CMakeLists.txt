@@ -23,7 +23,7 @@ set(SOURCES
     rng_hunter.cpp
     msvc_rand_wrapper.cpp
     rng_sim.cpp
-)
+    walkthrough_gen/walkthrough_gen.cpp)
 
 # Header files
 set(HEADERS
@@ -37,44 +37,35 @@ set(HEADERS
     inja/inja.hpp
     walkthrough_gen/walkthrough_gen.h )
 
-set(WALKTHROUGH_TEMPLATE_FILE "${CMAKE_SOURCE_DIR}/walkthrough_gen/templates/walkthrough.md")
-set(YAKRA_TEMPLATE_FILE "${CMAKE_SOURCE_DIR}/walkthrough_gen/templates/yakra.md")
-set(DRAGONTANK_TEMPLATE_FILE "${CMAKE_SOURCE_DIR}/walkthrough_gen/templates/dragontank.md")
 
-configure_file(
-    ${YAKRA_TEMPLATE_FILE}
-    "${CMAKE_BINARY_DIR}/templates_copy/yakra.md"
-    COPYONLY
+file(GLOB TEMPLATE_FILES 
+    CONFIGURE_DEPENDS
+    "${CMAKE_SOURCE_DIR}/walkthrough_gen/templates/*.md"
 )
 
-configure_file(
-    ${DRAGONTANK_TEMPLATE_FILE}
-    "${CMAKE_BINARY_DIR}/templates_copy/dragontank.md"
-    COPYONLY
+# Generate header with dependency tracking
+add_custom_command(
+    OUTPUT "${CMAKE_BINARY_DIR}/generated/templates.h"
+    COMMAND ${CMAKE_COMMAND}
+        -DTEMPLATE_DIR="${CMAKE_SOURCE_DIR}/walkthrough_gen/templates"
+        -DOUTPUT_FILE="${CMAKE_BINARY_DIR}/generated/templates.h"
+        -P "${CMAKE_SOURCE_DIR}/cmake/generate_templates.cmake"
+    DEPENDS ${TEMPLATE_FILES}
+    COMMENT "Generating embedded templates"
 )
 
-configure_file(
-    ${WALKTHROUGH_TEMPLATE_FILE}
-    "${CMAKE_BINARY_DIR}/templates_copy/walkthrough.md"
-    COPYONLY
+add_custom_target(generate_templates ALL
+    DEPENDS "${CMAKE_BINARY_DIR}/generated/templates.h"
 )
-
-file(READ ${YAKRA_TEMPLATE_FILE} YAKRA_TEMPLATE)
-file(READ ${DRAGONTANK_TEMPLATE_FILE} DRAGONTANK_TEMPLATE)
-file(READ ${WALKTHROUGH_TEMPLATE_FILE} WALKTHROUGH_TEMPLATE)
-
-configure_file(
-    "${CMAKE_SOURCE_DIR}/walkthrough_gen/templates.h.in"
-    "${CMAKE_BINARY_DIR}/generated/templates.h"
-    @ONLY
-)
-include_directories("${CMAKE_BINARY_DIR}/generated")
  
 # Create executable
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
+add_dependencies(rng_hunter generate_templates)
 target_include_directories(rng_hunter 
-    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
+    PRIVATE 
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_BINARY_DIR}/generated
 )
 
 # Set target properties
