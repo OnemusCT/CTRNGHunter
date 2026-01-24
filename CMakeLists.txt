@@ -52,7 +52,7 @@ add_custom_command(
         -P "${CMAKE_SOURCE_DIR}/cmake/generate_templates.cmake"
     DEPENDS ${TEMPLATE_FILES}
     COMMENT "Generating embedded templates"
-)
+) 
 
 add_custom_target(generate_templates ALL
     DEPENDS "${CMAKE_BINARY_DIR}/generated/templates.h"

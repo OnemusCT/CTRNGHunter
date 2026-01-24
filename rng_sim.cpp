@@ -21,39 +21,39 @@ public:
 
 	void init(time_t seed) override;
 
-	bool load(bool log) override;
+	bool load(LogLevel log_level) override;
 
-	bool room(int num, bool log) override;
+	bool room(int num, LogLevel log_level) override;
 
-	bool extra_rooms(bool log) override;
+	bool extra_rooms(LogLevel log_level) override;
 
-	bool battle(bool log) override;
+	bool battle(LogLevel log_level) override;
 
-	bool battle_with_rng(std::vector<int> rng_vals, std::string_view name, bool log) override;
+	bool battle_with_rng(std::vector<int> rng_vals, std::string_view name, LogLevel log_level) override;
 
-	bool battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, std::string_view name, bool log) override;
+	bool battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, std::string_view name, LogLevel log_level) override;
 
-	bool new_game(bool log) override;
+	bool new_game(LogLevel log_level) override;
 
-	bool portal(bool log) override;
+	bool portal(LogLevel log_level) override;
 
-	bool heal(int num, bool log) override;
+	bool heal(int num, LogLevel log_level) override;
 
 	void roll_back_rng(int steps) override;
 
-	void burn(int num, bool log) override;
+	void burn(int num, LogLevel log_level) override;
 
 	void roll_back_last_rng() override;
 
-	bool disable_extra_rooms(bool log) override;
+	bool disable_extra_rooms(LogLevel log_level) override;
 
-	bool enable_extra_rooms(bool log) override;
+	bool enable_extra_rooms(LogLevel log_level) override;
 
 	std::unordered_map<std::string, int> get_extra_rooms_per_encounter() override;
 	std::unordered_map<std::string, int> get_battle_rng_per_encounter() override;
 
 private:
-	void roll_rng(int n, std::string_view type, bool log);
+	void roll_rng(int n, std::string_view type, LogLevel log_level);
 
 	MSVCRandWrapper rng_;
 
@@ -81,9 +81,9 @@ std::unordered_map<std::string, int> RNGSimImpl::get_battle_rng_per_encounter() 
 	return battle_rng_map_;
 }
 
-void RNGSimImpl::roll_rng(int n, std::string_view type, bool log) {
+void RNGSimImpl::roll_rng(int n, std::string_view type, LogLevel log_level) {
 	last_steps = n;
-	if (log) {
+	if (log_level == LogLevel::FULL) {
 		std::cout << "\t" << type << ": (";
 		for (int i = 0; i < n; i++) {
 			if (i != 0 && i%33 == 0) std::cout << std::endl << "\t\t";
@@ -95,43 +95,52 @@ void RNGSimImpl::roll_rng(int n, std::string_view type, bool log) {
 		rng_.rand(n);
 	}
 }
-bool RNGSimImpl::load(bool log) {
-	roll_rng(42, kLoad, log);
+bool RNGSimImpl::load(LogLevel log_level) {
+	roll_rng(42, kLoad, log_level);
 	return true;
 }
 
-bool RNGSimImpl::room(int num, bool log) {
-	if (log) {
-		roll_rng(33*num, std::format("{} x{}", kRoom, num), log);
+bool RNGSimImpl::room(int num, LogLevel log_level) {
+	if (log_level == LogLevel::FULL) {
+		roll_rng(33*num, std::format("{} x{}", kRoom, num), log_level);
 	}
 	else {
-		roll_rng(33*num, kRoom, log);
+		roll_rng(33*num, kRoom, log_level);
 	}
 	return true;
 }
 
-bool RNGSimImpl::extra_rooms(bool log) {
+bool RNGSimImpl::extra_rooms(LogLevel log_level) {
 	if (!extra_rooms_enabled_) return false;
-	roll_rng(66, kExtraRooms, log);
+	if (log_level == LogLevel::FULL) {
+		roll_rng(66, kExtraRooms, log_level);
+	}
+	else if (log_level == LogLevel::PARTIAL) {
+		roll_rng(66, kExtraRooms, LogLevel::NONE);
+		std::cout << "\textra rooms" << std::endl;
+	}
+	else {
+		roll_rng(66, kExtraRooms, LogLevel::NONE);
+	}
 	++extra_room_count_;
 	return true;
 }
 
-bool RNGSimImpl::portal(bool log) {
-	roll_rng(1, kPortal, log);
+bool RNGSimImpl::portal(LogLevel log_level) {
+	roll_rng(1, kPortal, log_level);
 	return true;
 }
 
-bool RNGSimImpl::battle(bool log) {
+bool RNGSimImpl::battle(LogLevel log_level) {
 	last_steps = 1;
 	int r = rng_.rand();
 	int val = (r % 0xFF) + 1;
 	last_battle_rng_ = val;
-	if (log) std::cout << std::format("\tbattle: {:02X} ({:04X})", val, r) << std::endl;
+	if (log_level == LogLevel::FULL) std::cout << std::format("\tbattle: {:02X} ({:04X})", val, r) << std::endl;
 	return true;
 }
 
-bool RNGSimImpl::battle_with_rng(std::vector<int> rng_vals, std::string_view name, bool log) {
+bool RNGSimImpl::battle_with_rng(std::vector<int> rng_vals, std::string_view name, LogLevel log_level) {
 	last_steps = 1;
 	int r = rng_.rand();
 	int val = (r % 0xFF) + 1;
@@ -141,16 +150,16 @@ bool RNGSimImpl::battle_with_rng(std::vector<int> rng_vals, std::string_view nam
 			extra_room_map_.insert({std::string(name), extra_room_count_});
 			battle_rng_map_.insert({std::string(name), val});
 			extra_room_count_ = 0;
-			if (log) std::cout << std::format("\tbattle rng {}: {:02X} ({:04X})", name, rng_val, r) << std::endl;
+			if (log_level >= LogLevel::PARTIAL) std::cout << std::format("\tbattle rng {}: {:02X} ({:04X})", name, rng_val, r) << std::endl;
 			return true;
 		}
 	}
 	last_battle_rng_ = val;
-	if (log) std::cout << std::format("\tbattle rng {}: {:02X} DOES NOT MATCH! ({:04X})", name, val, r) << std::endl;
+	if (log_level >= LogLevel::PARTIAL) std::cout << std::format("\tbattle rng {}: {:02X} DOES NOT MATCH! ({:04X})", name, val, r) << std::endl;
 	return false;
 }
 
-bool RNGSimImpl::battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, std::string_view name, bool log) {
+bool RNGSimImpl::battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, std::string_view name, LogLevel log_level) {
 	last_steps = 1;
 	int crits = 0;
 	int r = rng_.rand();
@@ -165,7 +174,7 @@ bool RNGSimImpl::battle_with_crits(std::vector<int> threshold, int min_crits, in
 		t_index = (t_index + 1) % threshold.size();
 	}
 	last_battle_rng_ = val;
-	if (log) std::cout << std::format("\tbattle crits {}: {} in {} turns from {:02X} ({:04X})", name, crits, max_turns, initial_val, r) << std::endl;
+	if (log_level >= LogLevel::PARTIAL) std::cout << std::format("\tbattle crits {}: {} in {} turns from {:02X} ({:04X})", name, crits, max_turns, initial_val, r) << std::endl;
 	if (crits >= min_crits) {
 		extra_room_map_.insert({std::string(name), extra_room_count_ });
 		battle_rng_map_.insert({std::string(name), val});
@@ -175,13 +184,13 @@ bool RNGSimImpl::battle_with_crits(std::vector<int> threshold, int min_crits, in
 	return false;
 }
 
-bool RNGSimImpl::new_game(bool log) {
-	roll_rng(35, kNewGame, log);
+bool RNGSimImpl::new_game(LogLevel log_level) {
+	roll_rng(35, kNewGame, log_level);
 	return true;
 }
 
-bool RNGSimImpl::heal(int num, bool log) {
-	roll_rng(num, kHeal, log);
+bool RNGSimImpl::heal(int num, LogLevel log_level) {
+	roll_rng(num, kHeal, log_level);
 	return true;
 }
 
@@ -196,16 +205,16 @@ void RNGSimImpl::roll_back_last_rng() {
 	last_steps = 0;
 }
 
-void RNGSimImpl::burn(int num, bool log) {
-	roll_rng(num, kBurn, log);
+void RNGSimImpl::burn(int num, LogLevel log_level) {
+	roll_rng(num, kBurn, log_level);
 }
 
-bool RNGSimImpl::disable_extra_rooms(bool) {
+bool RNGSimImpl::disable_extra_rooms(LogLevel) {
 	extra_rooms_enabled_ = false;
 	return true;
 }
 
-bool RNGSimImpl::enable_extra_rooms(bool) {
+bool RNGSimImpl::enable_extra_rooms(LogLevel) {
 	extra_rooms_enabled_ = true;
 	return true;
 }
