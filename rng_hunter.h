@@ -29,7 +29,7 @@ class RNGHunter {
     std::unordered_map<time_t, std::vector<RNGSimFunc>> findSeeds(time_t start, time_t end, int allowable_heals, int allowable_room_pairs, RNGSim::LogLevel log_level);
 
   private:
-    std::vector<RNGSimFunc> findSeedHelper(int sim_index, int seed, int allowable_heals, int allowable_room_pairs, RNGSim::LogLevel log_level);
+    std::vector<RNGSimFunc> findSeedHelper(int sim_index, time_t seed, int allowable_heals, int allowable_room_pairs, RNGSim::LogLevel log_level);
     size_t max_seeds_;
     std::vector<std::vector<RNGSimFunc>> functions_;
     std::vector<std::unique_ptr<RNGSim>> rng_sim_pool_;
