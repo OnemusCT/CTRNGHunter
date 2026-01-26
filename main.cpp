@@ -8,7 +8,7 @@
 #include "rng_hunter.h"
 #include "msvc_rand_wrapper.h"
 
-void print_rng_values(time_t seed, int num_output) {
+void print_rng_values(time_t seed, int  num_output) {
     MSVCRandWrapper rand = {};
     rand.srand(seed);
     for (int i = 0; i < num_output; i++) {
@@ -83,10 +83,12 @@ void print_init_order(int rng, int players, int enemies) {
     }
     std::cout << "[ ";
     for (int e : order) {
-        if (exist.find(e) != exist.end())
+        if (exist.contains(e)) {
             std::cout << std::format("**0x{:1X}** ", e);
-        else
+        }
+        else {
             std::cout << std::format("0x{:1X} ", e);
+        }
     }
     std::cout << "]" << std::endl;
 }
@@ -179,15 +181,15 @@ int main(int argc, char* argv[]) {
         std::ofstream out_file(out);
         if (!out_file) {
             std::cerr << "Error opening file " << out << std::endl;
-            return 1;
+        } else {
+            hunter.generateWalkthrough(seed, out_file);
+            out_file.close();
         }
-        hunter.generateWalkthrough(seed, out_file);
-        out_file.close();
     });
 
     CLI::App* convert_to_timestamp = app.add_subcommand("convert_to_timestamp", "Converts a seed to a CTManip timestamp");
     convert_to_timestamp->add_option("-s,--seed", seed, "The seed to convert")->required();
-    convert_to_timestamp->callback([&]() {
+    convert_to_timestamp->callback([&] {
         std::cout << seed_to_string(seed) << std::endl;
     });
 
@@ -221,7 +223,7 @@ int main(int argc, char* argv[]) {
     print_turn_order->callback([&] {
         int rng_val = 0;
         try {
-            rng_val = std::stoi(rng, 0, 16);
+            rng_val = std::stoi(rng, nullptr, 16);
         }
         catch (const std::exception&) {
             std::cerr << "Invalid rng value, must be a hex value: " << rng << std::endl;

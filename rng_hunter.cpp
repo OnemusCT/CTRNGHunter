@@ -20,7 +20,7 @@ constexpr time_t CHECK_INTERVAL = 1000;
 class HunterStatistics {
   public:
     // total is the total number of seeds being processed. Used for calculating percentages.
-    HunterStatistics(time_t total) :
+    explicit HunterStatistics(time_t total) :
         total_seeds_found_(0),
         seeds_processed_(0), total_(total), last_percentage_(0) {}
 
@@ -48,7 +48,7 @@ class HunterStatistics {
         current_percentage = (current_percentage / 10) * 10;
 
         if (current_percentage > last_percentage_ && current_percentage <= 100) {
-            std::lock_guard<std::mutex> lock(print_mutex_);
+            std::lock_guard lock(print_mutex_);
             if (current_percentage > last_percentage_) {
                 last_percentage_ = current_percentage;
                 std::cout << current_percentage << "% - " << total_seeds_found_.load()
@@ -278,7 +278,7 @@ void RNGHunter::clear() {
     functions_.clear();
 }
 
-std::vector<RNGSimFunc> RNGHunter::findSeedHelper(int sim_index, int seed, int allowable_heals, int allowable_room_pairs, RNGSim::LogLevel log_level) {
+std::vector<RNGSimFunc> RNGHunter::findSeedHelper(int sim_index, time_t seed, int allowable_heals, int allowable_room_pairs, RNGSim::LogLevel log_level) {
     rng_sim_pool_[sim_index]->init(seed);
     int curr_allowable_heals = allowable_heals;
     int curr_allowable_room_pairs = allowable_room_pairs;
@@ -291,8 +291,8 @@ std::vector<RNGSimFunc> RNGHunter::findSeedHelper(int sim_index, int seed, int a
                 all_pass = false;
                 break;
             }
-            if (log_level == RNGSim::LogLevel::FULL) { 
-                std::cout << "Trying to extend" << std::endl; 
+            if (log_level == RNGSim::LogLevel::FULL) {
+                std::cout << "Trying to extend" << std::endl;
             }
             std::stack<RNGSimFunc> extra_funcs;
             rng_sim_pool_[sim_index]->roll_back_last_rng();
@@ -302,7 +302,7 @@ std::vector<RNGSimFunc> RNGHunter::findSeedHelper(int sim_index, int seed, int a
             for (int heals = 0; heals <= curr_allowable_heals; heals++) {
                 for (int rooms = 1; rooms <= curr_allowable_room_pairs; rooms++) {
                     if (log_level == RNGSim::LogLevel::FULL) { 
-                        std::cout << "Adding " << (rooms*2) << " rooms" << std::endl; 
+                        std::cout << "Adding " << (rooms*2) << " rooms" << std::endl;
                     }
                     std::function extra_rooms_func = [this, sim_index](RNGSim::LogLevel log_level) {
                         return rng_sim_pool_[sim_index]->extra_rooms(log_level);
@@ -353,7 +353,7 @@ std::unordered_map<time_t, std::vector<RNGSimFunc>> RNGHunter::findSeeds(time_t 
 
     time_t total = end - start + 1;
     HunterStatistics statistics(total);
-    time_t chunk_size = total / num_threads;
+    size_t chunk_size = total / num_threads;
 
     for (size_t i = 0; i < num_threads; ++i) {
         time_t thread_start = start + i * chunk_size;
@@ -366,7 +366,7 @@ std::unordered_map<time_t, std::vector<RNGSimFunc>> RNGHunter::findSeeds(time_t 
 
 
                 for (time_t seed = thread_start; seed <= thread_end; ++seed) {
-                    bool debug = debug_seeds_.find(seed) != debug_seeds_.end();
+                    RNGSim::LogLevel debug = debug_seeds_.contains(seed) ? RNGSim::LogLevel::FULL : log_level;
                     if (local_processed % CHECK_INTERVAL == 0) {
                         size_t total_seeds_found = statistics.add_seeds_found(local_seeds_found);
                         local_seeds_found = 0;
@@ -379,7 +379,7 @@ std::unordered_map<time_t, std::vector<RNGSimFunc>> RNGHunter::findSeeds(time_t 
                         statistics.maybe_print_progress();
                     }
 
-                    std::vector<RNGSimFunc> curr_results = findSeedHelper(i, seed, allowable_heals, allowable_room_pairs, log_level);
+                    std::vector<RNGSimFunc> curr_results = findSeedHelper(i, seed, allowable_heals, allowable_room_pairs, debug);
                     if (!curr_results.empty()) {
                         thread_results[i][seed] = std::move(curr_results);
                         ++local_seeds_found;

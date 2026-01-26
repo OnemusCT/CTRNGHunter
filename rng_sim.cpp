@@ -17,7 +17,7 @@ constexpr std::string_view kExtraRooms = "extra_rooms";
 
 class RNGSimImpl : public RNGSim {
 public:
-	RNGSimImpl() : rng_() {}
+	RNGSimImpl() = default;
 
 	void init(time_t seed) override;
 
