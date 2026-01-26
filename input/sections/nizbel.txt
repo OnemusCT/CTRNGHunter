@@ -1,0 +1,23 @@
+battle_with_rng FD nizbel
+#battle_with_crits 0,0,20,0,20,0,0,20,0,20,20,0,20,0,20,20 6 17
+#battle_with_crits 0,0,20,0,20,0,20,0,0,20,20,0,0,20,20,0,0,20 6 18
+#battle_with_crits 20,10,20,10,20,10,10,20,10,20,20,10,20,10,20,20 5 17
+room 2 # ayla hut, mountain path
+battle
+room 2 # mountain base, portal
+portal # eot
+room 5 # cabinet, melchior, basement, melchior, cabinet
+portal # eot
+portal # truce portal
+# truce canyon, woods, frog, cutscene (throne, naga, frog queen, magus, frog), frog
+# woods, mountain, cutscene (forest, bridge, magus, waterfall, mountain, mountain), cave
+room 18
+battle # cave rats
+# magus gate, entry, flea 1, flea 2, flea 3, flea 2, flea 1
+# entry, slash 1, slash 2, slash 1, entry
+room 12
+battle
+room # flea 1
+battle
+heal 3
+room 2 # flea 2, 3
