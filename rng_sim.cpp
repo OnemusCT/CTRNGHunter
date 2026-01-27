@@ -12,6 +12,7 @@ constexpr std::string_view kRoom = "room";
 constexpr std::string_view kPortal = "portal";
 constexpr std::string_view kNewGame = "new_game";
 constexpr std::string_view kHeal = "heal";
+constexpr std::string_view kExtraHeal = "heal";
 constexpr std::string_view kBurn = "burn";
 constexpr std::string_view kExtraRooms = "extra_rooms";
 
@@ -39,6 +40,8 @@ public:
 
 	bool heal(int num, LogLevel log_level) override;
 
+	bool extra_heal(LogLevel log_level) override;
+
 	void roll_back_rng(int steps) override;
 
 	void burn(int num, LogLevel log_level) override;
@@ -49,8 +52,13 @@ public:
 
 	bool enable_extra_rooms(LogLevel log_level) override;
 
+	bool enable_extra_heals(LogLevel log_level) override;
+
+	bool disable_extra_heals(LogLevel log_level) override;
+
 	std::unordered_map<std::string, int> get_extra_rooms_per_encounter() override;
 	std::unordered_map<std::string, int> get_battle_rng_per_encounter() override;
+	std::unordered_map<std::string, int> get_extra_heals_per_encounter() override;
 
 private:
 	void roll_rng(int n, std::string_view type, LogLevel log_level);
@@ -59,10 +67,13 @@ private:
 
 	int last_steps = 0;
 	bool extra_rooms_enabled_ = true;
+	bool extra_heals_enabled_ = false;
 	int extra_room_count_ = 0;
+	int extra_heals_count_ = 0;
 	int last_battle_rng_ = 0;
 	std::unordered_map<std::string, int> extra_room_map_;
 	std::unordered_map<std::string, int> battle_rng_map_;
+	std::unordered_map<std::string, int> extra_heals_map_;
 };
 
 
@@ -71,6 +82,8 @@ void RNGSimImpl::init(time_t seed) {
 	extra_rooms_enabled_ = true;
 	extra_room_count_ = 0;
 	extra_room_map_.clear();
+	extra_heals_enabled_ = false;
+	extra_heals_map_.clear();
 }
 
 std::unordered_map<std::string, int> RNGSimImpl::get_extra_rooms_per_encounter() {
@@ -79,6 +92,10 @@ std::unordered_map<std::string, int> RNGSimImpl::get_extra_rooms_per_encounter()
 
 std::unordered_map<std::string, int> RNGSimImpl::get_battle_rng_per_encounter() {
 	return battle_rng_map_;
+}
+
+std::unordered_map<std::string, int> RNGSimImpl::get_battle_rng_per_encounter() {
+	return extra_heals_map_;
 }
 
 void RNGSimImpl::roll_rng(int n, std::string_view type, LogLevel log_level) {
@@ -148,8 +165,10 @@ bool RNGSimImpl::battle_with_rng(std::vector<int> rng_vals, std::string_view nam
 		if (val == rng_val) {
 			last_battle_rng_ = val;
 			extra_room_map_.insert({std::string(name), extra_room_count_});
+			extra_heals_map_.insert({std::string(name), extra_heals_count_});
 			battle_rng_map_.insert({std::string(name), val});
 			extra_room_count_ = 0;
+			extra_heals_count_ = 0;
 			if (log_level >= LogLevel::PARTIAL) std::cout << std::format("\tbattle rng {}: {:02X} ({:04X})", name, rng_val, r) << std::endl;
 			return true;
 		}
@@ -177,8 +196,10 @@ bool RNGSimImpl::battle_with_crits(std::vector<int> threshold, int min_crits, in
 	if (log_level >= LogLevel::PARTIAL) std::cout << std::format("\tbattle crits {}: {} in {} turns from {:02X} ({:04X})", name, crits, max_turns, initial_val, r) << std::endl;
 	if (crits >= min_crits) {
 		extra_room_map_.insert({std::string(name), extra_room_count_ });
+		extra_heals_map_.insert({ std::string(name), extra_heals_count_ });
 		battle_rng_map_.insert({std::string(name), val});
 		extra_room_count_ = 0;
+		extra_heals_count_ = 0;
 		return true;
 	}
 	return false;
@@ -192,6 +213,15 @@ bool RNGSimImpl::new_game(LogLevel log_level) {
 bool RNGSimImpl::heal(int num, LogLevel log_level) {
 	roll_rng(num, kHeal, log_level);
 	return true;
+}
+
+bool RNGSimImpl::extra_heal(LogLevel log_level) {
+	if(extra_heals_enabled_) {
+		++extra_heals_count_;
+		roll_rng(1, kExtraHeal, log_level);
+		return true;
+	}
+	return false;
 }
 
 void RNGSimImpl::roll_back_rng(int steps) {
@@ -217,6 +247,16 @@ bool RNGSimImpl::disable_extra_rooms(LogLevel) {
 bool RNGSimImpl::enable_extra_rooms(LogLevel) {
 	extra_rooms_enabled_ = true;
 	return true;
+}
+
+bool RNGSimImpl::enable_extra_heals(LogLevel log_level) {
+	extra_heals_enabled_ = true;
+	extra_heals_count_ = 0;
+}
+
+bool RNGSimImpl::disable_extra_heals(LogLevel log_level) {
+	extra_heals_enabled_ = false;
+	extra_heals_count_ = 0;
 }
 
 std::unique_ptr<RNGSim> RNGSim::Create() {
