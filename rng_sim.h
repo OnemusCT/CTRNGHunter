@@ -37,10 +37,16 @@ class RNGSim {
 	virtual bool portal(LogLevel log_level) = 0;
 
 	virtual bool heal(int num, LogLevel log_level) = 0;
+	
+	virtual bool extra_heal(LogLevel log_level) = 0;
 
 	virtual bool disable_extra_rooms(LogLevel log_level) = 0;
 
 	virtual bool enable_extra_rooms(LogLevel log_level) = 0;
+
+	virtual bool enable_extra_heals(LogLevel log_level) = 0;
+
+	virtual bool disable_extra_heals(LogLevel log_level) = 0;
 
 	virtual void roll_back_rng(int steps) = 0;
 
@@ -50,6 +56,7 @@ class RNGSim {
 
 	virtual std::unordered_map<std::string, int> get_extra_rooms_per_encounter() = 0;
 	virtual std::unordered_map<std::string, int> get_battle_rng_per_encounter() = 0;
+	virtual std::unordered_map<std::string, int> get_extra_heals_per_encounter() = 0;
 
 
 	static std::unique_ptr<RNGSim> Create();
