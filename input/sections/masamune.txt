@@ -9,7 +9,7 @@ battle_with_rng 01 masamune
 enable_extra_rooms
 room 5 # tata, woods, frog, woods, truce
 battle
-portal # truce portal
+room # truce portal, sometimes it's a full room!
 portal # eot
 room 3 # cabinet, melchior, cabinet
 portal # eot
@@ -18,7 +18,9 @@ battle # reptites
 battle
 room # mountain path
 battle
-room 9 # ayla hut, party, soup, party day, ayla's hut, maze, lair 1, lair 2, lair 3
+room 8 # ayla hut, party, party day
+portal # ayla's hut
+room 4 # maze, lair 1, lair 2, lair 3
 battle
 room # lair 4
 battle

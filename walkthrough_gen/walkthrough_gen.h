@@ -11,4 +11,4 @@
 // |rooms| should be a map of boss name to how many extra sets of room transitions are needed
 //   prior to the boss
 // ||out|| is the stream to write to
-void generate_walkthrough(const std::unordered_map<std::string, int>& rng_map, const std::unordered_map<std::string, int>& rooms_map, std::ostream& out);
+void generate_walkthrough(const std::unordered_map<std::string, int>& rng_map, const std::unordered_map<std::string, int>& rooms_map, const std::unordered_map<std::string, int>& heal_map, std::ostream& out);

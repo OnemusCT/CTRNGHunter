@@ -33,7 +33,7 @@ void add_templates(inja::Environment& env) {
 	}
 }
 
-void generate_walkthrough(const std::unordered_map<std::string, int>& rng_map, const std::unordered_map<std::string, int>& rooms_map, std::ostream& out) {
+void generate_walkthrough(const std::unordered_map<std::string, int>& rng_map, const std::unordered_map<std::string, int>& rooms_map, const std::unordered_map<std::string, int>& heal_map, std::ostream& out) {
 	inja::Environment env;
 	env.set_line_statement("$$"); // Change line statements so they don't conflict with markdown headers
 	env.set_expression("{$", "$}");
@@ -43,6 +43,9 @@ void generate_walkthrough(const std::unordered_map<std::string, int>& rng_map, c
 	}
 	for (const auto& [battle, rooms] : rooms_map) {
 		data["rooms"][battle] = rooms;
+	}
+	for (const auto& [battle, heals] : heal_map) {
+		data["heals"][battle] = heals;
 	}
 	try {
 		add_templates(env);

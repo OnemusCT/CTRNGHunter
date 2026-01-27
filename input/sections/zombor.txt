@@ -5,7 +5,9 @@
 ####################################
 battle
 battle
+enable_extra_heals
 battle_with_rng B3 zombor
+disable_extra_heals
 room 4 # shop, mountain 1,2,1
 battle # tata battles
 battle

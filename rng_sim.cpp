@@ -12,7 +12,7 @@ constexpr std::string_view kRoom = "room";
 constexpr std::string_view kPortal = "portal";
 constexpr std::string_view kNewGame = "new_game";
 constexpr std::string_view kHeal = "heal";
-constexpr std::string_view kExtraHeal = "heal";
+constexpr std::string_view kExtraHeal = "extra_heal";
 constexpr std::string_view kBurn = "burn";
 constexpr std::string_view kExtraRooms = "extra_rooms";
 
@@ -94,7 +94,7 @@ std::unordered_map<std::string, int> RNGSimImpl::get_battle_rng_per_encounter() 
 	return battle_rng_map_;
 }
 
-std::unordered_map<std::string, int> RNGSimImpl::get_battle_rng_per_encounter() {
+std::unordered_map<std::string, int> RNGSimImpl::get_extra_heals_per_encounter() {
 	return extra_heals_map_;
 }
 
@@ -218,9 +218,19 @@ bool RNGSimImpl::heal(int num, LogLevel log_level) {
 bool RNGSimImpl::extra_heal(LogLevel log_level) {
 	if(extra_heals_enabled_) {
 		++extra_heals_count_;
-		roll_rng(1, kExtraHeal, log_level);
+		if (log_level == LogLevel::FULL) {
+			roll_rng(1, kExtraHeal, log_level);
+		}
+		else if (log_level == LogLevel::PARTIAL) {
+			roll_rng(1, kExtraHeal, LogLevel::NONE);
+			std::cout << "\textra heal" << std::endl;
+		}
+		else {
+			roll_rng(1, kExtraHeal, LogLevel::NONE);
+		}
 		return true;
 	}
+
 	return false;
 }
 
@@ -252,11 +262,13 @@ bool RNGSimImpl::enable_extra_rooms(LogLevel) {
 bool RNGSimImpl::enable_extra_heals(LogLevel log_level) {
 	extra_heals_enabled_ = true;
 	extra_heals_count_ = 0;
+	return true;
 }
 
 bool RNGSimImpl::disable_extra_heals(LogLevel log_level) {
 	extra_heals_enabled_ = false;
 	extra_heals_count_ = 0;
+	return true;	
 }
 
 std::unique_ptr<RNGSim> RNGSim::Create() {
