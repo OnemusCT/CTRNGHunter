@@ -3,7 +3,9 @@
 ####			Yakra			####
 ####							####
 ####################################
+enable_extra_heals
 battle_with_rng 3,4,5,6,7,8,9,A,3E,3F,40,41,42,43,44,45,46,47,48,49,4A,4B,4C,4D,4E,4F,50,51,52,53,54,55,56,57,58,59,5A,5B,5C,5D,5E,5F,60,98,99,9A,9B,9C,9D,9E,A1,A2,A3 yakra
+disable_extra_heals
 # throne room, stairs 1, stairs 2, stairs 3, leene's room
 # stairs 3, stairs 2, stairs 1, throne room, forest, truce
 room 11

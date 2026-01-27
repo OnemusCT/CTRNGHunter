@@ -1,10 +1,7 @@
 {% if rooms.twins > 0 %}Do {$ rooms.twins $} extra sets of room transitions prior to the Masamune Twins battle.
 {% endif %}
 **Masa and Mune**
-{{<battlebox>}}
-Note: All attacks on Right twin
-
-
+{{<battlebox>}}Note: All attacks on Right twin
 
 Lucca Hypnowave
 Wait for Robo attack

@@ -9,6 +9,7 @@
 #include <filesystem>
 #include <mutex>
 #include <stack>
+#include <climits>
 
 #include "seed_parser.h"
 #include "rng_sim.h"
@@ -226,7 +227,21 @@ bool RNGHunter::parseFile(const std::string& filename) {
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
                 functions_[i].emplace_back([this, i](RNGSim::LogLevel log_level) {
                     return rng_sim_pool_[i]->enable_extra_rooms(log_level);
-                    });
+                });
+            }
+        }
+        else if (funcName == "disable_extra_heals") {
+            for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
+                functions_[i].emplace_back([this, i](RNGSim::LogLevel log_level) {
+                    return rng_sim_pool_[i]->disable_extra_heals(log_level);
+                });
+            }
+        }
+        else if (funcName == "enable_extra_heals") {
+            for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
+                functions_[i].emplace_back([this, i](RNGSim::LogLevel log_level) {
+                    return rng_sim_pool_[i]->enable_extra_heals(log_level);
+                });
             }
         }
         else {
@@ -239,14 +254,14 @@ bool RNGHunter::parseFile(const std::string& filename) {
 }
 
 void RNGHunter::logSeed(time_t seed, RNGSim::LogLevel log_level) {
-    auto result = findSeedHelper(0, seed, 0, 999, RNGSim::LogLevel::NONE);
+    auto result = findSeedHelper(0, seed, 32, INT_MAX-1, RNGSim::LogLevel::NONE);
     logSeedFromFunctions(seed, result, log_level);
 }
 
 void RNGHunter::generateWalkthrough(time_t seed, std::ostream& out) {
     std::cout << "Seed: " << seed_to_string(seed) << " (" << seed << ")" << std::endl;
-    findSeedHelper(0, seed, 0, 999, RNGSim::LogLevel::NONE);
-    generate_walkthrough(rng_sim_pool_[0]->get_battle_rng_per_encounter(), rng_sim_pool_[0]->get_extra_rooms_per_encounter(), out);
+    findSeedHelper(0, seed, 32, INT_MAX - 1, RNGSim::LogLevel::NONE);
+    generate_walkthrough(rng_sim_pool_[0]->get_battle_rng_per_encounter(), rng_sim_pool_[0]->get_extra_rooms_per_encounter(), rng_sim_pool_[0]->get_extra_heals_per_encounter(), out);
 }
 
 void RNGHunter::extendSeed(time_t seed, int max_rolls) {
@@ -296,41 +311,68 @@ std::vector<RNGSimFunc> RNGHunter::findSeedHelper(int sim_index, time_t seed, in
             }
             std::stack<RNGSimFunc> extra_funcs;
             rng_sim_pool_[sim_index]->roll_back_last_rng();
-            // Heals are more expensive than room transitions due to the time required to open the tech menu
-            // so prioritize finding options that use room pairs instead.
             bool passed = false;
-            for (int heals = 0; heals <= curr_allowable_heals; heals++) {
-                for (int rooms = 1; rooms <= curr_allowable_room_pairs; rooms++) {
-                    if (log_level == RNGSim::LogLevel::FULL) { 
-                        std::cout << "Adding " << (rooms*2) << " rooms" << std::endl;
+            
+            for (int rooms = 0; rooms <= curr_allowable_room_pairs; rooms++) {
+                if (rooms > 0) {
+                    if (log_level == RNGSim::LogLevel::FULL) {
+                        std::cout << "Adding " << (rooms * 2) << " rooms" << std::endl;
                     }
                     std::function extra_rooms_func = [this, sim_index](RNGSim::LogLevel log_level) {
                         return rng_sim_pool_[sim_index]->extra_rooms(log_level);
-                    };
+                        };
                     // If we can't add extra rooms right now, break
-                    if(!extra_rooms_func(log_level)) break;
+                    if (!extra_rooms_func(log_level)) break;
 
                     extra_funcs.push(extra_rooms_func);
+                }
+                std::stack<RNGSimFunc> extra_heal_funcs;
+                bool added_heals = false;
+                for (int heals = 0; heals <= allowable_heals; heals++) {
+                    if (heals > 0) {
+                        if (log_level == RNGSim::LogLevel::FULL) {
+                            std::cout << "Adding " << heals << " heals" << std::endl;
+                        }
+                        std::function extra_heal_func = [this, sim_index](RNGSim::LogLevel log_level) {
+                            return rng_sim_pool_[sim_index]->extra_heal(log_level);
+                        };
+                        if (!extra_heal_func(log_level)) break;
+                        added_heals = true;
+                        extra_heal_funcs.push(extra_heal_func);
+                    }
                     if (func(log_level)) {
                         if (log_level == RNGSim::LogLevel::FULL) { std::cout << "Found extension!" << std::endl; }
                         passed = true;
                         curr_allowable_room_pairs -= rooms;
-                        curr_allowable_heals -= heals;
+                        //curr_allowable_heals -= heals;
                         break;
                     }
-                    if (log_level == RNGSim::LogLevel::FULL) { std::cout << "Rolling back to try again" << std::endl; }
-                    rng_sim_pool_[sim_index]->roll_back_last_rng();
+                    else {
+                        rng_sim_pool_[sim_index]->roll_back_last_rng();
+                    }
                 }
                 if (passed) {
-                    while (!extra_funcs.empty()) {
-                        curr_results.push_back(std::move(extra_funcs.top()));
-                        extra_funcs.pop();
+                    while (!extra_heal_funcs.empty()) {
+                        curr_results.push_back(std::move(extra_heal_funcs.top()));
+                        extra_heal_funcs.pop();
                     }
                     break;
                 }
-                // TODO: Implement heals
+                if (log_level == RNGSim::LogLevel::FULL) { std::cout << "Rolling back to try again" << std::endl; }
+                // rng_sim_pool_[sim_index]->roll_back_last_rng();
+                if(added_heals) {
+                    rng_sim_pool_[sim_index]->roll_back_rng(allowable_heals);
+                    // Cycle allowing extra heals to clear out the count
+                    rng_sim_pool_[sim_index]->disable_extra_heals(RNGSim::LogLevel::NONE);
+                    rng_sim_pool_[sim_index]->enable_extra_heals(RNGSim::LogLevel::NONE);
+                }
             }
-            if (!passed) {
+            if (passed) {
+                while (!extra_funcs.empty()) {
+                    curr_results.push_back(std::move(extra_funcs.top()));
+                    extra_funcs.pop();
+                }
+            } else {
                 all_pass = false;
                 break;
             }

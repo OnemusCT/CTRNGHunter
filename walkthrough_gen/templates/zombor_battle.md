@@ -1,10 +1,9 @@
 {% if rooms.zombor > 0 %}Do {$ rooms.zombor $} extra sets of room transitions prior to the Zombor battle. The castle is the best place.
-{% endif %}
-Use Potions to heal before the battle.
+{% endif %}{% if heals.zombor == 0 %}Use Potions to heal before the battle.{% else %}Perform {$ heals.zombor $} Tech heals prior to the Zombor battle. Tech heals will advance RNG even if the target is full health.{% endif %}{% if heals.zombor < 3 %}
+Use Potions for additional heals beyond the required {$ heals.zombor $}{% endif %}
 
 **Battle**
-{{<battlebox>}}
-Robo auto attacks butt for 80 if on manip
+{{<battlebox>}}Robo auto attacks butt for 80 if on manip
 Crono Cyclone
 Lucca Attack head
 Crono Cyclone

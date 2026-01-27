@@ -1,6 +1,12 @@
-battle_with_rng 0D flea?
-disable_extra_rooms
+####################################
+####							####
+####			Flea			####
+####							####
+####################################
+battle # fake flea
+enable_extra_heals
 battle_with_rng 2F flea
-enable_extra_rooms
+disable_extra_heals
+#battle_with_rng 3 flea
 heal 5
 room 5 # flea 2, flea 1, entry, slash 1, slash 2

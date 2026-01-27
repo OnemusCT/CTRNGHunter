@@ -1,5 +1,5 @@
 # TimeZones.ET, 13, 03, 2024, 15, 35, 54
 load
 import sections/flea.txt
-import sections/slash.txt
-import sections/magus.txt
+#import sections/slash.txt
+#import sections/magus.txt
