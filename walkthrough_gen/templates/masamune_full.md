@@ -80,16 +80,16 @@ Run up to the sword
 {% include "masamune_battle" %}
 
 **Masamune (3600 HP)**
+{{<battlebox>}}
+Note:
+  * Above 1/2 HP: Attack, Attack, Hurricane, Storing Energy  
+  * Below 1/2 HP: Attack, Attack, Storing Energy  
+  * Double attack power when below 1/2 HP  
+  * Will reset attack cycle when goes below 1/2 HP  
 
-* General notes  
-  * Above ½ HP: Attack, Attack, Hurricane, Storing Energy  
-  * Below ½ HP: Attack, Attack, Storing Energy  
-  * Double attack power when below ½ HP  
-  * Will reset attack cycle when goes below ½ HP  
-* Fight  
-  * Crono Attack or Mid-Potion as needed  
-  * Lucca / Robo Fire Punch  
-* Storing Energy  
-  * Crono Wind Slash (to prevent attack)  
-  * Optimize ATB before Wind Slash  
-    * Can Mid-Potion, Fire Punch (will counter) or wait full ATB w/ everyone
+Auto-battle
+Lucca Heal using Mid-Potions as needed
+
+After about 9 actions
+Crono Wind Slash when storing power
+Auto-battle{{</battlebox>}}
