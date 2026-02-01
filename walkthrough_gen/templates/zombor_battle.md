@@ -1,5 +1,8 @@
-{% if rooms.zombor > 0 %}Do {$ rooms.zombor $} extra sets of room transitions prior to the Zombor battle. The castle is the best place.
-{% endif %}{% if heals.zombor == 0 %}Use Potions to heal before the battle.{% else %}Perform {$ heals.zombor $} Tech heals prior to the Zombor battle. Tech heals will advance RNG even if the target is full health.{% endif %}{% if heals.zombor < 3 %}
+{% if heals.zombor == 0 -%}
+Use Potions to heal before the battle.
+{% else -%}
+Perform {$ heals.zombor $} Tech heals prior to the Zombor battle. Tech heals will advance RNG even if the target is full health.{% endif -%}
+{% if heals.zombor < 3 and heals.zombor != 0 %}
 Use Potions for additional heals beyond the required {$ heals.zombor $}{% endif %}
 
 **Battle**

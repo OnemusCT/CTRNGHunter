@@ -6,10 +6,10 @@
 Crono Attack Head
 Lucca Attack Head
 Crono Attack Head
-Lucca Attack Head
+Lucca Auto-attack (attack body)
 Crono Attack Head
-Crono Cyclone to kill head
-
-After head dies	
-Lucca heal when needed or Fire Whirl
-Crono Fire Whirl or Cyclone{{</battlebox>}}
+Crono Cyclone
+Lucca Potion {% if rng.dragontank in [255,1] %}Crono{% else %}Lucca{% endif %}
+Crono Cyclone
+Lucca Fire Whirl
+Crono Fire Whirl{{</battlebox>}}
