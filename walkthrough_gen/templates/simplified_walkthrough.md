@@ -17,6 +17,7 @@ If you aren't me I'm sorry.
 {% include "dragontank_battle" %}
 
 ## Zombor
+{% include "zombor_rooms" %}
 {% include "zombor_battle" %}
 
 ## Masamune
@@ -24,3 +25,9 @@ If you aren't me I'm sorry.
 
 ## Nizbel
 {% include "nizbel_battle" %}
+
+## Flea
+{% include "flea_battle" %}
+
+## Magus
+{% include "magus_battle" %}
