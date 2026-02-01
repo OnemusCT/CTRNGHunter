@@ -45,3 +45,44 @@ If you aren't me I'm sorry.
 {% include "zombor_full" %}
 
 {% include "masamune_full" %}
+
+{% include "nizbel_full" %}
+
+{% include "flea_full" %}
+
+{% include "slash_full" %}
+
+{% include "magus_full" %}
+
+{% include "blacktyranno_full" %}
+
+{% include "mudimp_full" %}
+
+{% include "gigagaia_full" %}
+
+{% include "golemtwins_full" %}
+
+{% include "dalton_full" %}
+
+{% include "rusttyranno_full" %}
+
+{% include "sonofsun_full" %}
+
+{% include "yakraxiii_full" %}
+
+{% include "deathpeak_full" %}
+
+{% include "motherbrain_full" %}
+
+{% include "melphyx_full" %}
+
+{% include "gigamutant_full" %}
+
+{% include "lavosspawn_full" %}
+
+{% include "queenzeal_full" %}
+
+{% include "lavosshell_full" %}
+
+{% include "lavoscore_full" %}
+
