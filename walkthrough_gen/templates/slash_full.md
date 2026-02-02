@@ -12,25 +12,25 @@ Techs
 Go up and talk to middle girl
 
 **Lancer x5**
-
-* Auto Battle
+{{<battlebox>}}
+Auto-battle{{</battlebox>}}
 
 **Slash 1 (3200 HP)**
-
-* Auto Battle
+{{<battlebox>}}
+Auto-battle{{</battlebox>}}
 
 **Slash 2 (5200 HP)**
-
-* Phase 1 (\> 2600 HP)  
-  * First 2k dmg: Mid-Potion \< 100 HP  
-  * After: Mid-Potion \< 150 HP  
-  * Crono / Robo Attack  
-* Phase 2 (\> 600 HP)  
-  * Will use Jump Attack (\~130 dmg)  
-  * Crono / Robo Attack (stop when near 4600 dmg)  
-* Phase 3 (\< 600 HP)  
-  * Counter phase, only Frog Attack  
-  * Mid-Potion \< 160 HP
+{{<battlebox>}}
+Phase 1 (\> 2600 HP)  
+ First 2k dmg: Mid-Potion < 100 HP  
+ After: Mid-Potion < 150 HP  
+ Crono / Robo Attack  
+Phase 2 (\> 600 HP)  
+ Will use Jump Attack (\~130 dmg)  
+ Crono / Robo Attack (stop when near 4600 dmg)  
+* Phase 3 (< 600 HP)  
+ Counter phase, only Frog Attack  
+ Mid-Potion < 160 HP{{</battlebox>}}
 
 **Pick Slasher** (ignore other two chests)
 

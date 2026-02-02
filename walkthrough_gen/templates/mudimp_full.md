@@ -48,11 +48,11 @@ Walk to skip encounter
 
 **Mutant x3**
 
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 **Mutant x2**
 
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 Skip last encounter  
 ![][image17]
@@ -73,8 +73,7 @@ Inventory
 Enter sewers and go left
 
 **Dondrago x2**
-
-* Auto Battle
+{{<battlebox>}}Auto-battle{{</battlebox>}}
 
 Follow the frogs to the next screen  
 Go right and ignore all the items to the next screen  
@@ -84,8 +83,7 @@ Go through the door but don't go straight down
 ![][image18]
 
 **Krawlie (500 HP)**
-
-* Fire Sword (quick) \+ Roundillo Kick (set)
+{{<battlebox>}} Crono Fire Sword (quick) + Ayla Roundillo Kick (set){{</battlebox>}}
 
 ![][image19]
 
@@ -108,14 +106,12 @@ Go down all the ladders
 ![][image20]
 
 **Mud Beast x2**
-
-* Fire Sword \+ Roundillo Kick each (mash when Lucca ready)
+{{<battlebox>}}Crono Fire Sword + Ayla Roundillo Kick each{{</battlebox>}}
 
 Go up and left path
 
 **Mud Beast x2**
-
-* Fire Sword \+ Roundillo Kick each (mash when Lucca ready)
+{{<battlebox>}}Crono Fire Sword + Ayla Roundillo Kick each{{</battlebox>}}
 
 **Menu**  
 Settings
@@ -123,11 +119,8 @@ Settings
 * Battle Speed: 4
 
 **Mud Imp (1200 HP)**
-
-* Hypnowave (keep Blue sleeping)  
-* Crono Lightning \+ Flame Kick Imp  
-* If Crono sleep: Ayla Kiss Crono \+ Lucca Fire Imp  
-* Mid-Potion if \< 150 HP
+{{<battlebox>}}Lucca Hypnowave
+Crono Lightning + Ayla / Lucca Flame Kick Imp until end{{</battlebox>}}
 
 **Menu**  
 Equipment
@@ -141,6 +134,6 @@ Inventory
 
 * Strength Capsule -> Ayla (if picked)
 
-Note: Lucca and Ayla \< 100 TP for next skill (Lucca should be 51 and Ayla 89\)
+Note: Lucca and Ayla < 100 TP for next skill (Lucca should be 51 and Ayla 89\)
 
 Hold up on the chain to not avoid the trigger

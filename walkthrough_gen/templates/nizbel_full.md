@@ -13,8 +13,7 @@ Go out (careful with last snakes, don't go too much to the left to avoid them)
 ### Truce Canyon
 
 **Fiendillo, Green Imp**
-{{<battlebox>}}
-Escape (don't attack){{</battlebox>}}
+{{<battlebox>}}Escape (don't attack){{</battlebox>}}
 
 Take the portal to the end of time and take the top-center pillar (Medina Village, 1000 A.D.)
 
@@ -27,24 +26,20 @@ Back to the end of time and take the bottom-center pillar (Mystic Mountain, 6500
 ### Mystic Mountains
 
 **Reptite x5**
-{{<battlebox>}}
-Escape (don't attack){{</battlebox>}}
-* Crono Attack \+ Robo Laser Spin
+{{<battlebox>}}Crono Attack + Robo Laser Spin{{</battlebox>}}
 
 Mash Cancel to skip FMV
 
 **Reptite x4**
-
-* Robo Laser Spin \+ Crono Wind Slash
+{{<battlebox>}}Robo Laser Spin + Crono Wind Slash{{</battlebox>}}
 
 Name Ayla (Down, Confirm, Up, Confirm)  
 **Pick Berserker Ring** on next screen  
 Run right to skip Crested Sprinters
 
 **Kilwala x2, Crested Sprinters x4**
-
-* Escape (menu trick)  
-* Set Crono on Wind Slash
+{{<battlebox>}}Escape (menu trick)  
+Set Crono on Wind Slash{{</battlebox>}}
 
 Run right to skip Crested Sprinters  
 Go out and enter top-left hut, talk to Ayla
@@ -76,16 +71,14 @@ Go left, ignore first way up and take second, skip encounter, out
 Fall down hole
 
 **Aecyto Weevil x2**
-
-* Ayla Attack \+ Crono Wind Slash (Mash Confirm)  
-* Auto Battle
+{{<battlebox>}}Ayla Attack + Crono Wind Slash (Mash Confirm) 
+Auto-battle{{</battlebox>}}
 
 Fall down hole
 
 **Megasaur**
-
-* Crono Lightning  
-* Auto Battle
+{{<battlebox>}}Crono Lightning  
+Auto-battle{{</battlebox>}}
 
 Fall down hole  
 **Pick Stone Helm** on bottom-left chest  
@@ -94,8 +87,7 @@ Go right to the next room
 Hold Up+Right, wait on narrow part until enemy starts to go down and proceed
 
 **Megasaur, Reptite x2**
-
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 **Menu**  
 Equipment
@@ -114,23 +106,7 @@ Inventory
 
 * Shelter
 
-**Nizbel (4200 HP)**
-
-* General notes  
-  * Count Ayla crits  
-  * Wait Nizbel attack on first turn  
-* Phase 1  
-  * (Nizbel) \+ Crono Lightning  
-  * Crono Attack x2  
-  * Wait Discharge  
-* Phase 2  
-  * Crono Lightning  
-  * Crono Mid-Potion Ayla and Crono  
-  * Wait Discharge (Robo dead)  
-* Phase 3  
-  * Crono Lightning  
-  * If Ayla got 2 crits, Auto Battle  
-  * If she didn't, Mid-Potion Ayla and Crono and take one more Discharge
+{% include "nizbel_battle" %}
 
 Ayla skip: hold down+right then exit to avoid dialogue
 
@@ -147,7 +123,6 @@ Go past Crested Sprinters then trigger fight
 ![][image7]
 
 **Crested Sprinter x2, Kilwala x2**
-
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 Go back to the end of time and enter the top-center pillar (Medina Village, 1000 A.D.)

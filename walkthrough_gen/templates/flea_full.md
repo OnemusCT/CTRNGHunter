@@ -30,8 +30,7 @@ Party (Crono / Frog / Robo)
 Mash Cancel when Frog takes Masamune to skip FMV
 
 **Vampire Bat, Grimling x2**
-
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 Mash to skip dialogue after fight  
 Run up and keep right to avoid next fight
@@ -47,17 +46,15 @@ Go to Flea screen (3rd) and then go back
 Touch Save Point
 
 **Vampire Bat x2, Underling x4**
-
-* Crono Cyclone 2 bottom (Left)  
-* Frog Attack Left  
-* Robo Laser Spin  
-* Auto Battle
+{{<battlebox>}}Crono Cyclone 2 bottom (Left)  
+Frog Attack Left  
+Robo Laser Spin  
+Auto-battle{{</battlebox>}}
 
 Take right path and talk to the bottom kid
 
 **Shadow x4**
-
-* Crono Wind Slash all
+{{<battlebox>}}Crono Wind Slash all{{</battlebox>}}
 
 **Pick Barrier Sphere**  
 **Pick Mid-Ether** on left side of 2nd screen
@@ -69,24 +66,6 @@ Equipment
   * Titanium Vest  
   * Berserker Ring (Down x2)
 
-Techs
-
-* Frog  
-  * Slurp Crono / Robo
-
-**Fake Flea**
-
-* Let Frog Attack (MP Buster)
-
-**Flea (4120 HP)**
-
-* General notes  
-  * At half HP will start using "The Look"  
-  * Won't use "The Look" if anyone dead  
-  * Mid-Potion if \< 110 HP (except Robo)  
-  * Panacea (except if Poison on Robo)  
-* Fight  
-  * Crono / Robo Attack or heal  
-  * If Robo dies leave him dead
+{% include "flea_battle" %}
 
 **Pick Magic Capsule**  

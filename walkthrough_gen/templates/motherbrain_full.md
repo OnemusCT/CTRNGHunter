@@ -27,29 +27,25 @@ Examine console to open door then enter
 **Deverminator EX x4**  
 **Deverminator EX x2, Version 4.0 x2**  
 **Deverminator EX x4, Version 4.0 x2**
-
-* Magus Ice II
+{{<battlebox>}}Magus Ice II{{</battlebox>}}
 
 Go right (avoid robot), up the conveyor belt and hit the switch on the left side  
 Go back to entrance and go all the way left
 
 **Deverminator EX x2**
-
-* Magus Ice II
+{{<battlebox>}}Magus Ice II{{</battlebox>}}
 
 Go to the right hallway and up then right
 
 **Version 4.0 x3**
-
-* Magus Ice II  
-* Robo learns Rapid-fire Fist
+{{<battlebox>}}Magus Ice II  
+Note: Robo learns Rapid-fire Fist{{</battlebox>}}
 
 Hit the switch, enter pod to get charge  
 Take left door and all the way up
 
 **Laser Guard x4**
-
-* Magus Ice II
+{{<battlebox>}}Magus Ice II{{</battlebox>}}
 
 Hit **right** and **left switch** (don't hit middle)  
 Go down and enter left pod to open door, **pick doll**
@@ -92,13 +88,11 @@ Inventory
 * Magic Capsule x3 -> Lucca
 
 **Laser Guard x2**
-
-* Magus Ice II  
-* Magus learns Dark Mist
+{{<battlebox>}}Magus Ice II
+Magus learns Dark Mist{{</battlebox>}}
 
 **Atropos (6000 HP)**
-
-* Rapid-fire Fist x5
+{{<battlebox>}}Robo Rapid-fire Fist x5{{</battlebox>}}
 
 **Menu**  
 Equipment
@@ -116,26 +110,23 @@ Inventory
 Continue left
 
 **Laser Guard x6**
-
-* Magus Ice II
+{{<battlebox>}}Magus Ice II{{</battlebox>}}
 
 **Laser Guard x6**
-
-* Magus Ice II
+{{<battlebox>}}Magus Ice II{{</battlebox>}}
 
 Place the dolls
 
 **Mother Brain (5000 HP)**
-
-* Magus Dark Mist  
-* If Laser on Robo  
-  * Robo Cure Beam self \+ Lucca Megaton Bomb  
-  * Wait AOE  
-  * Magus Dark Mist \+ Robo Rapid-fire Fist  
-* Else  
-  * Robo Rapid-fire Fist \+ Lucca Megaton Bomb  
-  * Wait AOE  
-  * Magus Dark Mist  
-* Robo should end with 9
+{{<battlebox>}}Magus Dark Mist
+If Laser on Robo  
+  Robo Cure Beam self + Lucca Megaton Bomb  
+  Wait AOE  
+  Magus Dark Mist + Robo Rapid-fire Fist  
+Else  
+  Robo Rapid-fire Fist + Lucca Megaton Bomb  
+  Wait AOE  
+  Magus Dark Mist  
+Robo should end with 9{{</battlebox>}}
 
 Board Epoch and go to the Middle Ages (Down x3)

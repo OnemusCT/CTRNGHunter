@@ -78,19 +78,16 @@ Go through the left door
 * Also Hi-Potion Lucca if needs to open menu
 
 **Ghost Knight x2**
-
-* Magus Fire II
+{{<battlebox>}}Magus Fire II{{</battlebox>}}
 
 **Ghost Knight x2**
-
-* Magus Fire II
+{{<battlebox>}}Magus Fire II{{</battlebox>}}
 
 Go back
 
 **Ghost Knight x4**
-
-* Magus Fire II  
-  * If Magus dead, need at least 1 elevator fight on Black Omen
+{{<battlebox>}}Magus Fire II
+  * If Magus dead, need at least 1 elevator fight on Black Omen{{</battlebox>}} 
 
 **Menu**  
 Inventory
@@ -114,16 +111,15 @@ Watch cutscenes and go out
 Fly northwest to Ozzie's Fort
 
 **Flea (2500 HP)**
+{{<battlebox>}}Frog Attack x2  
+Lucca / Robo Fire Tackle  
+Frog Attack (if no crit){{</battlebox>}}
 
-* Frog Attack x2  
-* Fire Tackle  
-* Frog Attack (if no crit)
 
 **Slash (2500 HP)**
-
-* Frog Attack x2  
-* Fire Tackle  
-* Frog Attack (if no crit)
+{{<battlebox>}}Frog Attack x2  
+Lucca / Robo Fire Tackle  
+Frog Attack (if no crit){{</battlebox>}}
 
 **Menu**  
 Party (Frog / Ayla / Marle)
@@ -158,16 +154,14 @@ Fly south to Giant's Claw
 Continue, down then right after throne room
 
 **Lizardactyl x3**
-
-* Escape (don't attack)  
-* Set Magus on Ice II
+{{<battlebox>}}Escape (don't attack)  
+Set Magus on Ice II{{</battlebox>}}
 
 Step on the **left switch** and fall down on the left side  
 Step on the **right switch**
 
 **Aecytonyx x3**
-
-* Magus Ice II
+{{<battlebox>}}Magus Ice II{{</battlebox>}}
 
 **Menu**  
 Party (Magus / Lucca / Marle)
@@ -177,8 +171,7 @@ Party (Magus / Lucca / Marle)
 Go out and re enter room to fight again
 
 **Aecytonyx x3**
-
-* Magus Ice II
+{{<battlebox>}}Magus Ice II{{</battlebox>}}
 
 Go out then all the way left  
 Go right along the south wall then up-right
@@ -202,14 +195,12 @@ Equipment
 Exit down
 
 **Rubble (515 HP)**
-
-* Auto Battle  
-* Marle learns Cure
+{{<battlebox>}}Auto-battle  
+Marle learns Cure{{</battlebox>}}
 
 **Rubble (515 HP)**
-
-* Auto Battle  
-* Marle learns Haste
+{{<battlebox>}}Auto-battle  
+Marle learns Haste{{</battlebox>}}
 
 **Menu**  
 Party (Magus / Ayla / Marle)
@@ -221,13 +212,12 @@ Go to where Kino was, **pick Mid-Ether** and continue
 Run right of Tyranno
 
 **Rust Tyranno (25000 HP)**
-
-* (Magus Attack)  
-* (Roar) \+ Ayla Charm (Red Plate)  
-  * Can try twice  
-  * Backup later if all fail  
-* (Magus Attack) \+ Marle Haste Magus  
-* Auto Battle
+{{<battlebox>}}Magus Attack
+(Roar) + Ayla Charm (Red Plate)  
+  Can try twice  
+  Backup later if all fail  
+Magus Attack + Marle Haste Magus  
+Auto-battle{{</battlebox>}}
 
 Interact with Rainbow Shell, go back after trying to lift it
 

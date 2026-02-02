@@ -38,8 +38,7 @@ Talk to Mune then go to the next screen
 Go right, enter door, step on the switch
 
 **Djinn, Ghul**
-
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 Take bottom-right exit to the next screen, left to main room  
 **Pick Aeonian Suit** and go down to the next screen
@@ -54,40 +53,35 @@ Go left and down to the next screen
 Go left and down the stairs
 
 **Zealot Mage x2, Monk x2**
-
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 Run while enemies jumping (1-1-2)  
 Escape battle if hit any  
 Continue down the stairs
 
 **Warrior x2, Monk x2**
-
-* Falcon Strike
+{{<battlebox>}}Crono Falcon Strike{{</battlebox>}}
 
 Continue down
 
 **Warrior x2, Monk x2**
-
-* Falcon Strike  
+{{<battlebox>}}Crono Falcon Strike
   * If hit 4: Done  
-  * If hit 3: Move cursor to Ayla then Auto Battle  
-  * If hit 2: Falcon Strike  
-* Should learn Lightning II
+  * If hit 3: Move cursor to Ayla then Auto-battle  
+  * If hit 2: Falcon Strike
+Note: Should learn Lightning II{{</battlebox>}}
 
 Talk to Masa then continue to the elevator
 
 **Zealot Mage, Blue Scouter x2, Scouter x2**
-
-* Falcon Strike top row (starts on Cyclone)  
-* Falcon Strike bottom row
+{{<battlebox>}}Crono Falcon Strike top row (starts on Cyclone)
+Crono Falcon Strike bottom row{{</battlebox>}}
 
 Go back inside and repeat fight (Lucca should learn Fire II)
 
 **Zealot Mage, Blue Scouter x2, Scouter x2**
-
-* Falcon Strike top row  
-* Falcon Strike bottom row
+{{<battlebox>}}Crono Falcon Strike top row  
+Crono Falcon Strike bottom row{{</battlebox>}}
 
 **Menu**  
 Party (Crono / Robo / Ayla)
@@ -97,26 +91,22 @@ Party (Crono / Robo / Ayla)
 Examine the orb
 
 **Djinn, Ghul, Monk x3**
-
-* Falcon Strike bottom row (Left)  
-* Falcon Strike top row  
-  * Robo Mid-Potion if needed  
-* Move cursor to Ayla then Auto Battle  
-  * Can do Falcon Strike if only 1 on last stairs fight
+{{<battlebox>}}Crono Falcon Strike bottom row (Left)  
+Crono Falcon Strike top row  
++ Robo Mid-Potion if needed  
+Move cursor to Ayla then Auto-battle{{</battlebox>}}
 
 Ayla should learn Charm
 
 **Zealot Mage x2, Warrior x2, Scouter**
-
-* Falcon Strike top row  
-* Falcon Strike bottom row
+{{<battlebox>}}Crono Falcon Strike top row  
+Falcon Strike bottom row{{</battlebox>}}
 
 Robo Tackle, Boogie and Spin Kick learned
 
 **Red Scouter x2, Blue Scouter x2, Scouter x2**
-
-* Falcon Strike bottom row  
-* Falcon Strike top row
+{{<battlebox>}}Crono Falcon Strike bottom row  
+Crono Falcon Strike top row{{</battlebox>}}
 
 Go inside, go left and hit the switch (escape from scouters, **don't attack**)  
 Go back, go right and hit the switch (escape from scouters, **don't attack**)  
@@ -130,11 +120,10 @@ Inventory
 **Pick Elixir**
 
 **Golem Twins (7000 HP)**
-
-* Lightning II  
-* Boogie (repeat if miss)  
-* Falcon Strike x5  
-* Robo Mid Tonic self if \< 280 HP
+{{<battlebox>}}Crono Lightning II  
+Ayla Boogie (repeat if miss)  
+Crono / Ayla Falcon Strike x5  
+Robo Mid Tonic self if < 280 HP{{</battlebox>}}
 
 Continue, talk to Nu, continue  
 After everyone is beaten, approach Lavos, F  

@@ -41,32 +41,27 @@ Settings
 ### Heckran Cave
 
 **Underling x2**
-{{<battlebox>}}
-Crono Wind Slash
+{{<battlebox>}}Crono Wind Slash
 Lucca Flamethrower{{</battlebox>}}
 
 **Djinn Bottle, Cave Stalker x3**
-{{<battlebox>}}
-Escape{{</battlebox>}}
+{{<battlebox>}}Escape{{</battlebox>}}
 
 Rhino Weevil skip: Hug top to avoid enemies
 
 **Pick Mid-Ether**
 
 **Rhino Weevil x4**
-{{<battlebox>}}
-Escape{{</battlebox>}}
+{{<battlebox>}}Escape{{</battlebox>}}
 
 **Boundillo x4**
-{{<battlebox>}}
-Escape{{</battlebox>}}
+{{<battlebox>}}Escape{{</battlebox>}}
 
 Cave Bat skip: Hug top to avoid bats  
 Djinn Bottle skip: Hug right wall on next screen
 
 **Heckran (2100 HP)**
-{{<battlebox>}}
-Cycle 1  
+{{<battlebox>}}Cycle 1  
 Crono Lightning
 Lucca or Marle Antipode Bomb  
 Crono Lightning

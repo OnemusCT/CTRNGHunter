@@ -11,11 +11,11 @@ Force battle on first rock on right
 
 **Cave Ape, Schist x2**
 
-* Escape (menu trick)
+{{<battlebox>}}Escape (menu trick){{</battlebox>}}
 
 **Avian Rex x2**
 
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 Go behind rocks to the next screen  
 ![][image9]
@@ -56,16 +56,15 @@ Go straight up then right
 
 **Reptite x2**
 
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 **Reptite x2**
 
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 **Reptite x3**
-
-* Escape (menu trick)  
-* Set Crono on Cyclone
+{{<battlebox>}}* Escape (menu trick)  
+* Set Crono on Cyclone{{</battlebox>}}
 
 Talk to Kino  
 Go back and enter left skull  
@@ -80,9 +79,8 @@ Step on **right switch** then press **switch at the end** of the room and go bac
 ![][image13]
 
 **Reptite, Volcanite x2**
-
-* Cyclone all  
-* Auto Battle
+{{<battlebox>}}* Cyclone all  
+* Auto-battle{{</battlebox>}}
 
 Go inside then back and repeat this fight 7 times total
 
@@ -100,20 +98,20 @@ Settings
 * Battle Speed: 5
 
 **Nizbel 2 (6500 HP)**
-
-* General notes  
-  * If can't survive discharge on Phase 2, Mid-Potion everyone  
-  * Discharge dmg: Crono \~165, Ayla \~215, Lucca \~205  
-* Phase 1  
-  * Crono Thunder Chomp, (Nizbel) \+ Lucca Mid-Potion Crono  
-  * (Nizbel) \+ Ayla Thunder Chomp, Lucca Mid-Potion who got attacked  
-  * Thunder Chomp (discharge)  
-* Phase 2  
-  * Lucca Mid-Potion, Thunder Chomp  
-  * Lucca Mid-Potion, Thunder Chomp  
-  * Thunder Chomp \+ Lucca Mid-Potion (discharge)  
-* Phase 3  
-  * Fire Sword \+ Cat Attack (set)
+{{<battlebox>}}General notes  
+  If can't survive discharge on Phase 2, Mid-Potion everyone  
+  Discharge dmg: Crono ~165, Ayla ~215, Lucca ~205  
+ 
+Phase 1  
+  Crono Thunder Chomp, (Nizbel) + Lucca Mid-Potion Crono  
+  (Nizbel) + Ayla Thunder Chomp, Lucca Mid-Potion who got attacked  
+  Crono Thunder Chomp (discharge)  
+Phase 2  
+  Lucca Mid-Potion, Crono / Ayla Thunder Chomp  
+  Lucca Mid-Potion, Crono / Ayla Thunder Chomp  
+  Crono / Ayla Thunder Chomp + Lucca Mid-Potion (discharge)  
+Phase 3  
+  Crono / Lucca Fire Sword + Ayla Cat Attack (set){{</battlebox>}}
 
 Just keep hugging top and go right to the next screen  
 Step on **middle switch**
@@ -143,21 +141,21 @@ Head back, align Crono's foot then move straight up
 ![][image14]
 
 **Black Tyranno (10500 HP)**
+{{<battlebox>}}General notes  
+  Don't heal, only revive  
+  Crono > Ayla > Lucca to revive  
+  If can only do 5 Fire Sword on Phase 2, one more flame Kick on Phase 3  
 
-* General notes  
-  * Don't heal, only revive  
-  * Crono \> Ayla \> Lucca to revive  
-  * If can only do 5 Fire Sword on Phase 2, one more flame Kick on Phase 3  
-* Phase 1  
-  * Hypnowave  
-  * Revive everyone who dies  
-  * Wait until "Lowers Defense" (2 sucks)  
-* Phase 2  
-  * Cat Attack x6 \+ Fire Sword x6 until "0"  
-    * Ayla should have 26 MP at the end  
-* Phase 3  
-  * Revive everyone who dies  
-  * Lucca Flame Kick x2  
-  * Wait until "Lowers Defense" (3 sucks)  
-* Phase 4  
-  * Cat Attack \+ Fire Sword until dead
+Phase 1  
+  Lucca Hypnowave  
+  Revive everyone who dies  
+  Wait until "Lowers Defense" (2 sucks)  
+Phase 2  
+  Ayla Cat Attack x6 + Crono / Lucca Fire Sword x6 until "0"  
+  Ayla should have 26 MP at the end  
+Phase 3  
+  Revive everyone who dies  
+  Lucca Flame Kick x2  
+  Wait until "Lowers Defense" (3 sucks)  
+Phase 4  
+  Ayla Cat Attack + Crono / Lucca Fire Sword until dead{{</battlebox>}}

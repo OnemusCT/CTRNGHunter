@@ -19,15 +19,13 @@ Inventory
 * Shelter
 
 **Ozzie (6000 HP), Flea (4000 HP), Slash (4000 HP)**
-
-* Omega Flare  
-* Lucca Megaton Bomb
+{{<battlebox>}}Omega Flare
+Lucca Megaton Bomb{{</battlebox>}}
 
 **Pick Speed Ring** (left chest) and go north
 
 **Ozzie**
-
-* Magus Attack Switch (Left)
+{{<battlebox>}}Magus Attack Switch (Left){{</battlebox>}}
 
 Go back to Ozzie then exit
 
@@ -61,12 +59,10 @@ Fly up+right to Black Omen
 ### Black Omen
 
 **Laser Guard x6**
-
-* Magus Ice II
+{{<battlebox>}}Magus Ice II{{</battlebox>}}
 
 **Mega Mutant (3850/4600 Upper/Lower HP)**
-
-* Omega Flare
+{{<battlebox>}}Omega Flare{{</battlebox>}}
 
 **Menu**  
 Party (Ayla / Lucca / Robo)
@@ -79,33 +75,30 @@ Equipment
   * Speed Ring (Down)
 
 **Shieldsman x2**
-
-* Escape (don't attack)  
-* Set Ayla on Charm
+{{<battlebox>}}Escape (don't attack)
+Set Ayla on Charm{{</battlebox>}}
 
 Enter right door and hug left wall going up on next screen
 
 **Fangbeast x2**
 
-* Escape (menu trick)
+{{<battlebox>}}Escape (menu trick){{</battlebox>}}
 
 **Synchrite x2, Martello**
+{{<battlebox>}}Ayla Charm Synchrite (Golden Earring)  
+Escape  
 
-* Ayla Charm Synchrite (Golden Earring)  
-* Escape  
-* Go north to next room and come back if failed
-
-**Panel x2**
-
-* Ayla Charm Panel (Speed Capsule)  
-  * Wait Lucca ATB  
-* Lucca Flare once Charm succeed
+Note: Go north to next room and come back if failed{{</battlebox>}}
 
 **Panel x2**
+{{<battlebox>}}Ayla Charm Panel (Speed Capsule)  
++ Wait Lucca ATB  
+Lucca Flare once Charm succeed{{</battlebox>}}
 
-* Ayla Charm Panel (Speed Capsule)  
-  * Wait Lucca ATB  
-* Lucca Flare once Charm succeed
+**Panel x2**
+{{<battlebox>}}Ayla Charm Panel (Speed Capsule)  
++ Wait Lucca ATB  
+Lucca Flare once Charm succeed{{</battlebox>}}
 
 Go to the next room and check enemy eye  
 If open, go back and reset room  
@@ -116,15 +109,13 @@ When they move, run past them
 Continue up
 
 **Watcher, Nomad x2**
-
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 Go up and left to the next room  
 Go up after moving mutant and go right of the next one going up
 
 **Metal Mutant x2, Flycops x2**
-
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 **Menu**  
 Inventory
@@ -141,9 +132,8 @@ Go up and take teleport
 Go down to elevator and hit the left switch (down+left)
 
 **Elevator fights (Random)**
-
-* Lucca Flare  
-* If Fangbeasts, Magus Ice II after Flare
+{{<battlebox>}}Lucca Flare  
+If Fangbeasts, Magus Ice II after Flare{{</battlebox>}}
 
 Right+Up when enter room to avoid encounter, continue  
 **Pick Megalixir** (right chest before stairs, optional)  
@@ -164,14 +154,12 @@ Run until Magus' head align with top, then hold left and exit top
 Open door behind Nus
 
 **Blubber Hulk**
-
-* Escape (don't attack)
+{{<battlebox>}}Escape (don't attack){{</battlebox>}}
 
 Go to the next screen
 
 **Cybot x2**
-
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 Go up-left after fight to avoid shield  
 ![][image34]
@@ -181,20 +169,17 @@ Run past first eye (when closed) and go between them
 Run against second eye until closed and go right (can also fight and escape)
 
 **Fangbeast x2, Flycops**
-
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 **Pick Megalixir** (chest after fight)
 
 **Watcher x2, Nomad x4**
-
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 Keep going down
 
 **Blubber Hulk, Flycops x2**
-
-* Escape (don't attack)
+{{<battlebox>}}Escape (don't attack){{</battlebox>}}
 
 Walk down until stairs, walk left and right 4 times and continue down  
 **Pick Speed Capsule** when he faces down  
@@ -227,8 +212,7 @@ Inventory
 * Speed Capsule x1 -> Robo
 
 **Giga Mutant (5800/4950 Upper/Lower HP)**
-
-* Omega Flare x2
+{{<battlebox>}}Omega Flare x2{{</battlebox>}}
 
 **Menu**  
 Equipment

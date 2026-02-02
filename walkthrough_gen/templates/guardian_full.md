@@ -27,8 +27,7 @@ Settings
 * Battle Speed: 3
 
 **Guardian (1200/200/200 HP)**
-{{<battlebox>}}
-Crono and Marle Attack alternatively  
+{{<battlebox>}}Crono and Marle Attack alternatively  
 Lucca Flamethrower  
 
 Pods dead  
@@ -40,7 +39,7 @@ Kill them again and repeat{{</battlebox>}}
 **Menu**  
 Inventory
 
-* Potion Lucca/Marle \< 29/15 HP
+* Potion Lucca/Marle < 29/15 HP
 
 Go to the next room and talk to the man (2 textboxes)  
 **Pick Mid-Ether** (optional)  
