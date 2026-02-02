@@ -60,12 +60,10 @@ Enter Castle, go right and all the way upstairs (4 screens) and talk to guards
 After the chancellor scene, go back and down to basement (right stairs)
 
 **Viper x2**
-
-* Auto Battle
+{{<battlebox>}}Auto-battle{{</battlebox>}}
 
 **Viper, Naga**
-
-* Auto Battle
+{{<battlebox>}}Auto-battle{{</battlebox>}}
 
 Buffer run up after battle and hug **right wall**, go to next screen  
 Run up but **walk for a bit** to avoid snakes on both corridors then interact with the Rainbow Shell
@@ -78,9 +76,8 @@ Wait for Naga to avoid encounter
 Go back to the court
 
 **Yakra XIII (18000 HP)**
-
-* Marle Haste Magus (Left)  
-* Auto Battle
+{{<battlebox>}}Marle Haste Magus (Left)
+Auto-battle{{</battlebox>}}
 
 Go to the basement, talk to Melchior and select the **2nd option** after 2 textboxes  
 **Get Prismatic Helm x3, Prism Spectacles and Rainbow** from Melchior  

@@ -14,8 +14,7 @@ Johnny Race (safe strat)
 ### Proto Dome
 
 **Exterminator x3**
-{{<battlebox>}}
-Auto-battle{{</battlebox>}}
+{{<battlebox>}}Auto-battle{{</battlebox>}}
 
 Walk to avoid second fight  
 Run past Robo before talking so Marle is closer to him  
@@ -37,14 +36,12 @@ Inventory
 Interact with console
 
 **Acid**
-{{<battlebox>}}
-Auto-battle{{</battlebox>}}
+{{<battlebox>}}Auto-battle{{</battlebox>}}
 
 Take left elevator
 
 **Acid, Alkali x2**
-{{<battlebox>}}
-Escape{{</battlebox>}}
+{{<battlebox>}}Escape{{</battlebox>}}
 
 Interact with screen, **pick Shelter**, go down
 
@@ -55,8 +52,7 @@ Hug down wall going right then go up
 Interact with screen
 
 **Acid, Alkali**
-{{<battlebox>}}
-Note: Green will counter if near orange
+{{<battlebox>}}Note: Green will counter if near orange
 
 Crono Cyclone
 Lucca attack{{</battlebox>}}
@@ -83,8 +79,7 @@ Align Crono
 ![][image4]
 
 **R-Series x6 (150 HP)**
-{{<battlebox>}}
-Crono Cyclone 3 front (right)
+{{<battlebox>}}Crono Cyclone 3 front (right)
 Lucca Potion
 Crono Cyclone 3 back (left x2)
 Crono Cyclone 3 back (left x2)

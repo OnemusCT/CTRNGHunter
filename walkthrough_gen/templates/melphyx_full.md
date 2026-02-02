@@ -6,14 +6,12 @@ Fly straight right and park below hole
 Fall down then run down+left
 
 **Sandrago x3, Vilepillar**
-
-* Magus Ice II
+{{<battlebox>}}Magus Ice II{{</battlebox>}}
 
 Run down+left
 
 **Vilepillar x3**
-
-* Magus Ice II
+{{<battlebox>}}Magus Ice II{{</battlebox>}}
 
 Run down-left a little then down to avoid encounter
 
@@ -29,11 +27,10 @@ Equipment
 Run down/right, boss scene, run down/right and keep bonking on middle until boss appears
 
 **Melphyx (5000/4800/1000 Upper/Lower/Core HP)**
-
-* Magus Ice II \+ Robo Rapid-fire Fist Lower  
-* Robo Rapid-fire Fist Lower (dead)  
-* Robo Rapid-fire Fist Upper x2  
-* Auto Battle
+{{<battlebox>}}Magus Ice II + Robo Rapid-fire Fist Lower
+Robo Rapid-fire Fist Lower (dead)  
+Robo Rapid-fire Fist Upper x2  
+Auto-battle{{</battlebox>}}
 
 Lucca learns Flare  
 Go out and **pick Strength Capsule** on previous room  

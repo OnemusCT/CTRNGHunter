@@ -34,9 +34,8 @@ Go left and press switch
 Go down (hugging right wall) and enter the room
 
 **Byte, Daltonite x2**
-
-* Ayla Cat Attack Byte (Left)  
-* Auto Battle
+{{<battlebox>}}Ayla Cat Attack Byte (Left)
+Auto-battle{{</battlebox>}}
 
 **Get the inventory back** from the chest
 
@@ -62,18 +61,16 @@ Go thought the back door and then up the ladder on top
 **Default option**, hold down+left, continue left
 
 **Golem Overlord**
-
-* Do nothing  
-* When jumping:  
-  * Lucca Flamethrower (set)  
-  * Auto Battle
+{{<battlebox>}}Do nothing
+When jumping:  
+  Lucca Flamethrower (set)  
+  Auto-battle{{</battlebox>}}
 
 **Dalton Plus (3000 HP)**
-
-* (Slash)  
-* (Slash) \+ Lucca Fire Tackle \+ Ayla Lapis  
-* (Flames)  
-* Boulder Toss \+ Fire Tackle
+{{<battlebox>}}(Slash)  
+(Slash) + Lucca Fire Tackle + Ayla Lapis  
+(Flames)  
+Ayla Boulder Toss + Lucca / Robo Fire Tackle{{</battlebox>}}
 
 Press Warp then Confirm during dialogue
 	

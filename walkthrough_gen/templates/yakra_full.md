@@ -36,8 +36,7 @@ Hold Up+Left and get the pendant
 Hold Left
 
 **Blue Imp x3**
-{{<battlebox>}}
-Crono Attack Bottom-Right (Confirm, Right, Confirm)  
+{{<battlebox>}}Crono Attack Bottom-Right (Confirm, Right, Confirm)  
 Auto-battle{{</battlebox>}}
 
 Perform Bird Skip
@@ -78,12 +77,10 @@ Inventory
 * Strength Capsule (Left+Down) -> Crono
 
 **Roundillo Rider x2**
-{{<battlebox>}}
-Auto-battle{{</battlebox>}}
+{{<battlebox>}}Auto-battle{{</battlebox>}}
 
 **Roundillo Rider x3**
-{{<battlebox>}}
-Crono Cyclone all (Right){{</battlebox>}}
+{{<battlebox>}}Crono Cyclone all (Right){{</battlebox>}}
 
 ### Cathedral
 
@@ -93,8 +90,7 @@ Inventory
 * Shelter
 
 **Naga x4**
-{{<battlebox>}}
-Crono Fire Whirl 3
+{{<battlebox>}}Crono Fire Whirl 3
 Lucca Flamethrower last{{</battlebox>}}
 
 Name Frog (Down, Confirm, Up, Confirm)  
@@ -115,8 +111,7 @@ Go to next room and clockwise
 {% if rooms.cathedral-trash > 0 -%}Do {$ rooms.cathedral-trash $} extra sets of room transitions prior to the battle with 3 Underlings and 2 Diablos.{% endif -%}
 
 **Underling x3, Diablo x2**
-{{<battlebox>}}
-Crono and Frog Attack Diablos
+{{<battlebox>}}Crono and Frog Attack Diablos
 Lucca Fire Whirl Underlings{{</battlebox>}}
 
 **Pick Iron Sword**

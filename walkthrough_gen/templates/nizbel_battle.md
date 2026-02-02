@@ -1,4 +1,4 @@
-**Battle**
+**Nizbel (4200 HP)**
 {{<battlebox>}}Crono Lightning during Nizbel attack
 Auto-battle for 1 Crono attack
 Crono Wind Slash

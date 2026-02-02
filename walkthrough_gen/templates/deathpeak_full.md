@@ -43,11 +43,12 @@ Hug left wall before cave to avoid encounter
 ![][image28]
 
 **Lavos Spawn (4000 HP)**
-
-* (Magus Attack \+ Fire Tackle) x2  
+{{<battlebox>}}
+Magus Attack + Robo / Lucca Fire Tackle x2  
   * Skip 2nd attack if crit  
-* Learn Megaton Bomb and Heal Beam  
-* Heal Beam after fight if everyone \< 300 HP
+Note: Learn Megaton Bomb and Heal Beam{{</battlebox>}}
+
+Heal Beam after fight if everyone < 300 HP
 
 **Pick Gigaton Arm** (chest on right) then go to the next area  
 Go up+right then hug top to avoid encounter, go to the next area  
@@ -58,9 +59,8 @@ Hold up+right on stairs to avoid encounter (ignore chest)
 ![][image29]
 
 **Lavos Spawn (4000 HP)**
-
-* Escape (don't attack)  
-* Set Magus on Ice II
+{{<battlebox>}}Escape (don't attack)
+Set Magus on Ice II{{</battlebox>}}
 
 **Menu**  
 Techs
@@ -76,17 +76,15 @@ Run along the wall to the right side below
 Touch 4th enemy to trigger encounter
 
 **Blood Yolk x6**
-
-* Magus Ice II
+{{<battlebox>}}Magus Ice II{{</battlebox>}}
 
 Go back and repeat fight 4 times (Magus learns Barrier)  
 Go down to the next screen and continue (ignore doll)  
 If fight only 5 once it's fine
 
 **Lavos Spawn (4000 HP)**
-
-* (Magus Attack \+ Fire Tackle) x2  
-  * Skip 2nd attack if crit
+{{<battlebox>}}Magus Attack + Robo / Lucca Fire Tackle x2  
+Skip 2nd attack if crit{{</battlebox>}}
 
 **Menu**  
 Party (Frog / Ayla / Robo)

@@ -44,8 +44,7 @@ Settings
 Enter and go straight up
 
 **Son of Sun (10 hits)**
-
-* General notes  
+{{<battlebox>}}* General notes  
   * Shuffle -> Flare -> Beam -> Repeat  
   * If core gets attacked he'll counter with Flare  
   * Ayla absorbs Flare  
@@ -59,12 +58,11 @@ Enter and go straight up
     * Flamethrower 1  
     * Attack the one that didn't counter or 4 and 5 if all counter  
     * Lucca / Magus / Ayla Attack  
-    * Athenian Water \+ Hi-Potion as needed  
+    * Athenian Water + Hi-Potion as needed  
     * Repeat  
   * Losing it's Fire  
     * Revive anyone dead  
-    * Wait then Auto Battle after dying animation
-
+    * Wait then Auto-battle after dying animation{{</battlebox>}}
 ![][image25]
 
 **Pick Moon Stone** and go out

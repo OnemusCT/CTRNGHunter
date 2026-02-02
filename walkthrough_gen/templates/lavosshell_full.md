@@ -7,20 +7,16 @@ Party (Ayla / Lucca / Crono)
 * Crono <-> Magus
 
 **Dragon Tank**
-
-* Ayla Falcon Strike (should be on Attack)
+{{<battlebox>}}Ayla Falcon Strike (should be on Attack){{</battlebox>}}
 
 **Guardian**
-
-* Ayla Falcon Strike
+{{<battlebox>}}Ayla Falcon Strike{{</battlebox>}}
 
 **Heckran**
-
-* Lucca Flare
+{{<battlebox>}}Lucca Flare{{</battlebox>}}
 
 **Zombor**
-
-* Ayla Falcon Strike
+{{<battlebox>}}Ayla Falcon Strike{{</battlebox>}}
 
 **Menu**  
 Inventory
@@ -33,13 +29,11 @@ Party (Robo / Lucca / Magus)
 * Magus <-> Crono
 
 **Masamune**
-
-* Omega Flare
+{{<battlebox>}}Omega Flare{{</battlebox>}}
 
 **Nizbel**
-
-* Magus Lightning II  
-* Robo Omega Flare
+{{<battlebox>}}Magus Lightning II 
+Robo Omega Flare{{</battlebox>}}
 
 **Menu**  
 Equipment
@@ -50,22 +44,20 @@ Equipment
   * Blue Gemstone
 
 **Magus (6666 HP)**
-
-* Robo Attack  
+{{<battlebox>}}Robo Attack  
 * React based on barrier  
   * Shadow: Omega Flare  
-  * Fire: Lucca Flare x2 \+ Robo Turbo Ether Lucca \+ Magus Attack  
+  * Fire: Lucca Flare x2 + Robo Turbo Ether Lucca + Magus Attack  
     * Skip Turbo Ether on next fight  
   * Lightning: Magus Lightning II or Attack for another barrier  
   * Ice: Magus Ice II or Attack for another barrier  
-    * If two bad barriers, wait barrier off then Omega Flare
+    * If two bad barriers, wait barrier off then Omega Flare{{</battlebox>}}
 
 **Black Tyranno**
-
-* Lucca Flare \+ Robo Turbo Ether Lucca  
-  * Skip Turbo Ether if did on Magus  
-* Wait "Lowers Defense"  
-* Omega Flare x3
+{{<battlebox>}}Lucca Flare + Robo Turbo Ether Lucca  
+  Skip Turbo Ether if did on Magus  
+Wait "Lowers Defense"  
+Omega Flare x3{{</battlebox>}}
 
 **Menu**  
 Inventory
@@ -74,8 +66,7 @@ Inventory
 * Mid-Ether -> Magus (32 MP)
 
 **Giga Gaia**
-
-* Omega Flare x2
+{{<battlebox>}}Omega Flare x2{{</battlebox>}}
 
 **Menu**  
 Inventory
@@ -83,6 +74,5 @@ Inventory
 * Hi-Potion -> everyone (skip if \> 420 HP)
 
 **Lavos**
-
-* Omega Flare x2
+{{<battlebox>}}Omega Flare x2{{</battlebox>}}
 

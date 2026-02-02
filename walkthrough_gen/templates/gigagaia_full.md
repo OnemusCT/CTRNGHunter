@@ -3,9 +3,7 @@
 ### Mountain of Woe
 
 **Rubble (515 HP)**
-
-* Auto Battle  
-* Crono \+ Ayla or Ayla x2 \+ Lucca
+{{<battlebox>}}Auto-battle{{</battlebox>}}
 
 Go left and avoid encounter (hold right then up)  
 ![][image21]
@@ -14,8 +12,7 @@ If Rubble ran, go left and fight the one there
 Go right
 
 **Gargoyle x2**
-
-* Auto Battle
+{{<battlebox>}}Auto-battle{{</battlebox>}}
 
 **Menu**  
 Equipment
@@ -36,26 +33,22 @@ Hug wall to avoid encounter
 ![][image22]
 
 **Bomber Bird x2, Gargoyle x2**
-
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 Down chain then right
 
 **Gargoyle x4**
-
-* Falcon Strike (Left) \+ Napalm (set)
+{{<battlebox>}}Crono Falcon Strike (Left) + Lucca Napalm (set){{</battlebox>}}
 
 **Pick Barrier Sphere** (right chest) and go down and right to the next screen
 
 **Death Lily x4**
-
-* Escape
+{{<battlebox>}}Escape{{</battlebox>}}
 
 Go up then right
 
 **Gargoyle x3**
-
-* Auto Battle
+{{<battlebox>}}Auto-battle{{</battlebox>}}
 
 **Menu**  
 Inventory
@@ -66,14 +59,15 @@ Inventory
 **Pick Magic Capsule** (bottom-right corner before next screen)
 
 **Giga Gaia (9500 HP)**
+{{<battlebox>}}Phase 1  
+Crono Falcon Strike Arms
+Lucca Napalm + Ayla Falcon Strike Arms  
+Crono / Ayla Falcon Strike x4 
++ Lucca Napalm x3  
+Note: Crono should have 24 MP  
+(Arms respawn)
 
-* Phase 1  
-  * (AOE) \+ Crono Falcon Strike Arms  
-  * Lucca Napalm \+ Ayla Falcon Strike Arms  
-  * Falcon Strike x4 \+ Napalm x3  
-    * Crono should have 24 MP  
-  * (Arms respawn)  
-* Phase 2  
-  * Falcon Strike Arms \+ Lucca Attack  
-  * Falcon Strike x4 \+ Lucca Attack x3  
-    * Crono should have 4 MP
+Phase 2  
+Crono / Ayla Falcon Strike Arms + Lucca Napalm  
+Crono / Ayla Falcon Strike x4 + Lucca Napalm x3
+Note: Crono should have 4 MP{{</battlebox>}}

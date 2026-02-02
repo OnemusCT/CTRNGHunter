@@ -11,7 +11,7 @@ Heal with the pink bag (2nd screen)
 
 **Gato**
 
-* Auto Battle  
+* Auto-battle  
 * Repeat 3 times
 
 Enter the portal then take the top-left pillar (Truce Canyon, 600 A.D.)
@@ -43,14 +43,12 @@ Inventory
 * Speed Capsule -> Lucca
 
 **Ozzie, Skeleton x2**
-{{<battlebox>}}
-Crono Attack Ozzie (Left)  
+{{<battlebox>}}Crono Attack Ozzie (Left)  
 Marle Attack Ozzie (Left)  
 Lucca Attack Ozzie (Left){{</battlebox>}}
 
 **Ozzie, Skeleton x3**
-{{<battlebox>}}
-Crono Attack Ozzie (Left)  
+{{<battlebox>}}Crono Attack Ozzie (Left)  
 Marle Attack Ozzie (Left)  
 Lucca Attack Ozzie (Left){{</battlebox>}}
 

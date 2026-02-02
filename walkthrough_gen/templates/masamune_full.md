@@ -28,20 +28,17 @@ Run straight up to avoid battle and go to next screen
 **Pick Mirage Hand** then go back
 
 **Ogan**
-{{<battlebox>}}
-Auto-battle{{</battlebox>}}
+{{<battlebox>}}Auto-battle{{</battlebox>}}
 
 **Ogan**
-{{<battlebox>}}
-Robo Attack
+{{<battlebox>}}Robo Attack
 Lucca Flamethrower
 Auto-battle{{</battlebox>}}
 
 Go to the next screen
 
 **Ogan x2**
-{{<battlebox>}}
-Escape{{</battlebox>}}
+{{<battlebox>}}Escape{{</battlebox>}}
 
 **Menu**  
 Equipment
@@ -80,8 +77,7 @@ Run up to the sword
 {% include "masamune_battle" %}
 
 **Masamune (3600 HP)**
-{{<battlebox>}}
-Note:
+{{<battlebox>}}Note:
   * Above 1/2 HP: Attack, Attack, Hurricane, Storing Energy  
   * Below 1/2 HP: Attack, Attack, Storing Energy  
   * Double attack power when below 1/2 HP  
