@@ -7,6 +7,7 @@
 #include "rng_table.h"
 #include "msvc_rand_wrapper.h"
 
+// Log labels for each action type, printed during FULL logging.
 constexpr std::string_view kLoad = "load";
 constexpr std::string_view kRoom = "room";
 constexpr std::string_view kPortal = "portal";
@@ -16,6 +17,8 @@ constexpr std::string_view kExtraHeal = "extra_heal";
 constexpr std::string_view kBurn = "burn";
 constexpr std::string_view kExtraRooms = "extra_rooms";
 
+// Concrete implementation of RNGSim. Wraps an MSVCRandWrapper and tracks
+// per-encounter manipulation statistics (extra rooms, heals, battle RNG values).
 class RNGSimImpl : public RNGSim {
 public:
 	RNGSimImpl() = default;
@@ -61,19 +64,21 @@ public:
 	std::unordered_map<std::string, int> get_extra_heals_per_encounter() override;
 
 private:
+	// Advances the RNG by `n` steps. In FULL log mode, prints each individual value;
+	// otherwise uses the multi-step fast path.
 	void roll_rng(int n, std::string_view type, LogLevel log_level);
 
 	MSVCRandWrapper rng_;
 
-	int last_steps = 0;
-	bool extra_rooms_enabled_ = true;
-	bool extra_heals_enabled_ = false;
-	int extra_room_count_ = 0;
-	int extra_heals_count_ = 0;
-	int last_battle_rng_ = 0;
-	std::unordered_map<std::string, int> extra_room_map_;
-	std::unordered_map<std::string, int> battle_rng_map_;
-	std::unordered_map<std::string, int> extra_heals_map_;
+	int last_steps = 0;                 // Steps consumed by the most recent operation (for rollback)
+	bool extra_rooms_enabled_ = true;   // Whether extra_rooms() is allowed
+	bool extra_heals_enabled_ = false;  // Whether extra_heal() is allowed
+	int extra_room_count_ = 0;          // Running count of extra rooms since last encounter
+	int extra_heals_count_ = 0;         // Running count of extra heals since last encounter
+	int last_battle_rng_ = 0;           // Battle RNG value from the most recent battle
+	std::unordered_map<std::string, int> extra_room_map_;   // encounter name -> extra room count
+	std::unordered_map<std::string, int> battle_rng_map_;   // encounter name -> battle RNG value
+	std::unordered_map<std::string, int> extra_heals_map_;  // encounter name -> extra heal count
 };
 
 
