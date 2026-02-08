@@ -31,7 +31,7 @@ Stop when Roundillo passing through Crono
 Hold Down+Right, go right (hug wall), stop at center "Diamond"  
 Go up two "Diamonds" (aligned with left pillar, look at Crono's foot) then right and up  
 If fall, number indicates exit  
-![][image8]
+![](/images/speedruns/ct-rng-manip-100/pitroom.png)
 
 Stop when Roundillo passing through Crono  
 Face opposite way to move bird out of the way

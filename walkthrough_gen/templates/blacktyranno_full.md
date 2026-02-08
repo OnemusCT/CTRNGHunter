@@ -18,15 +18,15 @@ Force battle on first rock on right
 {{<battlebox>}}Escape{{</battlebox>}}
 
 Go behind rocks to the next screen  
-![][image9]
+![](/images/speedruns/ct-rng-manip-100/dactylskip1.png)
 
 Go behind the rock to avoid encounter  
-![][image10]
+![](/images/speedruns/ct-rng-manip-100/dactylskip2.png)
 
 **Pick Mesozoic Mail**
 
 Align Crono foot with yellowish part of the grass then hold up (can be 1 pixel off)  
-![][image11]
+![](/images/speedruns/ct-rng-manip-100/dactylskip3.png)
 
 **Menu**  
 Party
@@ -72,11 +72,11 @@ Step on left side switch and go out
 Wait a little bit for enemies to move then go left  
 Up+Left on tile room
 
-![][image12]
+![](/images/speedruns/ct-rng-manip-100/tyranno1.png)
 
 Step on **right switch** then press **switch at the end** of the room and go back
 
-![][image13]
+![](/images/speedruns/ct-rng-manip-100/tyranno2.png)
 
 **Reptite, Volcanite x2**
 {{<battlebox>}}* Cyclone all  
@@ -138,7 +138,7 @@ Settings
 Open skull, **pick Hi-Ether**, hit the switch
 
 Head back, align Crono's foot then move straight up  
-![][image14]
+![](/images/speedruns/ct-rng-manip-100/tyranno3.png)
 
 **Black Tyranno (10500 HP)**
 {{<battlebox>}}General notes  

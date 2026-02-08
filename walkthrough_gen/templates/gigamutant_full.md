@@ -138,14 +138,14 @@ If Fangbeasts, Magus Ice II after Flare{{</battlebox>}}
 Right+Up when enter room to avoid encounter, continue  
 **Pick Megalixir** (right chest before stairs, optional)  
 Bonk on bottom-right corner of carpet then up to avoid encounter  
-![][image31]
+![](/images/speedruns/ct-rng-manip-100/omen1.png)
 
 On the next room, just hold up to skip first encounter  
-![][image32]
+![](/images/speedruns/ct-rng-manip-100/omen2.png)
 
 To skip the next encounter, align Magus with center of orange tile before the stairs  
 Run until Magus' head align with top, then hold left and exit top  
-![][image33]
+![](/images/speedruns/ct-rng-manip-100/omen3.png)
 
 **Pick Nova Armor** (left chest of save point)  
 **Pick Megalixir** (right chest of save point)  
@@ -162,7 +162,7 @@ Go to the next screen
 {{<battlebox>}}Escape{{</battlebox>}}
 
 Go up-left after fight to avoid shield  
-![][image34]
+![](/images/speedruns/ct-rng-manip-100/omen4.png)
 
 Run between Hydracondas (wait on top-right spot) and go to the next room  
 Run past first eye (when closed) and go between them  
@@ -190,9 +190,9 @@ Go into the door and take teleport
 
 Go up, all the way left (don't go to bottom more than needed) on first fork, all the way up, right  
 Go top of the left eyes and middle of right eyes  
-![][image35]  
+![](/images/speedruns/ct-rng-manip-100/omen5.png)  
 Go right, up, left, **pick Speed Capsule** and **Megalixir** from the two chests  
-![][image36]  
+![](/images/speedruns/ct-rng-manip-100/omen6.png)  
 Go up to the next room
 
 **Menu**  

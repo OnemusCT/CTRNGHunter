@@ -59,12 +59,12 @@ Party (Crono / Ayla / Robo)
 Talk to Kino, go right, down two green vines, over brown trunk  
 Go up, right then down
 
-![][image5]
+![](/images/speedruns/ct-rng-manip-100/forestmaze1.png)
 
 Go up, left, down (skip encounter)  
 Go left, ignore first way up and take second, skip encounter, out
 
-![][image6]
+![](/images/speedruns/ct-rng-manip-100/forestmaze2.png)
 
 ### Reptite Lair
 
@@ -120,7 +120,7 @@ Equipment
 
 Go past Crested Sprinters then trigger fight
 
-![][image7]
+![](/images/speedruns/ct-rng-manip-100/mountainpath.png)
 
 **Crested Sprinter x2, Kilwala x2**
 {{<battlebox>}}Escape{{</battlebox>}}

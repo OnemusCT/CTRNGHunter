@@ -15,7 +15,7 @@ Inventory
 {{<battlebox>}}Lucca Flare{{</battlebox>}}
 
 Bat skip: Wait at the top (don't get too close) and run right when first bat going up  
-![][image37]  
+![](/images/speedruns/ct-rng-manip-100/omen7.png)  
 If fail, Flare + Ice II (can't escape) and Mid Ether after fight
 
 **Blubber Hulk x2**

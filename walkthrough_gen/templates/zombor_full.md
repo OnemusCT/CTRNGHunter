@@ -10,9 +10,8 @@ Talk to Taban to **get Taban's Vest**
 Heal with the pink bag (2nd screen)
 
 **Gato**
-
-* Auto-battle  
-* Repeat 3 times
+{{<battlebox>}}Auto-battle
+Repeat 3 times{{</battlebox>}}
 
 Enter the portal then take the top-left pillar (Truce Canyon, 600 A.D.)
 

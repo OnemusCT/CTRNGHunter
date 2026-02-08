@@ -63,6 +63,6 @@ Enter and go straight up
   * Losing it's Fire  
     * Revive anyone dead  
     * Wait then Auto-battle after dying animation{{</battlebox>}}
-![][image25]
+![](/images/speedruns/ct-rng-manip-100/sonofsun.png)
 
 **Pick Moon Stone** and go out

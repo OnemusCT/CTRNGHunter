@@ -71,7 +71,7 @@ Run up but **walk for a bit** to avoid snakes on both corridors then interact wi
 Run straight down after scenes (will avoid Vipers)  
 Wait for Naga to avoid encounter
 
-![][image26]
+![](/images/speedruns/ct-rng-manip-100/castle.png)
 
 Go back to the court
 
