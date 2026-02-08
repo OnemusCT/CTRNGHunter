@@ -15,9 +15,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
-# Source files
-set(SOURCES
-    main.cpp
+# Library source files (everything except main.cpp)
+set(LIB_SOURCES
     seed_parser.cpp
     rng_table.cpp
     rng_hunter.cpp
@@ -38,7 +37,7 @@ set(HEADERS
     walkthrough_gen/walkthrough_gen.h )
 
 
-file(GLOB TEMPLATE_FILES 
+file(GLOB TEMPLATE_FILES
     CONFIGURE_DEPENDS
     "${CMAKE_SOURCE_DIR}/walkthrough_gen/templates/*.md"
 )
@@ -52,21 +51,28 @@ add_custom_command(
         -P "${CMAKE_SOURCE_DIR}/cmake/generate_templates.cmake"
     DEPENDS ${TEMPLATE_FILES}
     COMMENT "Generating embedded templates"
-) 
+)
 
 add_custom_target(generate_templates ALL
     DEPENDS "${CMAKE_BINARY_DIR}/generated/templates.h"
 )
- 
-# Create executable
-add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
-add_dependencies(rng_hunter generate_templates)
-target_include_directories(rng_hunter 
-    PRIVATE 
+# Static library with shared sources
+add_library(ctrng_lib STATIC ${LIB_SOURCES} ${HEADERS})
+add_dependencies(ctrng_lib generate_templates)
+target_include_directories(ctrng_lib
+    PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${CMAKE_BINARY_DIR}/generated
 )
+set_target_properties(ctrng_lib PROPERTIES
+    CXX_STANDARD 23
+    CXX_STANDARD_REQUIRED ON
+)
+
+# Create executable
+add_executable(${PROJECT_NAME} main.cpp)
+target_link_libraries(${PROJECT_NAME} PRIVATE ctrng_lib)
 
 # Set target properties
 set_target_properties(${PROJECT_NAME} PROPERTIES
@@ -77,11 +83,17 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 # Compiler-specific flags
 if(MSVC)
     # MSVC-specific flags
-    target_compile_options(${PROJECT_NAME} PRIVATE
+    target_compile_options(ctrng_lib PRIVATE
         /W3                     # Warning level 3
         /permissive-           # Standards conformance
         $<$<CONFIG:Release>:/O2>      # Optimize for speed
         $<$<CONFIG:Release>:/GL>      # Whole program optimization
+    )
+    target_compile_options(${PROJECT_NAME} PRIVATE
+        /W3
+        /permissive-
+        $<$<CONFIG:Release>:/O2>
+        $<$<CONFIG:Release>:/GL>
     )
     target_link_options(${PROJECT_NAME} PRIVATE
         $<$<CONFIG:Release>:/LTCG>    # Link-time code generation
@@ -92,6 +104,13 @@ if(MSVC)
     )
 else()
     # GCC/Clang flags
+    target_compile_options(ctrng_lib PRIVATE
+        -Wall
+        -Wextra
+        -pedantic
+        $<$<CONFIG:Release>:-O3>
+        $<$<CONFIG:Release>:-march=native>
+    )
     target_compile_options(${PROJECT_NAME} PRIVATE
         -Wall
         -Wextra
@@ -104,6 +123,11 @@ endif()
 # Platform-specific settings
 if(WIN32)
     # Windows-specific settings
+    target_compile_definitions(ctrng_lib PRIVATE
+        _CONSOLE
+        UNICODE
+        _UNICODE
+    )
     target_compile_definitions(${PROJECT_NAME} PRIVATE
         _CONSOLE
         UNICODE
@@ -118,6 +142,31 @@ install(TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
 )
+
+# --- Testing ---
+include(FetchContent)
+FetchContent_Declare(
+    googletest
+    GIT_REPOSITORY https://github.com/google/googletest.git
+    GIT_TAG v1.15.2
+)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+enable_testing()
+
+add_executable(ctrng_tests
+        tests/msvc_rand_wrapper_test.cpp
+        tests/rng_sim_test.cpp
+)
+target_link_libraries(ctrng_tests PRIVATE ctrng_lib GTest::gtest_main)
+set_target_properties(ctrng_tests PROPERTIES
+    CXX_STANDARD 23
+    CXX_STANDARD_REQUIRED ON
+)
+
+include(GoogleTest)
+gtest_discover_tests(ctrng_tests)
 
 # Print configuration summary
 message(STATUS "")

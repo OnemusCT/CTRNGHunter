@@ -41,7 +41,7 @@ int turn_order(int rng, int players = 3) {
     return -1;
 }
 
-int enemy_order(int rng, const std::set<int> enemy_indices) {
+int enemy_order(int rng, const std::set<int>& enemy_indices) {
     std::set<int> seen;
     for (int i = rng; i != rng - 1; i++) {
         if (i == 256) i = 0;

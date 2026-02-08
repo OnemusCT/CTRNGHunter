@@ -37,7 +37,7 @@ class RNGSim {
 	virtual bool portal(LogLevel log_level) = 0;
 
 	virtual bool heal(int num, LogLevel log_level) = 0;
-	
+
 	virtual bool extra_heal(LogLevel log_level) = 0;
 
 	virtual bool disable_extra_rooms(LogLevel log_level) = 0;
