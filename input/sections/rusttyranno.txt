@@ -1,0 +1,8 @@
+####################################
+####							####
+####	    Rust Tyranno	    ####
+####							####
+####################################
+battle_with_rng 20,21,2A,2B,2C,2D,2E,2F,30,31,32,3C,3D,3E,3F,40,41,71,72,73,74,75,76,8C,8D,8E,8F,90,91,92,93,94,A8,A9,AA,AB,AC,AD,AE,AF,B0,B1 # rust tyranno (manip charm and magus crits) 4/5 big crits = 16 attacks, 3 = 17, 2 = 18
+room 4 # throne room, forest, elder's house, sun temple
+

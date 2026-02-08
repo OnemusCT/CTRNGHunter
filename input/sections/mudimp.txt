@@ -1,0 +1,18 @@
+####################################
+####							####
+####		   Mud Imp 	    	####
+####							####
+####################################
+battle
+battle
+battle_with_rng 4,5,6 mudimp # 2E-35, 09-0C, E1-E2 doable but not quite as clean. 99, AB, DC-E0 are slow but doable
+room
+battle_with_rng D,12,2E,30,36 rubble
+room
+battle
+battle
+battle
+room
+battle
+battle
+room 2

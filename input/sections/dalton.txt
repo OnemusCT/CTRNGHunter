@@ -1,0 +1,29 @@
+####################################
+####							####
+####		   Dalton   		####
+####							####
+####################################
+room
+battle #dalton
+room # ocean palace 1
+portal # cutscene
+room 3 # ocean palace 1, 2, 3
+battle
+room 6 # ocean palace 4,5,6,5,7,8
+battle
+battle
+battle
+portal # cutscene
+room 3 # ocean palace 9,10,11
+battle # pre elevator 1
+room 2 # ocean palace 10, 11
+battle # pre elevator 2
+room # elevator
+battle # elevator battles
+battle
+battle
+room 3 # elevator, ocean palace 13, 14
+battle
+room 2 # ocean palace, 13, 15
+battle
+room 3 # ocean palace 13, 16, 17

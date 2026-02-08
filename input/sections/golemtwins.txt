@@ -1,0 +1,29 @@
+####################################
+####							####
+####		 Golem Twins		####
+####							####
+####################################
+battle # golem-twins
+portal # mammon
+portal # lavos
+battle # lavos
+portal # lavos again?
+portal # mammon
+room 5 # cutscene 1, 2, 3, 4, village
+portal # cutscene black
+room 3 # village, village market, commons
+portal # cutscene
+room 2 # blackbird prison, outside
+portal # cutscene
+room 5 # outside, prison, vents, blackbird 1, 2
+battle
+room 2
+battle # golem
+portal # black cutscene
+portal # epoch cutscene	
+room # blackbird wing
+portal # epoch
+room # blackbird wing
+portal # epoch
+room # blackbird wing
+portal # epoch

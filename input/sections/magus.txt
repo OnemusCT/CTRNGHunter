@@ -3,4 +3,8 @@
 ####			Magus			####
 ####							####
 ####################################
-battle_with_rng 0D magus
+battle_with_rng 0D,0E,0F,10,11,12,13,14,15,16,17,18 magus
+# Post Magus is weird, this is what you get if you mash through the cutscenes. It's not actual heals, just burning RNG
+room 9
+heal 31
+room # burned village
