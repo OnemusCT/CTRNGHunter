@@ -1,0 +1,52 @@
+####################################
+####							####
+####		 Dalton Plus		####
+####							####
+####################################
+battle # dalton-plus
+room # blackbird cutscene
+portal # epoch
+room 2 # blackbird crash, commons
+portal # epoch
+room 2 # epoch, village market
+room # north cape
+portal # mammon machine cutscene
+portal # lavos cutscene
+room # cabinet
+portal # proto dome
+portal # eot?
+room 3 # truce canyon, north cape, epoch
+portal # black omen
+room # epoch
+room # epoch
+room # tavern
+portal # epoch at eot
+portal # eot
+portal # epoch at eot
+portal # epoch again
+# lucca's house, snail shop, west cape, choras inn, residence
+# tavern, residence, ruins entrance, left stairs
+room 9
+battle #_with_rng 0D # ghosts x2
+battle #_with_rng 0D # ghosts x2
+battle # ghosts x4
+# entrance, residence, entrance, left stairs, cyrus grave, 
+# left stairs, entrance, 
+room 7
+portal # ozzie fort 1
+room # ozzie fort 2
+battle # flea 2
+room 2 # fort 3, 4
+battle # slash 2
+room 4 # chest room, 4, 3, 2, 
+portal # fort 1
+room 3 # tyranno 1, 2, 3
+battle
+room 2 # 4,5
+battle
+room 2 # 6,5
+battle
+room 5 # 6,7,8,9,10
+battle # rubble
+battle # rubble
+room 4 # 11,12,13,14

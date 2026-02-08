@@ -1,0 +1,27 @@
+####################################
+####							####
+####	   Black Tyranno		####
+####							####
+####################################
+battle # black tyranno
+# mountain cutscene, portal, portal, teleporter 1, 2, 3, 4, 5, 6
+# kajar 1,2,1, teleporter 5,6,7,8
+# Zeal palace 1, 2, Schala's Room, 2, 1, door, 1, 3, mammon, 3, 1, door, throne
+room 29
+battle # golem
+room 8 # Cutscene (mammon, portal, portal, future, portal) mountain path, mountain base, mountain portal
+eot
+# cabinet, forest ruins, cabinet
+room 3
+eot
+portal # proto portal
+room 3 # proto dome, site 32 1, 2
+battle 
+battle
+room 2 # site 32 3, sewer
+battle
+room 2 # sewer 2, 3
+battle # krawlie
+room 4 # keeper 1, 2, 3, cutscene
+portal
+room 3 # terra 1, 2, 3

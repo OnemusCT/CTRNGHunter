@@ -1,5 +1,5 @@
 load
 import sections/nizbel.txt
-#import sections/flea.txt
-#import sections/slash.txt
+import sections/flea.txt
+import sections/slash.txt
 #import sections/magus.txt

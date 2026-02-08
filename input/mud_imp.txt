@@ -1,6 +1,0 @@
-load
-battle
-battle
-battle_with_rng 4
-room
-battle_with_rng D

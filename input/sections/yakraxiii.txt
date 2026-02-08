@@ -1,0 +1,24 @@
+battle # yakra xiii
+# throne, basement, shell (shell again? several times?), basement, throne, keeper's dome 1, 2, 1
+# death peak 1, 2, 3, 4
+room 12
+battle # lavos spawn
+room 9 # death peak 5, 6, 7, 6, 5, 4, 3, 8, 9
+battle # lavos spawn
+room 2 # 10,11
+battle # grind
+room 2 # 10,11
+battle # grind
+room 2 # 10,11
+battle # grind
+room 2 # 10,11
+battle # grind
+room # 12,13
+battle # lavos spawn
+room # peak
+portal # lavos
+room # peak
+portal # eot
+portal # epoch
+portal # epoch
+room # geno 1 START HERE

@@ -5,8 +5,7 @@
 ####################################
 battle # fake flea
 enable_extra_heals
-battle_with_rng 2F flea
+battle_with_rng 1,2,3,9,A,B,C,2E,2F,30,31,32,33,34,35 flea # original is 2F
 disable_extra_heals
-#battle_with_rng 3 flea
-heal 5
+heal 6
 room 5 # flea 2, flea 1, entry, slash 1, slash 2
