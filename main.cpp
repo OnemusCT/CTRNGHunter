@@ -24,7 +24,40 @@ void print_crit_values(int threshold) {
     }
 }
 
-void print_init_table(int players = 3, int enemies = 1) {
+int turn_order(int rng, int players = 3) {
+    std::set<int> seen;
+    int t = 10;
+    for (int i = 3; i > players; i--) {
+        seen.insert(t--);
+    }
+    for (int i = rng; i != rng - 1; i++) {
+        if (i == 256) i = 0;
+        //std::cout << std::format("i: {:02X} ({:02X})", i, rng_table(i));
+        seen.insert(rng_table(i) % 11);
+        if (seen.size() == 11) {
+            return i + 1 % 256;
+        }
+    }
+    return -1;
+}
+
+int enemy_order(int rng, const std::set<int> enemy_indices) {
+    std::set<int> seen;
+    for (int i = rng; i != rng - 1; i++) {
+        if (i == 256) i = 0;
+        //std::cout << std::format("i: {:02X} ({:02X})", i, rng_table(i));
+        if (int index = rng_table(i) % 8;
+            enemy_indices.contains(index)) {
+            seen.insert(index);
+        }
+        if (seen.size() == enemy_indices.size()) {
+            return i + 1 % 256;
+        }
+    }
+    return -1;
+}
+
+void print_init_table(int players = 3, const std::set<int>& enemies = {0}) {
     std::cout << std::format("RNG Post initialization for {} characters and {} enemies", players, enemies) << std::endl;
     std::cout << "\t";
     for (int i = 0; i < 16; i++) {
@@ -35,23 +68,9 @@ void print_init_table(int players = 3, int enemies = 1) {
         if (i % 16 == 0) {
             std::cout << std::format("{:1X}x", i/16) << "\t";
         }
-        std::set<int> seen;
-        int t = 10;
-        for (int j = 3; j > players; j--) {
-            seen.insert(t--);
-        }
-        for (int j = i; j != i - 1; j++) {
-            if(j == 256) j = 0;
-            //std::cout << std::format("j: {:02X} ({:02X})", j, rng_table(j));
-            seen.insert(rng_table(j)%11);
-            if (seen.size() == 11) {
-                j = (j+1)%256;
-                while (rng_table(j) % 8 >= enemies) j = (j + 1) % 256;
-                j = (j + 1) % 256;
-                std::cout << std::format("{:02X}\t", j);
-                break;
-            }
-        }
+        int temp = turn_order(i, players);
+        int rng = enemy_order(temp, enemies);
+        std::cout << std::format("{:02X}\t", rng);
         if (i % 16 == 15) std::cout << std::endl;
     }
 }
@@ -215,14 +234,15 @@ int main(int argc, char* argv[]) {
     });
 
     int players = 3;
-    int enemies = 1;
+    std::set<int> enemy_slots = {0};
     CLI::App* print_init = app.add_subcommand("print_init_table", "Prints the post initialization RNG seed for each possible starting RNG seed for a number of players and enemies");
     print_init->add_option("-p,--players", players, "The number of player characters in the party");
-    print_init->add_option("-e,--enemies", enemies, "The number of enemies in the fight");
+    print_init->add_option("-e,--enemies", enemy_slots, "The indices of the enemies in the fight");
     print_init->callback([&] {
-        print_init_table(players, enemies);
+        print_init_table(players, enemy_slots);
     });
 
+    int enemies = 0;
     std::string rng = "0";
     CLI::App* print_turn_order = app.add_subcommand("print_turn_order", "Prints the processing order for enemy and player turns in battle for a given RNG seed");
     print_turn_order->add_option("-p,--players", players, "The number of player characters in the party");
