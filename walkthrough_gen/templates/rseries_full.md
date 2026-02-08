@@ -76,7 +76,7 @@ Settings
 Interact with center switch then go all the way back  
 Align Crono
 
-![][image4]
+![](/images/speedruns/ct-rng-manip-100/rseriespos.png)
 
 **R-Series x6 (150 HP)**
 {{<battlebox>}}Crono Cyclone 3 front (right)

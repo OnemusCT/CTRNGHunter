@@ -34,4 +34,4 @@ Auto-battle{{</battlebox>}}
 
 Lucca learns Flare  
 Go out and **pick Strength Capsule** on previous room  
-![][image30]
+![](/images/speedruns/ct-rng-manip-100/desertcapsule.png)

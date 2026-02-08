@@ -12,7 +12,7 @@ Go up then left, take portal
 Go to the back and then right into green carpet room  
 **Pick Speed Capsule**
 
-![][image15]
+![](/images/speedruns/ct-rng-manip-100/zealcapsule.png)
 
 Go out and continue
 
@@ -24,10 +24,9 @@ Go back and into left door (behind Nu) then interact with Mammon Machine
 Go back to sealed door
 
 **Golem**
-
-* (Ball)  
-* Wind Slash (quick)  
-* Wait until dead
+{{<battlebox>}}(Ball)
+Wind Slash (quick)
+Wait until dead{{</battlebox>}}
 
 ### Mystic Mountains
 
@@ -42,7 +41,7 @@ Back to the end of time and take the center pillar (Proto Dome, 2300 A.D.)
 ### Proto Dome
 
 Walk to skip encounter  
-![][image16]
+![](/images/speedruns/ct-rng-manip-100/protodomeskip.png)
 
 ### Site 32
 
@@ -55,7 +54,7 @@ Walk to skip encounter
 {{<battlebox>}}Escape{{</battlebox>}}
 
 Skip last encounter  
-![][image17]
+![](/images/speedruns/ct-rng-manip-100/site32skip.png)
 
 ### Abandoned Sewers
 
@@ -80,12 +79,12 @@ Go right and ignore all the items to the next screen
 Hold up+left (avoid enemies) up and take right path, hit the switch  
 Go through the door but don't go straight down
 
-![][image18]
+![](/images/speedruns/ct-rng-manip-100/sewer1.png)
 
 **Krawlie (500 HP)**
 {{<battlebox>}} Crono Fire Sword (quick) + Ayla Roundillo Kick (set){{</battlebox>}}
 
-![][image19]
+![](/images/speedruns/ct-rng-manip-100/sewer2.png)
 
 Go out thought the middle ladders
 
@@ -103,7 +102,7 @@ Go left then up and enter Terra Cave
 Go down all the ladders  
 **Pick Strength Capsule** (optional)
 
-![][image20]
+![](/images/speedruns/ct-rng-manip-100/mudimpcapsule.png)
 
 **Mud Beast x2**
 {{<battlebox>}}Crono Fire Sword + Ayla Roundillo Kick each{{</battlebox>}}

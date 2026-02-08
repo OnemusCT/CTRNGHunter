@@ -44,7 +44,7 @@ Perform Bird Skip
 * Image shows 1st pixel  
 * Align Crono's foot with edge then run up
 
-![][image1]
+![](/images/speedruns/ct-rng-manip-100/birdskip.png)
 
 **Pick Power Glove**
 

@@ -6,7 +6,7 @@
 {{<battlebox>}}Auto-battle{{</battlebox>}}
 
 Go left and avoid encounter (hold right then up)  
-![][image21]
+![](/images/speedruns/ct-rng-manip-100/woe1.png)
 
 If Rubble ran, go left and fight the one there  
 Go right
@@ -30,7 +30,7 @@ Equipment
 
 Go up, left, down, left, down, up, right  
 Hug wall to avoid encounter  
-![][image22]
+![](/images/speedruns/ct-rng-manip-100/woe2.png)
 
 **Bomber Bird x2, Gargoyle x2**
 {{<battlebox>}}Escape{{</battlebox>}}

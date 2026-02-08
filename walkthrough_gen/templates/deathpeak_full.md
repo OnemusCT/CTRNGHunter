@@ -36,11 +36,11 @@ Go right then up to the next screen
 
 Walk left to align Lucca's foot with dirt line then go up  
 Go down+right and move between enemies, escape if caught (random pattern)  
-![][image27]
+![](/images/speedruns/ct-rng-manip-100/deathpeak1.png)
 
 Run right them right+up to avoid encounter  
 Hug left wall before cave to avoid encounter  
-![][image28]
+![](/images/speedruns/ct-rng-manip-100/deathpeak2.png)
 
 **Lavos Spawn (4000 HP)**
 {{<battlebox>}}
@@ -56,7 +56,7 @@ Hug right wall (ignore chest) and go down to the next area
 Hit the switch on the top-left spot, go back (avoid encounters same way) and enter new door
 
 Hold up+right on stairs to avoid encounter (ignore chest)  
-![][image29]
+![](/images/speedruns/ct-rng-manip-100/deathpeak3.png)
 
 **Lavos Spawn (4000 HP)**
 {{<battlebox>}}Escape (don't attack)

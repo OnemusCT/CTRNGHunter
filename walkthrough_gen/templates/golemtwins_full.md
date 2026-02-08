@@ -16,11 +16,10 @@ Talk to plant lady and select the **1st option** ("Yes") then the **2nd option**
 Go up and left then enter the middle hall
 
 **Dalton (3500 HP)**
-
-* Crono Falcon Strike  
-* Ayla Falcon Strike  
-* Lucca Fire  
-* Falcon Strike
+{{<battlebox>}}Crono Falcon Strike
+Ayla Falcon Strike
+Lucca Fire
+Falcon Strike{{</battlebox>}}
 
 ### Ocean Palace
 

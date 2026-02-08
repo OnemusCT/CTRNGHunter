@@ -15,7 +15,7 @@ Enter portal back to Leene Square and go to Guardia Castle
 ### Guardia Castle
 
 Just mash during the trial  
-2nd jury is random, better be not guilty because it’s less walk distance
+2nd jury is random, better be not guilty because itï¿½s less walk distance
 
 Drink to restore HP/MP, touch the gate three times
 
@@ -27,7 +27,9 @@ Go through between shields and then right door
 **Royal Guard x2**
 {{<battlebox>}}Crono Cyclone each{{</battlebox>}}
 
-Knock out guard (wait until looking **right**) and **get Mid-Potion**  
+![](/images/speedruns/ct-rng-manip-100/guardskip.png)
+Knock out guard (wait until looking **right**) and **get Mid-Potion**
+![](/images/speedruns/ct-rng-manip-100/guardskip2.png)
 Knock out guard (wait until looking **down**) and **get Mid-Potion**  
 Just attack if caught by any guard  
 

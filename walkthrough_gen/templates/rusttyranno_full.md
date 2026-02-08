@@ -131,7 +131,7 @@ Party (Frog / Ayla / Marle)
 **Pick Gloom Cape, Gloom Helm and Doom Scythe** from the chests (left to right)  
 **Pick Magic Capsule** (right side)
 
-![][image23]
+![](/images/speedruns/ct-rng-manip-100/ozzietreasure.png)
 
 Go back to world map
 
@@ -176,7 +176,7 @@ Go out and re enter room to fight again
 Go out then all the way left  
 Go right along the south wall then up-right
 
-![][image24]
+![](/images/speedruns/ct-rng-manip-100/giantsclaw.png)
 
 **Pick Blue Gemstone** then exit south  
 Go right, all the way down then exit left  
