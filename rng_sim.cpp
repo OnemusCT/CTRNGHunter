@@ -100,7 +100,8 @@ std::unordered_map<std::string, int> RNGSimImpl::get_extra_heals_per_encounter()
 
 void RNGSimImpl::roll_rng(int n, std::string_view type, LogLevel log_level) {
 	last_steps = n;
-	if (log_level == LogLevel::FULL) {
+	if (log_level ==
+	LogLevel::FULL) {
 		std::cout << "\t" << type << ": (";
 		for (int i = 0; i < n; i++) {
 			if (i != 0 && i%33 == 0) std::cout << std::endl << "\t\t";
@@ -259,16 +260,16 @@ bool RNGSimImpl::enable_extra_rooms(LogLevel) {
 	return true;
 }
 
-bool RNGSimImpl::enable_extra_heals(LogLevel log_level) {
+bool RNGSimImpl::enable_extra_heals(LogLevel) {
 	extra_heals_enabled_ = true;
 	extra_heals_count_ = 0;
 	return true;
 }
 
-bool RNGSimImpl::disable_extra_heals(LogLevel log_level) {
+bool RNGSimImpl::disable_extra_heals(LogLevel) {
 	extra_heals_enabled_ = false;
 	extra_heals_count_ = 0;
-	return true;	
+	return true;
 }
 
 std::unique_ptr<RNGSim> RNGSim::Create() {

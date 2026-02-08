@@ -312,7 +312,6 @@ std::vector<RNGSimFunc> RNGHunter::findSeedHelper(int sim_index, time_t seed, in
             std::stack<RNGSimFunc> extra_funcs;
             rng_sim_pool_[sim_index]->roll_back_last_rng();
             bool passed = false;
-            
             for (int rooms = 0; rooms <= curr_allowable_room_pairs; rooms++) {
                 if (rooms > 0) {
                     if (log_level == RNGSim::LogLevel::FULL) {
