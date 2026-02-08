@@ -8,6 +8,8 @@
 #include "rng_hunter.h"
 #include "msvc_rand_wrapper.h"
 
+// Prints the raw RNG output and battle RNG index for each of the first `num_output`
+// calls from the given seed.
 void print_rng_values(time_t seed, int  num_output) {
     MSVCRandWrapper rand = {};
     rand.srand(seed);
@@ -18,12 +20,18 @@ void print_rng_values(time_t seed, int  num_output) {
     }
 }
 
+// Prints whether each of the 256 RNG table entries would produce a critical hit
+// at the given crit chance threshold.
 void print_crit_values(int threshold) {
     for (int i = 0; i < 256; i++) {
         std::cout << std::format("0x{:02X} (0x{:02X}): {:5}", i, rng_table(i), crit_table(i, threshold)) << std::endl;
     }
 }
 
+// Simulates Chrono Trigger's battle turn-order initialization for player characters
+// and enemies.
+// Starting from RNG table index `rng`, walks the table assigning slots to `players`
+// characters and 8 enemy slots. Returns the RNG index after all 11 slots are assigned.
 int turn_order(int rng, int players = 3) {
     std::set<int> seen;
     int t = 10;
@@ -41,11 +49,13 @@ int turn_order(int rng, int players = 3) {
     return -1;
 }
 
+// Continues turn-order initialization for enemies. Starting from RNG table index `rng`,
+// walks the table until every enemy in `enemy_indices` has been assigned a slot.
+// Returns the RNG index after all enemies are placed.
 int enemy_order(int rng, const std::set<int>& enemy_indices) {
     std::set<int> seen;
     for (int i = rng; i != rng - 1; i++) {
         if (i == 256) i = 0;
-        //std::cout << std::format("i: {:02X} ({:02X})", i, rng_table(i));
         if (int index = rng_table(i) % 8;
             enemy_indices.contains(index)) {
             seen.insert(index);
@@ -57,6 +67,8 @@ int enemy_order(int rng, const std::set<int>& enemy_indices) {
     return -1;
 }
 
+// Prints a 16x16 table showing the post-initialization RNG index for every possible
+// starting RNG index (0x00-0xFF), given `players` party members and `enemies` slots.
 void print_init_table(int players = 3, const std::set<int>& enemies = {0}) {
     std::cout << std::format("RNG Post initialization for {} characters and {} enemies", players, enemies) << std::endl;
     std::cout << "\t";
@@ -75,6 +87,8 @@ void print_init_table(int players = 3, const std::set<int>& enemies = {0}) {
     }
 }
 
+// Prints the full turn processing order for a battle starting at RNG index `rng`,
+// with `players` party members and `enemies` enemy count. Active entities are bolded.
 void print_init_order(int rng, int players, int enemies) {
     std::set<int> exist;
     std::vector<int> order;

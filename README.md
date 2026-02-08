@@ -98,18 +98,21 @@ TimeZones.UTC, 14, 11, 2023, 21, 20, 52
 
 ## Complex Commands
 
-Complex commands take an input file that specifies the number of RNG affecting actions occur. 
+Complex commands take an input file that specifies the number of RNG affecting actions occur.
 
 The possible actions are:
 ```
 new_game
 load
-room
-portal
-heal
+room [count]
+portal / eot / special_room
+heal [count]
 battle
 battle_with_crits
 battle_with_rng
+import
+enable_extra_rooms / disable_extra_rooms
+enable_extra_heals / disable_extra_heals
 ```
 
 NOTE: Comments can be included using # to begin a comment, for example `battle # dragon tank` could be used to indicate the dragon tank battle. Additionally, lines that begin with # are ignored as well
@@ -123,13 +126,23 @@ Basic actions are only for accounting for RNG rolls that happen naturally in the
 
 `load` accounts for the number of RNG rolls from loading a save file or bookmark
 
-`room` accounts for the number of RNG rolls from a room transition. 
+`room [count]` accounts for the number of RNG rolls from room transitions. Optionally takes a count parameter for the number of transitions (example: `room 3` for 3 room transitions). Defaults to 1.
 
-`portal` is currently only used for the initial portal transition from the fair to Truce Canyon at the beginning of the game. For some reason this uses a different number of RNG values compared to a normal porta.
+`portal` is currently only used for the initial portal transition from the fair to Truce Canyon at the beginning of the game. For some reason this uses a different number of RNG values compared to a normal room transition. `eot` and `special_room` are accepted as aliases.
 
 `battle` accounts for the RNG roll to initialize a battle, but when searching for seeds no specific RNG value is searched for
 
-`heal` accounts for the RNG rolls used to heal using a Tech outside of battle. Optionally takes a parameter to indicate the number of heals (example: `heal 5` if 5 heals are done)
+`heal [count]` accounts for the RNG rolls used to heal using a Tech outside of battle. Optionally takes a parameter to indicate the number of heals (example: `heal 5` if 5 heals are done). Defaults to 1.
+
+`import <filename>` includes the contents of another input file at the current position. The path is resolved relative to the importing file's directory (example: `import sections/zombor.txt`).
+
+### State Actions
+
+State actions toggle behavior for the seed search. They don't consume RNG themselves but affect how extra manipulations are applied.
+
+`enable_extra_rooms` / `disable_extra_rooms` controls whether extra room transitions can be inserted when the hunter tries to fix a failing action. Extra rooms are enabled by default.
+
+`enable_extra_heals` / `disable_extra_heals` controls whether extra heals can be inserted when the hunter tries to fix a failing action. Extra heals are disabled by default.
 
 ### Advanced Actions
 
@@ -147,9 +160,11 @@ For example, with a party of Frog, Crono, Robo, this parameter could be `23,10,1
 
 If speeds are not equal and eventually the turn order changes a longer string of thresholds can be provided to account for this, for example, `23,10,10,23,10,10,23,10,23` for a fight where Frog has a higher speed than Crono and Robo and gets an additional turn.
 
-The second parameter is the minimum number of crits to search for. 
+The second parameter is the minimum number of crits to search for.
 
 The third parameter is the number of attacks to consider. If the second and third parameters are `3 6` then a seed will be found that gets at least 3 crits in the first 6 attacks using the thresholds provided in the first parameter.
+
+An optional fourth parameter is the encounter name, used to identify this battle in walkthrough generation and logging output (example: `battle_with_crits 10,23,10 3 6 zombor`).
 
 NOTE: If multiple values are provided for the first parameter there must not be any additional spaces between numbers (for example, `10,23,10` not `10, 23, 10`)
 
@@ -157,14 +172,14 @@ NOTE: If multiple values are provided for the first parameter there must not be 
 
 `battle_with_rng` is used to find a battle that has a specific starting RNG value
 
-##### Parameter
+##### Parameters
 
-The only parameter is hex value of the specific RNG value to look for.
+The first parameter is the hex value of the specific RNG value to look for. If multiple RNG values are permitted then a comma-delimited list can be supplied.
 
-If multiple RNG values are permitted then a comma-delimited list can be supplied.
+An optional second parameter is the encounter name, used to identify this battle in walkthrough generation and logging output.
 
 Example:
-`battle_with_rng D,12,25,30,3B,4C,60,6E,81,8E,9C,A8,B8,DA,EB,C,E,10,21,23,1F,1E,27,28,29` would search for a seed that results in any of the given RNG values for this battle.
+`battle_with_rng D,12,25,30,3B,4C,60,6E,81,8E,9C,A8,B8,DA,EB,C,E,10,21,23,1F,1E,27,28,29 yakra` would search for a seed that results in any of the given RNG values for the "yakra" encounter.
 
 ### log_seed
 
@@ -177,6 +192,8 @@ Each logged action will include the RNG values rolled for that command, as well 
 `-f --filename` The filename of the file to log
 
 `-s --seed` The seed to use when logging
+
+`-v --verbose` Enable verbose logging (prints the raw RNG values for every action)
 
 #### Example
 
@@ -218,9 +235,17 @@ Finds seeds that match the requirements from the input file. Once a set of seeds
 
 `-e --end` The Unix time to stop looking for seeds
 
-`p --pool` The pool size for threads to use when looking for seeds.
+`-p --pool` The pool size for threads to use when looking for seeds.
 
 `-m --max_seeds` The maximum number of seeds to find (If the pool size is greater than 1 then this is a best effort value, additional seeds may be found before the additional threads are exited due to the batching done)
+
+`-v --verbose` Enable verbose logging for found seeds
+
+`--min_rooms` Minimum number of extra room transition pairs to allow (default: 0). The search iterates from min_rooms to max_rooms, stopping at the first level that produces results.
+
+`--max_rooms` Maximum number of extra room transition pairs to allow (default: 0, or the value of min_rooms)
+
+`--max_heals` Maximum number of extra heals to allow per failing action (default: 0)
 
 #### Example
 
@@ -303,7 +328,7 @@ Finds the number of extra RNG rolls needed for the final command in the input fi
 
 `-f --filename` The input file
 
-`m --max_rolls` The maximum number of additional RNG rolls to consider when extending the seed
+`-m --max_rolls` The maximum number of additional RNG rolls to consider when extending the seed
 
 #### Example
 
@@ -327,3 +352,49 @@ Rolls: 531, (16 rooms, 2 heals)
 Rolls: 598, (18 rooms, 3 heals)
 Rolls: 644, (18 rooms, 49 heals)
 ```
+
+### generate_walkthrough
+
+Replays the route for a given seed and generates a markdown walkthrough file. The walkthrough uses the encounter names defined in the input file (via `battle_with_rng` and `battle_with_crits`) along with the per-encounter data (extra rooms, extra heals, battle RNG values) to produce a step-by-step guide.
+
+#### Parameters
+
+`-f --filename` The input file defining the route
+
+`-s --seed` The seed to generate the walkthrough for
+
+`-o --out` The output file path to write the markdown walkthrough to
+
+#### Example
+
+```
+> rng_hunter generate_walkthrough -f input/full_walkthrough.txt -s 1637502967 -o walkthrough.md
+```
+
+### print_init_table
+
+Prints a 16x16 lookup table showing the post-initialization RNG table index for every possible starting RNG table index (0x00 through 0xFF). This is useful for determining what RNG state a battle will be in after turn-order initialization completes, given a party size and set of enemies.
+
+#### Parameters
+
+`-p --players` The number of player characters in the party (default: 3)
+
+`-e --enemies` The slot indices of the enemies in the fight (default: 0). Multiple indices can be provided for fights with multiple enemies.
+
+#### Example
+
+```
+> rng_hunter print_init_table -p 3 -e 0
+```
+
+### print_turn_order
+
+Prints the full turn processing order for a specific battle configuration. Shows the order in which player characters and enemies will act, with active entities (those actually present in the fight) displayed in bold.
+
+#### Parameters
+
+`-p --players` The number of player characters in the party
+
+`-e --enemies` The number of enemies in the fight
+
+`-r --rng` The RNG table index that the battle starts on (hex value)

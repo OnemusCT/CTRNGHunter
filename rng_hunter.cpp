@@ -15,12 +15,14 @@
 #include "rng_sim.h"
 #include "walkthrough_gen/walkthrough_gen.h"
 
+// How often (in seeds processed) each thread checks global progress and early-exit conditions.
 constexpr time_t CHECK_INTERVAL = 1000;
 
-// A thread safe class to track current statistics for RNG hunting
+// Thread-safe progress tracker for multi-threaded seed searching.
+// Aggregates per-thread counters and prints progress at 10% intervals.
 class HunterStatistics {
   public:
-    // total is the total number of seeds being processed. Used for calculating percentages.
+    // total - Total number of seeds to process (used for percentage calculation).
     explicit HunterStatistics(time_t total) :
         total_seeds_found_(0),
         seeds_processed_(0), total_(total), last_percentage_(0) {}
@@ -33,16 +35,17 @@ class HunterStatistics {
         return seeds_processed_;
     }
 
+    // Atomically adds to the found count and returns the new total.
     size_t add_seeds_found(size_t seeds) {
-        // fetch_add returns the value prior to the addition
         return total_seeds_found_.fetch_add(seeds) + seeds;
     }
 
+    // Atomically adds to the processed count and returns the new total.
     size_t add_seeds_processed(size_t seeds) {
-        // fetch_add returns the value prior to the addition
         return seeds_processed_.fetch_add(seeds) + seeds;
     }
 
+    // Prints progress if a new 10% milestone has been reached.
     void maybe_print_progress() {
         size_t processed = seeds_processed_.load();
         size_t current_percentage = (processed * 100) / total_;

@@ -5,6 +5,7 @@
 #include <sstream>
 #include <map>
 
+// UTC offsets for timezone identifiers used in CTManip timestamp strings.
 const std::map<std::string, time_t> tz_offsets = {
     {"TimeZones.ET",  -4 * 3600}, // UTC-4
     {"TimeZones.UTC", 0},
@@ -13,6 +14,7 @@ const std::map<std::string, time_t> tz_offsets = {
     {"TimeZones.CEST", 2 * 3600}  // UTC+2
 };
 
+// Cross-platform strptime replacement using std::get_time, since MSVC lacks strptime.
 char* strptime(const char* s,
     const char* f,
     tm* tm) {

@@ -2,9 +2,13 @@
 
 #include <utility>
 
+// MSVC LCG parameters: seed' = seed * a + c (mod 2^32)
 constexpr uint32_t kBaseA = 214013;
 constexpr uint32_t kBaseC = 2531011;
 
+// Computes the combined LCG parameters (a, c) for jumping `n` steps at once
+// using exponentiation by squaring. After computing, seed' = seed * a + c gives
+// the same result as applying the base LCG n times.
 std::pair<uint32_t, uint32_t> calcLCGParams(int n) {
     uint32_t cur_a = kBaseA;
     uint32_t cur_c = kBaseC;
@@ -60,6 +64,7 @@ int MSVCRandWrapper::rand(int n) {
     return static_cast<int>((seed_ >> 16) & 0x7FFF);
 }
 
+// Reverses one LCG step. The modular inverse of 214013 (mod 2^32) is 3115528533.
 void MSVCRandWrapper::unrand() {
 	seed_ = (seed_ - 2531011U) * 3115528533U;
 }
