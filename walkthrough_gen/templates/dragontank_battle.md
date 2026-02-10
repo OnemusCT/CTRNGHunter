@@ -1,4 +1,4 @@
-{% if rooms.dragontank > 0 %}Do {$ rooms.dragontank $} extra sets of room transitions prior to the Dragon Tank battle.
+{% if rooms.dragontank > 0 %}{{<color "red">}}Do {$ rooms.dragontank $} extra sets of room transitions prior to the Dragon Tank battle.{{</color>}}
 {% endif %}
 **Battle**
 {{<battlebox>}}Note: Two of Crono's attacks should be crits if on manip

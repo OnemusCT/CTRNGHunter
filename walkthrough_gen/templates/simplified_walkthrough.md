@@ -8,7 +8,7 @@ description = 'Simplified walkthrough of the manips for the CT 100% RNG Manip (P
 The format of these templates is catered towards onemus.net.
 If you aren't me I'm sorry.
 -->
-{% if rooms.cathedral-trash > 0 %}Do {$ rooms.cathedral-trash $} extra sets of room transitions prior to the battle with 3 Hench and 2 Gargoyles.
+{% if rooms.cathedral-trash > 0 %}{{<color "red">}}Do {$ rooms.cathedral-trash $} extra sets of room transitions prior to the battle with 3 Hench and 2 Gargoyles.{{</color>}}
 {% endif %}## Yakra
 {% include "yakra_heal" %}
 {% include "yakra_battle" %}

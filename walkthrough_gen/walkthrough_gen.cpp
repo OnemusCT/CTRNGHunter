@@ -33,11 +33,12 @@ void add_templates(inja::Environment& env) {
 	}
 }
 
-void generate_walkthrough(const std::unordered_map<std::string, int>& rng_map, const std::unordered_map<std::string, int>& rooms_map, const std::unordered_map<std::string, int>& heal_map, std::ostream& out) {
+void generate_walkthrough(time_t seed, const std::unordered_map<std::string, int>& rng_map, const std::unordered_map<std::string, int>& rooms_map, const std::unordered_map<std::string, int>& heal_map, std::ostream& out) {
 	inja::Environment env;
 	env.set_line_statement("$$"); // Change line statements so they don't conflict with markdown headers
 	env.set_expression("{$", "$}");
 	nlohmann::json data;
+	data["seed"] = seed;
 	for (const auto& [battle, rng] : rng_map) {
 		data["rng"][battle] = rng;
 	}
@@ -47,9 +48,10 @@ void generate_walkthrough(const std::unordered_map<std::string, int>& rng_map, c
 	for (const auto& [battle, heals] : heal_map) {
 		data["heals"][battle] = heals;
 	}
+	std::cout << data << std::endl;
 	try {
 		add_templates(env);
-		inja::Template walkthrough = env.parse(templates::simplified_walkthrough);
+		inja::Template walkthrough = env.parse(templates::full_walkthrough);
 		env.render_to(out, walkthrough, data);
 	}
 	catch (const std::exception& e) {

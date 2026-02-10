@@ -131,9 +131,13 @@ bool RNGHunter::parseFile(const std::string& filename) {
             }
         }
         else if (funcName == "battle") {
+            std::string battle_name;
+            if (iss >> battle_name && battle_name.starts_with("#")) {
+                battle_name = "";
+            }
             for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i](RNGSim::LogLevel log_level) {
-                    return rng_sim_pool_[i]->battle(log_level);
+                functions_[i].emplace_back([this, i, battle_name](RNGSim::LogLevel log_level) {
+                    return rng_sim_pool_[i]->battle(battle_name, log_level);
                 });
             }
         }
@@ -264,7 +268,7 @@ void RNGHunter::logSeed(time_t seed, RNGSim::LogLevel log_level) {
 void RNGHunter::generateWalkthrough(time_t seed, std::ostream& out) {
     std::cout << "Seed: " << seed_to_string(seed) << " (" << seed << ")" << std::endl;
     findSeedHelper(0, seed, 32, INT_MAX - 1, RNGSim::LogLevel::NONE);
-    generate_walkthrough(rng_sim_pool_[0]->get_battle_rng_per_encounter(), rng_sim_pool_[0]->get_extra_rooms_per_encounter(), rng_sim_pool_[0]->get_extra_heals_per_encounter(), out);
+    generate_walkthrough(seed, rng_sim_pool_[0]->get_battle_rng_per_encounter(), rng_sim_pool_[0]->get_extra_rooms_per_encounter(), rng_sim_pool_[0]->get_extra_heals_per_encounter(), out);
 }
 
 void RNGHunter::extendSeed(time_t seed, int max_rolls) {
@@ -393,7 +397,6 @@ std::unordered_map<time_t, std::vector<RNGSimFunc>> RNGHunter::findSeeds(time_t 
     size_t num_threads = rng_sim_pool_.size();
     std::vector<std::thread> threads;
     std::vector<std::unordered_map<time_t, std::vector<RNGSimFunc>>> thread_results(num_threads);
-    std::mutex print_mutex;
 
     time_t total = end - start + 1;
     HunterStatistics statistics(total);

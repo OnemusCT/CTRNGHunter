@@ -41,7 +41,7 @@ class RNGSim {
 	virtual bool extra_rooms(LogLevel log_level) = 0;
 
 	// Simulates a battle encounter (advances RNG by 1 step), computing the battle RNG value.
-	virtual bool battle(LogLevel log_level) = 0;
+	virtual bool battle(std::string_view name, LogLevel log_level) = 0;
 
 	// Simulates a battle and checks if the resulting RNG value matches any value in `rng_vals`.
 	// On match, records the encounter data under `name`. Returns true if a match is found.

@@ -9,6 +9,8 @@ toc = true
 The format of these templates is catered towards onemus.net.
 If you aren't me I'm sorry.
 -->
+Seed: {$ seed $}
+
 ## General Info
 
 **Auto Battle**

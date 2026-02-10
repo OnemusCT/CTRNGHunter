@@ -6,7 +6,8 @@
 battle # skeletons
 # focus on getting crits on Frog, any crits from Robo or Crono are bonus
 enable_extra_heals
-battle_with_crits 23,10,10,23,10,10,23,10,23 4 9 slash-1
+#battle_with_crits 23,10,10,23,10,10,23,10,23 4 9 slash-1
+battle
 disable_extra_heals
 disable_extra_rooms
 battle_with_crits 23,10,23,10,10,23 3 6 slash-2
