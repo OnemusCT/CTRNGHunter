@@ -1,7 +1,9 @@
 load
 import sections/dragontank.txt
-#import sections/guardian.txt
-#import sections/rseries.txt
-#import sections/heckran.txt
-#import sections/zombor.txt
-#import sections/masamune.txt
+import sections/guardian.txt
+import sections/rseries.txt
+import sections/heckran.txt
+import sections/zombor.txt
+import sections/masamune.txt
+import sections/nizbel.txt
+import sections/flea.txt

@@ -1,4 +1,4 @@
-{% if rooms.twins > 0 %}Do {$ rooms.twins $} extra sets of room transitions prior to the Masamune Twins battle.
+{% if rooms.twins > 0 %}{{<color "red">}}Do {$ rooms.twins $} extra sets of room transitions prior to the Masamune Twins battle.{{</color>}}
 {% endif %}
 **Masa and Mune**
 {{<battlebox>}}Note: All attacks on Right twin

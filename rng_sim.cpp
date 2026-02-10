@@ -31,7 +31,7 @@ public:
 
 	bool extra_rooms(LogLevel log_level) override;
 
-	bool battle(LogLevel log_level) override;
+	bool battle(std::string_view name, LogLevel log_level) override;
 
 	bool battle_with_rng(std::vector<int> rng_vals, std::string_view name, LogLevel log_level) override;
 
@@ -154,12 +154,12 @@ bool RNGSimImpl::portal(LogLevel log_level) {
 	return true;
 }
 
-bool RNGSimImpl::battle(LogLevel log_level) {
+bool RNGSimImpl::battle(std::string_view name, LogLevel log_level) {
 	last_steps = 1;
 	int r = rng_.rand();
 	int val = (r % 0xFF) + 1;
 	last_battle_rng_ = val;
-	if (log_level == LogLevel::FULL) std::cout << std::format("\tbattle: {:02X} ({:04X})", val, r) << std::endl;
+	if (log_level == LogLevel::FULL) std::cout << std::format("\tbattle: {} {:02X} ({:04X})", name, val, r) << std::endl;
 	return true;
 }
 

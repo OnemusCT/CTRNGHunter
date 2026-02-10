@@ -108,7 +108,7 @@ Go to next room and clockwise
 * At top, stay down whole time (won't get encounter if on right cycle)  
 * Push right skull, go down avoiding bat (Diablos have no hitbox)
 
-{% if rooms.cathedral-trash > 0 -%}Do {$ rooms.cathedral-trash $} extra sets of room transitions prior to the battle with 3 Underlings and 2 Diablos.{% endif -%}
+{% if rooms.cathedral-trash > 0 -%}{{<color "red">}}Do {$ rooms.cathedral-trash $} extra sets of room transitions prior to the battle with 3 Underlings and 2 Diablos.{{</color>}}{% endif %}
 
 **Underling x3, Diablo x2**
 {{<battlebox>}}Crono and Frog Attack Diablos

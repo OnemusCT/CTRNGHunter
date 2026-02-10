@@ -3,7 +3,7 @@
 ####		   Guardian			####
 ####							####
 ####################################
-battle # guardian
+battle guardian
 # storage, guardian, rat, switch, rats, robots, control, cutscene x2, robots, rats, switch, arris
 # johnny 1, johnny 2, proto
 room 16
