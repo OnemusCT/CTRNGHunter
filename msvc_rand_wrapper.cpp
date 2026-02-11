@@ -32,14 +32,11 @@ std::pair<uint32_t, uint32_t> calcLCGParams(int n) {
 MSVCRandWrapper::MSVCRandWrapper() : seed_(0) {
     // Precompute up to 20 room transitions
     for (int i = 2; i <= 20; i++) {
-        uint32_t a,c;
-        std::tie(a,c) = calcLCGParams(i);
-        a_.insert({i, a});
-        c_.insert({i, c});
+        lcg_params_.emplace(i, calcLCGParams(i));
     }
 }
 
-void MSVCRandWrapper::srand(time_t seed) {
+void MSVCRandWrapper::srand(uint32_t seed) {
 	seed_ = seed;
 }
 
@@ -48,18 +45,11 @@ int MSVCRandWrapper::rand(int n) {
 	    seed_ = (seed_ * kBaseA) + kBaseC;
 	    return static_cast<int>((seed_ >> 16) & 0x7FFF);
     }
-    uint32_t a;
-    uint32_t c;
-    auto it = a_.find(n);
-    if (it == a_.end()) {
-        std::tie(a,c) = calcLCGParams(n);
-        a_.insert({n, a});
-        c_.insert({n, c});
+    auto it = lcg_params_.find(n);
+    if (it == lcg_params_.end()) {
+        it = lcg_params_.emplace(n, calcLCGParams(n)).first;
     }
-    else {
-        a = it->second;
-        c = c_.find(n)->second;
-    }
+    auto [a, c] = it->second;
     seed_ = (seed_ * a) + c;
     return static_cast<int>((seed_ >> 16) & 0x7FFF);
 }
@@ -68,4 +58,3 @@ int MSVCRandWrapper::rand(int n) {
 void MSVCRandWrapper::unrand() {
 	seed_ = (seed_ - 2531011U) * 3115528533U;
 }
-

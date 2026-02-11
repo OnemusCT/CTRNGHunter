@@ -1,7 +1,9 @@
 #pragma once
 
-#include <vector>
+#include <cstdint>
+#include <ctime>
 #include <unordered_map>
+#include <utility>
 
 /**
  * Wraps the MSVC C runtime linear congruential generator (LCG) with parameters
@@ -14,7 +16,7 @@ class MSVCRandWrapper {
 	MSVCRandWrapper();
 
 	// Seeds the generator with the given value (typically a Unix timestamp).
-	void srand(time_t seed);
+	void srand(uint32_t seed);
 
 	// Advances the LCG state by `n` steps and returns the output of the final step.
 	// Output is (seed >> 16) & 0x7FFF, matching MSVC's rand() behavior.
@@ -23,10 +25,8 @@ class MSVCRandWrapper {
 	// Reverses the LCG by one step, restoring the state prior to the last rand(1) call.
 	void unrand();
   private:
-	time_t seed_;
+	uint32_t seed_;
 
-	// Precomputed LCG parameters for multi-step jumps: seed' = seed * a_[n] + c_[n]
-	std::unordered_map<int, uint32_t> a_;
-	std::unordered_map<int, uint32_t> c_;
+	// Precomputed LCG parameters for multi-step jumps: seed' = seed * a + c
+	std::unordered_map<int, std::pair<uint32_t, uint32_t>> lcg_params_;
 };
-

@@ -1,6 +1,7 @@
-#include <iostream>
-#include <vector>
 #include <format>
+#include <iostream>
+#include <print>
+#include <vector>
 
 #include "CLI11.hpp"
 #include "rng_table.h"
@@ -16,7 +17,7 @@ void print_rng_values(time_t seed, int  num_output) {
     for (int i = 0; i < num_output; i++) {
         int r = rand.rand();
         int rng_index = (r % 0xFF) + 1;
-        std::cout << std::format("{:4}: 0x{:04X}, 0x{:02X}\n", i, r, rng_index);
+        std::print("{:4}: 0x{:04X}, 0x{:02X}\n", i, r, rng_index);
     }
 }
 
@@ -24,7 +25,7 @@ void print_rng_values(time_t seed, int  num_output) {
 // at the given crit chance threshold.
 void print_crit_values(int threshold) {
     for (int i = 0; i < 256; i++) {
-        std::cout << std::format("0x{:02X} (0x{:02X}): {:5}", i, rng_table(i), crit_table(i, threshold)) << std::endl;
+        std::println("0x{:02X} (0x{:02X}): {:5}", i, rng_table(i), crit_table(i, threshold));
     }
 }
 
@@ -40,10 +41,10 @@ int turn_order(int rng, int players = 3) {
     }
     for (int i = rng; i != rng - 1; i++) {
         if (i == 256) i = 0;
-        //std::cout << std::format("i: {:02X} ({:02X})", i, rng_table(i));
+        //std::print("i: {:02X} ({:02X})", i, rng_table(i));
         seen.insert(rng_table(i) % 11);
         if (seen.size() == 11) {
-            return i + 1 % 256;
+            return (i + 1) % 256;
         }
     }
     return -1;
@@ -61,7 +62,7 @@ int enemy_order(int rng, const std::set<int>& enemy_indices) {
             seen.insert(index);
         }
         if (seen.size() == enemy_indices.size()) {
-            return i + 1 % 256;
+            return (i + 1) % 256;
         }
     }
     return -1;
@@ -70,20 +71,20 @@ int enemy_order(int rng, const std::set<int>& enemy_indices) {
 // Prints a 16x16 table showing the post-initialization RNG index for every possible
 // starting RNG index (0x00-0xFF), given `players` party members and `enemies` slots.
 void print_init_table(int players = 3, const std::set<int>& enemies = {0}) {
-    std::cout << std::format("RNG Post initialization for {} characters and {} enemies", players, enemies) << std::endl;
-    std::cout << "\t";
+    std::println("RNG Post initialization for {} characters and {} enemies", players, enemies);
+    std::print("\t");
     for (int i = 0; i < 16; i++) {
-        std::cout << std::format("x{:1X}\t", i);
+        std::print("x{:1X}\t", i);
     }
-    std::cout << std::endl;
+    std::print("\n");
     for (int i = 0; i < 256; i++) {
         if (i % 16 == 0) {
-            std::cout << std::format("{:1X}x", i/16) << "\t";
+            std::print("{:1X}x\t", i/16);
         }
         int temp = turn_order(i, players);
         int rng = enemy_order(temp, enemies);
-        std::cout << std::format("{:02X}\t", rng);
-        if (i % 16 == 15) std::cout << std::endl;
+        std::print("{:02X}\t", rng);
+        if (i % 16 == 15) std::print("\n");
     }
 }
 
@@ -114,16 +115,16 @@ void print_init_order(int rng, int players, int enemies) {
         }
         ++rng;
     }
-    std::cout << "[ ";
+    std::print("[ ");
     for (int e : order) {
         if (exist.contains(e)) {
-            std::cout << std::format("**0x{:1X}** ", e);
+            std::print("**0x{:1X}** ", e);
         }
         else {
-            std::cout << std::format("0x{:1X} ", e);
+            std::print("0x{:1X} ", e);
         }
     }
-    std::cout << "]" << std::endl;
+    std::println("]");
 }
 
 int main(int argc, char* argv[]) {
@@ -151,7 +152,7 @@ int main(int argc, char* argv[]) {
     std::string timestamp;
     convert_to_seed->add_option("-t,--timestamp", timestamp, "The timestamp to convert")->required();
     convert_to_seed->callback([&] {
-        std::cout << string_to_seed(timestamp) << std::endl;
+        std::println("{}", string_to_seed(timestamp));
     });
 
     CLI::App* find_seeds = app.add_subcommand("find_seeds", "Finds seeds that match the requirements from the input file.");
@@ -177,7 +178,7 @@ int main(int argc, char* argv[]) {
         if(max_rooms < min_rooms) max_rooms = min_rooms;
         RNGHunter hunter(max_seeds, pool);
         if (!hunter.parseFile(filename)) {
-            std::cerr << "Unable to load file" << std::endl;
+            std::println(stderr, "Unable to load file");
             return;
         }
         //hunter.addDebugSeed(1097631540);
@@ -192,8 +193,8 @@ int main(int argc, char* argv[]) {
                 }
             }
         }
-        catch (std::exception& e) {
-            std::cerr << e.what() << std::endl;
+        catch (const std::exception& e) {
+            std::println("{}", e.what());
         }
     });
 
@@ -204,7 +205,7 @@ int main(int argc, char* argv[]) {
     log_seed->callback([&] {
         RNGHunter hunter(1);
         if (!hunter.parseFile(filename)) {
-            std::cerr << "Unable to load file" << std::endl;
+            std::println(stderr, "Unable to load file");
         }
         hunter.logSeed(seed, verbose ? RNGSim::LogLevel::FULL : RNGSim::LogLevel::PARTIAL);
     });
@@ -217,11 +218,11 @@ int main(int argc, char* argv[]) {
     generate_walkthrough->callback([&] {
         RNGHunter hunter(1);
         if (!hunter.parseFile(filename)) {
-            std::cerr << "Unable to load file" << std::endl;
+            std::println(stderr, "Unable to load file");
         }
         std::ofstream out_file(out);
         if (!out_file) {
-            std::cerr << "Error opening file " << out << std::endl;
+            std::println(stderr, "Error opening file {}", out);
         } else {
             hunter.generateWalkthrough(seed, out_file);
             out_file.close();
@@ -231,7 +232,7 @@ int main(int argc, char* argv[]) {
     CLI::App* convert_to_timestamp = app.add_subcommand("convert_to_timestamp", "Converts a seed to a CTManip timestamp");
     convert_to_timestamp->add_option("-s,--seed", seed, "The seed to convert")->required();
     convert_to_timestamp->callback([&] {
-        std::cout << seed_to_string(seed) << std::endl;
+        std::println("{}", seed_to_string(seed));
     });
 
     int max_rolls = 660;
@@ -242,7 +243,7 @@ int main(int argc, char* argv[]) {
     extend_seed->callback([&] {
         RNGHunter hunter(1);
         if (!hunter.parseFile(filename)) {
-            std::cerr << "Unable to load file" << std::endl;
+            std::println(stderr, "Unable to load file");
         }
         hunter.extendSeed(seed, max_rolls);
     });
@@ -268,7 +269,7 @@ int main(int argc, char* argv[]) {
             rng_val = std::stoi(rng, nullptr, 16);
         }
         catch (const std::exception&) {
-            std::cerr << "Invalid rng value, must be a hex value: " << rng << std::endl;
+            std::println(stderr, "Invalid rng value {}, must be a hex value", rng);
             return;
         }
         print_init_order(rng_val, players, enemies);
@@ -276,7 +277,7 @@ int main(int argc, char* argv[]) {
 
     CLI11_PARSE(app, argc, argv);
     if (argc == 1) {
-        std::cout << app.help() << std::endl;
+        std::println("{}", app.help());
     }
     return 0;
 }

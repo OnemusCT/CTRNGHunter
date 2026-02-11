@@ -10,6 +10,7 @@
 #include <mutex>
 #include <stack>
 #include <climits>
+#include <print>
 
 #include "seed_parser.h"
 #include "rng_sim.h"
@@ -55,8 +56,7 @@ class HunterStatistics {
             std::lock_guard lock(print_mutex_);
             if (current_percentage > last_percentage_) {
                 last_percentage_ = current_percentage;
-                std::cout << current_percentage << "% - " << total_seeds_found_.load()
-                    << " seeds found" << std::endl;
+                std::println("{}% - {} seeds found", current_percentage, total_seeds_found_.load());
             }
         }
     }
@@ -75,14 +75,14 @@ void RNGHunter::addDebugSeed(time_t seed) {
 }
 
 bool RNGHunter::parseFile(const std::string& filename) {
-    std::cout << "Loading input file: " << filename << std::endl;
+    std::println("Loading input file: {}", filename);
     if (!std::filesystem::exists(filename)) {
-        std::cerr << "Error: File not found at path: " << filename << std::endl;
+        std::println(stderr, "Error: File not found at path: {}", filename);
         return false;
     }
     std::ifstream file(filename);
     if (!file.is_open()) {
-        std::cerr << "Error opening file: " << filename << std::endl;
+        std::println(stderr, "Error opening file: {}", filename);
         return false;
     }
     std::string line;
@@ -111,12 +111,12 @@ bool RNGHunter::parseFile(const std::string& filename) {
                 std::filesystem::path importPath = currentPath.parent_path() / importRaw;
 
                 if (!parseFile(importPath.string())) {
-                    std::cerr << "Error: Failed to import file: " << importPath << std::endl;
+                    std::println(stderr, "Error: Failed to import file: {}", importPath.string());
                     return false;
                 }
             }
             else {
-                std::cerr << "Error: 'import' command requires a filename argument." << std::endl;
+                std::println(stderr, "Error: 'import' command requires a filename argument.");
                 return false;
             }
         }
@@ -169,7 +169,7 @@ bool RNGHunter::parseFile(const std::string& filename) {
             std::string rng_str;
 
             if (!(iss >> rng_str)) {
-                std::cerr << "Error: battle_with_rng requires at least 1 parameter" << std::endl;
+                std::println(stderr, "Error: battle_with_rng requires at least 1 parameter");
                 return false;
             }
             std::string battle_name;
@@ -184,7 +184,7 @@ bool RNGHunter::parseFile(const std::string& filename) {
                     rng_vals.push_back(std::stoi(rng_token, nullptr, 16));
                 }
                 catch (const std::exception&) {
-                    std::cerr << "Error: Invalid rng value: " << rng_token << std::endl;
+                    std::println(stderr, "Error: Invalid rng value: {}", rng_token);
                     return false;
                 }
             }
@@ -198,7 +198,7 @@ bool RNGHunter::parseFile(const std::string& filename) {
             std::string thresholds_str;
             int min_crits, max_turns;
             if (!(iss >> thresholds_str >> min_crits >> max_turns)) {
-                std::cerr << "Error: battle_with_crits requires 3 parameters (thresholds min_crits max_turns)" << std::endl;
+                std::println(stderr, "Error: battle_with_crits requires 3 parameters (thresholds min_crits max_turns)");
                 return false;
             }
             std::string battle_name;
@@ -213,7 +213,7 @@ bool RNGHunter::parseFile(const std::string& filename) {
                     thresholds.push_back(std::stoi(thresh_token));
                 }
                 catch (const std::exception&) {
-                    std::cerr << "Error: Invalid threshold value: " << thresh_token << std::endl;
+                    std::println(stderr, "Error: Invalid threshold value: {}", thresh_token);
                     return false;
                 }
             }
@@ -252,7 +252,7 @@ bool RNGHunter::parseFile(const std::string& filename) {
             }
         }
         else {
-            std::cerr << "Unknown function: " << funcName << std::endl;
+            std::println(stderr, "Unknown function: {}", funcName);
             return false;
         }
     }
@@ -266,7 +266,7 @@ void RNGHunter::logSeed(time_t seed, RNGSim::LogLevel log_level) {
 }
 
 void RNGHunter::generateWalkthrough(time_t seed, std::ostream& out) {
-    std::cout << "Seed: " << seed_to_string(seed) << " (" << seed << ")" << std::endl;
+    std::println("Seed: {} ({})", seed_to_string(seed), seed);
     findSeedHelper(0, seed, 32, INT_MAX - 1, RNGSim::LogLevel::NONE);
     generate_walkthrough(seed, rng_sim_pool_[0]->get_battle_rng_per_encounter(), rng_sim_pool_[0]->get_extra_rooms_per_encounter(), rng_sim_pool_[0]->get_extra_heals_per_encounter(), out);
 }
@@ -279,7 +279,7 @@ void RNGHunter::extendSeed(time_t seed, int max_rolls) {
     auto func = functions_[0][functions_[0].size()-1];
     for(int i = 0; i < max_rolls; i++) {
         if (func(RNGSim::LogLevel::NONE)) {
-            std::cout << std::format("Rolls: {}, ({} rooms, {} heals)", i+1, (i/66)*2, i%66) << std::endl;
+            std::println("Rolls: {}, ({} rooms, {} heals)", i+1, (i/66)*2, i%66);
         }
     }
 }
@@ -289,11 +289,11 @@ void RNGHunter::logSeedFromFunctions(time_t seed, const std::vector<RNGSimFunc>&
     for (const auto & sim : rng_sim_pool_) {
         sim->init(seed);
     }
-    std::cout << "Seed: " << seed_to_string(seed) << " (" << seed << ")" << std::endl;
+    std::println("Seed: {} ({})", seed_to_string(seed), seed);
     for (const auto& func : functions) {
         std::ignore = func(log_level);
     }
-    std::cout << std::endl << std::endl;
+    std::print("\n\n");
 }
 
 void RNGHunter::clear() {
@@ -314,7 +314,7 @@ std::vector<RNGSimFunc> RNGHunter::findSeedHelper(int sim_index, time_t seed, in
                 break;
             }
             if (log_level == RNGSim::LogLevel::FULL) {
-                std::cout << "Trying to extend" << std::endl;
+                std::println("Trying to extend");
             }
             std::stack<RNGSimFunc> extra_funcs;
             rng_sim_pool_[sim_index]->roll_back_last_rng();
@@ -322,7 +322,7 @@ std::vector<RNGSimFunc> RNGHunter::findSeedHelper(int sim_index, time_t seed, in
             for (int rooms = 0; rooms <= curr_allowable_room_pairs; rooms++) {
                 if (rooms > 0) {
                     if (log_level == RNGSim::LogLevel::FULL) {
-                        std::cout << "Adding " << (rooms * 2) << " rooms" << std::endl;
+                        std::println("Adding {} rooms", (rooms * 2));
                     }
                     std::function extra_rooms_func = [this, sim_index](RNGSim::LogLevel log_level) {
                         return rng_sim_pool_[sim_index]->extra_rooms(log_level);
@@ -337,7 +337,7 @@ std::vector<RNGSimFunc> RNGHunter::findSeedHelper(int sim_index, time_t seed, in
                 for (int heals = 0; heals <= allowable_heals; heals++) {
                     if (heals > 0) {
                         if (log_level == RNGSim::LogLevel::FULL) {
-                            std::cout << "Adding " << heals << " heals" << std::endl;
+                            std::println("Adding {} heals", heals);
                         }
                         std::function extra_heal_func = [this, sim_index](RNGSim::LogLevel log_level) {
                             return rng_sim_pool_[sim_index]->extra_heal(log_level);
@@ -347,7 +347,9 @@ std::vector<RNGSimFunc> RNGHunter::findSeedHelper(int sim_index, time_t seed, in
                         extra_heal_funcs.push(extra_heal_func);
                     }
                     if (func(log_level)) {
-                        if (log_level == RNGSim::LogLevel::FULL) { std::cout << "Found extension!" << std::endl; }
+                        if (log_level == RNGSim::LogLevel::FULL) {
+                            std::println("Found extension!");
+                        }
                         passed = true;
                         curr_allowable_room_pairs -= rooms;
                         //curr_allowable_heals -= heals;
@@ -364,7 +366,9 @@ std::vector<RNGSimFunc> RNGHunter::findSeedHelper(int sim_index, time_t seed, in
                     }
                     break;
                 }
-                if (log_level == RNGSim::LogLevel::FULL) { std::cout << "Rolling back to try again" << std::endl; }
+                if (log_level == RNGSim::LogLevel::FULL) {
+                    std::println("Rolling back to try again");
+                }
                 // rng_sim_pool_[sim_index]->roll_back_last_rng();
                 if(added_heals) {
                     rng_sim_pool_[sim_index]->roll_back_rng(allowable_heals);
@@ -393,7 +397,7 @@ std::vector<RNGSimFunc> RNGHunter::findSeedHelper(int sim_index, time_t seed, in
 
 std::unordered_map<time_t, std::vector<RNGSimFunc>> RNGHunter::findSeeds(time_t start, time_t end, int allowable_heals, int allowable_room_pairs, RNGSim::LogLevel log_level) {
     auto start_time = std::chrono::steady_clock::now();
-    std::cout << "Finding seeds between " << start << " and " << end << std::endl;
+    std::println("Finding seeds between {} and {}", start, end);
     size_t num_threads = rng_sim_pool_.size();
     std::vector<std::thread> threads;
     std::vector<std::unordered_map<time_t, std::vector<RNGSimFunc>>> thread_results(num_threads);
@@ -453,8 +457,10 @@ std::unordered_map<time_t, std::vector<RNGSimFunc>> RNGHunter::findSeeds(time_t 
     }
     std::cout << "Done! " << seeds.size() << " seeds found!" << std::endl;
 
+    std::println("Done! {} seeds found!", seeds.size());
+
     auto end_time = std::chrono::steady_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
-    std::cout << "Execution time: " << duration.count() << " ms" << std::endl;
+    std::println("Execution time: {} ms", duration.count());
     return seeds;
 }

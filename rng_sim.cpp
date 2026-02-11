@@ -1,7 +1,7 @@
 #include "rng_sim.h"
 
 #include <format>
-#include <iostream>
+#include <print>
 #include <string_view>
 
 #include "rng_table.h"
@@ -105,14 +105,13 @@ std::unordered_map<std::string, int> RNGSimImpl::get_extra_heals_per_encounter()
 
 void RNGSimImpl::roll_rng(int n, std::string_view type, LogLevel log_level) {
 	last_steps = n;
-	if (log_level ==
-	LogLevel::FULL) {
-		std::cout << "\t" << type << ": (";
+	if (log_level == LogLevel::FULL) {
+		std::print("\t{}: (", type);
 		for (int i = 0; i < n; i++) {
-			if (i != 0 && i%33 == 0) std::cout << std::endl << "\t\t";
-			std::cout << std::format("{:04X} ", rng_.rand());
+			if (i != 0 && i%33 == 0) std::print("\n\t\t");
+			std::print("{:04X} ", rng_.rand());
 		}
-		std::cout << ")" << std::endl;
+		std::println(")");
 	}
 	else {
 		rng_.rand(n);
@@ -140,7 +139,7 @@ bool RNGSimImpl::extra_rooms(LogLevel log_level) {
 	}
 	else if (log_level == LogLevel::PARTIAL) {
 		roll_rng(66, kExtraRooms, LogLevel::NONE);
-		std::cout << "\textra rooms" << std::endl;
+		std::println("\textra rooms");
 	}
 	else {
 		roll_rng(66, kExtraRooms, LogLevel::NONE);
@@ -159,7 +158,7 @@ bool RNGSimImpl::battle(std::string_view name, LogLevel log_level) {
 	int r = rng_.rand();
 	int val = (r % 0xFF) + 1;
 	last_battle_rng_ = val;
-	if (log_level == LogLevel::FULL) std::cout << std::format("\tbattle: {} {:02X} ({:04X})", name, val, r) << std::endl;
+	if (log_level == LogLevel::FULL) std::println("\tbattle: {} {:02X} ({:04X})", name, val, r);
 	return true;
 }
 
@@ -175,12 +174,12 @@ bool RNGSimImpl::battle_with_rng(std::vector<int> rng_vals, std::string_view nam
 			battle_rng_map_.insert({std::string(name), val});
 			extra_room_count_ = 0;
 			extra_heals_count_ = 0;
-			if (log_level >= LogLevel::PARTIAL) std::cout << std::format("\tbattle rng {}: {:02X} ({:04X})", name, rng_val, r) << std::endl;
+			if (log_level >= LogLevel::PARTIAL) std::println("\tbattle rng {}: {:02X} ({:04X})", name, rng_val, r);
 			return true;
 		}
 	}
 	last_battle_rng_ = val;
-	if (log_level >= LogLevel::PARTIAL) std::cout << std::format("\tbattle rng {}: {:02X} DOES NOT MATCH! ({:04X})", name, val, r) << std::endl;
+	if (log_level >= LogLevel::PARTIAL) std::println("\tbattle rng {}: {:02X} DOES NOT MATCH! ({:04X})", name, val, r);
 	return false;
 }
 
@@ -190,7 +189,7 @@ bool RNGSimImpl::battle_with_crits(std::vector<int> threshold, int min_crits, in
 	int r = rng_.rand();
 	int val = (r % 0xFF) + 1;
 	int initial_val = val;
-	unsigned long t_index = 0;
+	size_t t_index = 0;
 	for (int i = 0; i < max_turns; i++) {
 		if (crit_table(val, threshold[t_index])) {
 			++crits;
@@ -199,7 +198,7 @@ bool RNGSimImpl::battle_with_crits(std::vector<int> threshold, int min_crits, in
 		t_index = (t_index + 1) % threshold.size();
 	}
 	last_battle_rng_ = val;
-	if (log_level >= LogLevel::PARTIAL) std::cout << std::format("\tbattle crits {}: {} in {} turns from {:02X} ({:04X})", name, crits, max_turns, initial_val, r) << std::endl;
+	if (log_level >= LogLevel::PARTIAL) std::println("\tbattle crits {}: {} in {} turns from {:02X} ({:04X})", name, crits, max_turns, initial_val, r);
 	if (crits >= min_crits) {
 		extra_room_map_.insert({std::string(name), extra_room_count_ });
 		extra_heals_map_.insert({ std::string(name), extra_heals_count_ });
@@ -229,7 +228,7 @@ bool RNGSimImpl::extra_heal(LogLevel log_level) {
 		}
 		else if (log_level == LogLevel::PARTIAL) {
 			roll_rng(1, kExtraHeal, LogLevel::NONE);
-			std::cout << "\textra heal" << std::endl;
+			std::println("\textra heal");
 		}
 		else {
 			roll_rng(1, kExtraHeal, LogLevel::NONE);
