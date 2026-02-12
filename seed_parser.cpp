@@ -8,17 +8,17 @@
 
 // UTC offsets for timezone identifiers used in CTManip timestamp strings.
 const std::map<std::string, time_t> tz_offsets = {
-    {"TimeZones.ET",  -4 * 3600}, // UTC-4
+    {"TimeZones.ET", -4 * 3600}, // UTC-4
     {"TimeZones.UTC", 0},
-    {"TimeZones.JST", 9 * 3600},  // UTC+9
-    {"TimeZones.GMT", 0},          // UTC
-    {"TimeZones.CEST", 2 * 3600}  // UTC+2
+    {"TimeZones.JST", 9 * 3600}, // UTC+9
+    {"TimeZones.GMT", 0}, // UTC
+    {"TimeZones.CEST", 2 * 3600} // UTC+2
 };
 
 // Cross-platform strptime replacement using std::get_time, since MSVC lacks strptime.
 char* strptime(const char* s,
-    const char* f,
-    tm* tm) {
+               const char* f,
+               tm* tm) {
     std::istringstream input(s);
     input.imbue(std::locale(setlocale(LC_ALL, nullptr)));
     input >> std::get_time(tm, f);

@@ -37,13 +37,13 @@ MSVCRandWrapper::MSVCRandWrapper() : seed_(0) {
 }
 
 void MSVCRandWrapper::srand(uint32_t seed) {
-	seed_ = seed;
+    seed_ = seed;
 }
 
 int MSVCRandWrapper::rand(int n) {
     if (n == 1) {
-	    seed_ = (seed_ * kBaseA) + kBaseC;
-	    return static_cast<int>((seed_ >> 16) & 0x7FFF);
+        seed_ = (seed_ * kBaseA) + kBaseC;
+        return static_cast<int>((seed_ >> 16) & 0x7FFF);
     }
     auto it = lcg_params_.find(n);
     if (it == lcg_params_.end()) {
@@ -56,5 +56,5 @@ int MSVCRandWrapper::rand(int n) {
 
 // Reverses one LCG step. The modular inverse of 214013 (mod 2^32) is 3115528533.
 void MSVCRandWrapper::unrand() {
-	seed_ = (seed_ - 2531011U) * 3115528533U;
+    seed_ = (seed_ - 2531011U) * 3115528533U;
 }
