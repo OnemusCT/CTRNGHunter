@@ -1,0 +1,1 @@
+{{<battlebox>}}{$ guardian_battle $}{{</battlebox>}} 

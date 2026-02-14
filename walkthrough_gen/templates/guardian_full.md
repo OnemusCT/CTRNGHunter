@@ -13,28 +13,15 @@ Let rat steal Potion to avoid fight
 **Menu**  
 Equipment
 
-* Crono (**Silver Sword** / Hide Cap / Hide Tunic / Power Glove)  
-  * Silver Sword  
-* Marle (**Silver Bow** / Hide Cap / Hide Tunic / Ribbon)  
-  * Silver Bow
+* Crono (**Silver Sword** / Hide Cap / Hide Tunic / Power Glove)
+* Marle (**Silver Bow** / Hide Cap / Hide Tunic / Ribbon)
 
 Inventory
 
 * Shelter
 
-Settings
-
-* Battle Speed: 3
-
 **Guardian (1200/200/200 HP)**
-{{<battlebox>}}Crono and Marle Attack alternatively  
-Lucca Flamethrower  
-
-Pods dead  
-Auto-battle until "0"
-
-Pods revived  
-Kill them again and repeat{{</battlebox>}}
+{% include "guardian_battle" %}
 
 **Menu**  
 Inventory

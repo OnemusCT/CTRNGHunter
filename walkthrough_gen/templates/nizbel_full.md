@@ -1,8 +1,11 @@
 ## Nizbel
 
+Menu
+* Robo (Mirage Hand / Iron Helm / Titanium Vest / **Guardian Ring**)
+
 ### Tata's House
 
-Go to Tata's House (bottom house) and talk to him to **get the Hero's Badge**
+Go to Tata's House (bottom house) and talk to him to get the Hero's Badge
 
 ### Cursed Woods
 
@@ -92,15 +95,9 @@ Hold Up+Right, wait on narrow part until enemy starts to go down and proceed
 **Menu**  
 Equipment
 
-* Ayla (Fist / Stone Helm / **Padded Vest** / **Berserker Ring**)  
-  * Padded Vest  
-  * Berserker Ring (Down)  
-* Robo (Mirage Hand / Iron Helm / Titanium Vest / **Berserker Ring**)  
-  * Berserker Ring (Down x2)  
-* Crono (Crimson Blade / **Stone Helm** / **Ruby Vest** / **Silver Earring**)  
-  * Stone Helm  
-  * Ruby Vest  
-  * Silver Earring (Down)
+* Ayla (Fist / Stone Helm / **Padded Vest** / **Berserker Ring** (Down))  
+* Robo (Mirage Hand / Iron Helm / Titanium Vest / **Berserker Ring** (Down x2))  
+* Crono (Crimson Blade / **Stone Helm** / **Ruby Vest** / **Silver Earring** (Down))  
 
 Inventory
 

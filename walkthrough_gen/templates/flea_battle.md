@@ -12,6 +12,7 @@ Frog Attack (MP Buster){{</battlebox>}}
 **Flea (4120 HP)**
 {{<battlebox>}}
 {% if "flea" in rng and rng.flea in auto -%}
+Note: Robo and Crono should be full HP, Frog should be <210 HP but >100
 Auto-battle to end{% else if "flea" in rng and rng.flea in counter-potion -%}
 Auto-battle until counter
 Crono potion Crono

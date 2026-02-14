@@ -17,24 +17,26 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 # Library source files (everything except main.cpp)
 set(LIB_SOURCES
-    seed_parser.cpp
-    rng_table.cpp
-    rng_hunter.cpp
-    msvc_rand_wrapper.cpp
-    rng_sim.cpp
-    walkthrough_gen/walkthrough_gen.cpp)
+        seed_parser.cpp
+        rng_table.cpp
+        rng_hunter.cpp
+        msvc_rand_wrapper.cpp
+        rng_sim.cpp
+        walkthrough_gen/walkthrough_gen.cpp
+        guardian_sim.cpp)
 
 # Header files
 set(HEADERS
-    CLI11.hpp
-    msvc_rand_wrapper.h
-    rng_hunter.h
-    rng_sim.h
-    rng_table.h
-    seed_parser.h
-    nlohmann/json.hpp
-    inja/inja.hpp
-    walkthrough_gen/walkthrough_gen.h )
+        CLI11.hpp
+        msvc_rand_wrapper.h
+        rng_hunter.h
+        rng_sim.h
+        rng_table.h
+        seed_parser.h
+        nlohmann/json.hpp
+        inja/inja.hpp
+        walkthrough_gen/walkthrough_gen.h
+        guardian_sim.h)
 
 
 file(GLOB TEMPLATE_FILES

@@ -157,6 +157,9 @@ bool RNGSimImpl::battle(std::string_view name, LogLevel log_level) {
     last_steps = 1;
     int r = rng_.rand();
     int val = (r % 0xFF) + 1;
+    if (!name.empty()) {
+        battle_rng_map_.insert({std::string(name), val});
+    }
     last_battle_rng_ = val;
     if (log_level == LogLevel::FULL) std::println("\tbattle: {} {:02X} ({:04X})", name, val, r);
     return true;

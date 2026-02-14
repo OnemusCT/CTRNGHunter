@@ -5,7 +5,7 @@ Use Potions to heal before the battle.
 {% if heals.zombor < 3 and heals.zombor != 0 %}
 Use Potions for additional heals beyond the required {$ heals.zombor $}{% endif %}
 
-**Battle**
+**Zombor**
 {{<battlebox>}}Robo auto attacks butt for 80 if on manip
 Crono Cyclone
 Lucca Attack head

@@ -8,7 +8,6 @@ Name Crono
 **Menu**  
 Settings
 
-* Battle Speed: 3  
 * Battle Message Speed: 1  
 * Battle Cursor Memory: Full
 
@@ -24,8 +23,9 @@ Back to fountain and talk to the purple tent vendor
 **Shop**  
 Buy
 
-* Potion x11  
-* Shelter x3
+* Shelter x2
+* Athenian Water x1
+* Potion Max
 
 Go all the way north, wait on candy scene  
 Talk to Lucca then to Marle (don't test the telepod)  
@@ -66,14 +66,11 @@ Back to forest
 **Menu**  
 Equipment
 
-* Crono (Wooden Sword / Hide Cap / Hide Tunic / **Power Glove**)  
-  * Power Glove  
-* Lucca (Airgun / Hide Cap / Padded Vest / **Headband**)  
-  * Headband
+* Crono (Wooden Sword / Hide Cap / Hide Tunic / **Power Glove**)
+* Lucca (Airgun / Hide Cap / Padded Vest / **Headband**)
 
 Inventory
 
-* Potion <-> Shelter (Right)  
 * Strength Capsule (Left+Down) -> Crono
 
 **Roundillo Rider x2**
@@ -84,11 +81,6 @@ Inventory
 
 ### Cathedral
 
-**Menu**  
-Inventory
-
-* Shelter
-
 **Naga x4**
 {{<battlebox>}}Crono Fire Whirl 3
 Lucca Flamethrower last{{</battlebox>}}
@@ -98,17 +90,17 @@ Play the organ and go to next room
 
 **Pick**
 
-* Athenian Water (right chest, optional \- just hold left if won't pick)  
+* Athenian Water (right chest)  
 * Steel Saber (top left chest)  
 * Strength Capsule (top left room)
 
 Go to next room and clockwise
 
+{% if rooms.cathedral-trash > 0 -%}{{<color "red">}}Do {$ rooms.cathedral-trash $} extra sets of room transitions prior to the battle with 3 Underlings and 2 Diablos.{{</color>}}{% endif %}
+
 * Ignore left skull (just hold up if didn't waste any movement)  
 * At top, stay down whole time (won't get encounter if on right cycle)  
 * Push right skull, go down avoiding bat (Diablos have no hitbox)
-
-{% if rooms.cathedral-trash > 0 -%}{{<color "red">}}Do {$ rooms.cathedral-trash $} extra sets of room transitions prior to the battle with 3 Underlings and 2 Diablos.{{</color>}}{% endif %}
 
 **Underling x3, Diablo x2**
 {{<battlebox>}}Crono and Frog Attack Diablos
@@ -121,15 +113,12 @@ Play the organ and go to the next room (don't fall on center of stairs, stay rig
 **Menu**  
 Equipment
 
-* Crono (**Steel Saber** / Hide Cap / Hide Tunic / Power Glove)  
-  * Steel Saber  
-* Frog (**Iron Sword** / Bronze Helm / Bronze Armor / Power Glove)  
-  * Iron Sword
+* Crono (**Steel Saber** / Hide Cap / Hide Tunic / Power Glove)
+* Frog (**Iron Sword** / Bronze Helm / Bronze Armor / Power Glove)
 
 Inventory
 
-* Strength Capsule -> Crono  
-* Ether -> Crono
+* Strength Capsule -> Crono
 
 {% include "yakra_heal" %}
 

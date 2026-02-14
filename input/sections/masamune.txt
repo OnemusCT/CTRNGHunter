@@ -18,7 +18,7 @@ battle # reptites
 battle
 room # mountain path
 battle
-room 8 # ayla hut, party, party day
+room 3 # ayla hut, party, party day
 portal # ayla's hut
 room 4 # maze, lair 1, lair 2, lair 3
 battle
