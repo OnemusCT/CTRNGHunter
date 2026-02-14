@@ -13,7 +13,7 @@ disable_extra_rooms
 #battle_with_crits 23,10,23,10,10,23 3 6 slash-2
 battle_with_rng 4A slash-2
 enable_extra_rooms
-room 2 # slash 1, entry hallway
+room 3 # slash 1, entry, hallway
 battle
 battle
 battle
@@ -23,6 +23,9 @@ battle
 battle
 battle
 room 2 # hallway 2, ozzie
-battle # ozzie
+battle # ozzie 1
+battle # ozzie 2
+battle # ozzie 3
+battle # ozzie 4
 room 2 # stairs, magus
 
