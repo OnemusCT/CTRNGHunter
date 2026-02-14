@@ -7,6 +7,7 @@
 #include <unordered_map>
 
 #include "templates.h"
+#include "../guardian_sim.h"
 
 void add_templates(inja::Environment& env) {
     int tries = 0;
@@ -41,6 +42,9 @@ void generate_walkthrough(time_t seed, const std::unordered_map<std::string, int
     data["seed"] = seed;
     for (const auto& [battle, rng]: rng_map) {
         data["rng"][battle] = rng;
+        if (battle == "guardian") {
+            data["guardian_battle"] = sim_guardian(rng);
+        }
     }
     for (const auto& [battle, rooms]: rooms_map) {
         data["rooms"][battle] = rooms;
@@ -48,6 +52,7 @@ void generate_walkthrough(time_t seed, const std::unordered_map<std::string, int
     for (const auto& [battle, heals]: heal_map) {
         data["heals"][battle] = heals;
     }
+
     std::cout << data << std::endl;
     try {
         add_templates(env);

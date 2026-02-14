@@ -30,8 +30,6 @@ Buy
 Equip
 
 * Crono (**Crimson Blade** / Hide Cap / **Titanium Vest** / Power Glove)  
-  * Crimson Blade  
-  * Titanium Vest
 
 **Menu**  
 Settings

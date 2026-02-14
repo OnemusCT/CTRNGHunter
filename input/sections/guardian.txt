@@ -3,7 +3,7 @@
 ####		   Guardian			####
 ####							####
 ####################################
-battle guardian
+battle_with_crits 10,0,10,0,10,10 2 6 guardian
 # storage, guardian, rat, switch, rats, robots, control, cutscene x2, robots, rats, switch, arris
 # johnny 1, johnny 2, proto
 room 16

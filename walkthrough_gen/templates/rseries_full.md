@@ -25,7 +25,6 @@ Marle stays, go out
 Equipment
 
 * Robo (Tin Arm / Iron Helm / Titanium Vest / **Berserker Ring**)  
-  * Berserker Ring
 
 Inventory
 

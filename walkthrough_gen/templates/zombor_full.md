@@ -32,8 +32,6 @@ Go back to Bridge and talk to Commander until soldier leaves
 Equipment
 
 * Lucca (**Plasma Gun** / Hide Cap / **Taban's Vest** / Headband)  
-  * Plasma Gun  
-  * Taban's Vest
 
 Inventory
 

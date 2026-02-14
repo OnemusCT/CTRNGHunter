@@ -4,9 +4,6 @@
 ####							####
 ####################################
 battle_with_rng FD nizbel
-#battle_with_crits 0,0,20,0,20,0,0,20,0,20,20,0,20,0,20,20 6 17
-#battle_with_crits 0,0,20,0,20,0,20,0,0,20,20,0,0,20,20,0,0,20 6 18
-#battle_with_crits 20,10,20,10,20,10,10,20,10,20,20,10,20,10,20,20 5 17
 room 2 # ayla hut, mountain path
 battle
 room 2 # mountain base, portal

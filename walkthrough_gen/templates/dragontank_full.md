@@ -14,8 +14,7 @@ Enter portal back to Leene Square and go to Guardia Castle
 
 ### Guardia Castle
 
-Just mash during the trial  
-2nd jury is random, better be not guilty because it�s less walk distance
+Just mash during the trial 
 
 Drink to restore HP/MP, touch the gate three times
 
@@ -40,8 +39,6 @@ Go through between shields and then right door
 
 **Menu**  
 Settings
-
-* Battle Speed: 6
 
 **Get Mid-Potion x5** from the supervisor (optional)
 

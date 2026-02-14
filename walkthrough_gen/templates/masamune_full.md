@@ -43,9 +43,7 @@ Go to the next screen
 **Menu**  
 Equipment
 
-* Robo (**Mirage Hand** / Iron Helm / Titanium Vest / **Guardian Bangle**)  
-  * Mirage Hand  
-  * Guardian Bangle
+* Robo (**Mirage Hand** / Iron Helm / Titanium Vest / Berserker)
 
 Hug cliff to avoid charging Ogan and go to the next screen
 
@@ -78,14 +76,15 @@ Run up to the sword
 
 **Masamune (3600 HP)**
 {{<battlebox>}}Note:
-  * Above 1/2 HP: Attack, Attack, Hurricane, Storing Energy  
-  * Below 1/2 HP: Attack, Attack, Storing Energy  
-  * Double attack power when below 1/2 HP  
-  * Will reset attack cycle when goes below 1/2 HP  
-
-Auto-battle
-Lucca Heal using Mid-Potions as needed
-
-After about 9 actions
-Crono Wind Slash when storing power
+Auto-battle x6
+Crono Mid-Potion Crono
+Auto-battle x2
+Crono Wind Slash Masamune
+Auto-battle x6
+Lucca Mid-Potion Crono
+Auto-battle x3
+Crono Wind Slash
+Lucca Mid-Potion Robo
+Auto-battle x5
+Crono Wind Slash
 Auto-battle{{</battlebox>}}

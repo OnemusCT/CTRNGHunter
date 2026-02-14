@@ -10,5 +10,6 @@ Wait for Robo to attack
 Crono Attack
 Lucca Fire
 Crono Attack during Mune attack
+Wait for Robo to attack
 Lucca Fire
 Crono auto-battle{{</battlebox>}}

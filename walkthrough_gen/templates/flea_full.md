@@ -62,9 +62,7 @@ Take right path and talk to the bottom kid
 **Menu**  
 Equipment
 
-* Frog (Masamune / Bronze Helm / **Titanium Vest** / **Berserker Ring**)  
-  * Titanium Vest  
-  * Berserker Ring (Down x2)
+* Frog (Masamune / Bronze Helm / **Titanium Vest** / **Berserker Ring** (Down x2))  
 
 {% include "flea_battle" %}
 
