@@ -1,0 +1,10 @@
+####################################
+####							####
+####		Motherbrain			####
+####							####
+####################################
+battle # motherbrain
+room 2 # desert 1, 2
+battle
+battle
+room 3 # desert 3

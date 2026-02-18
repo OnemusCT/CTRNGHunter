@@ -1,7 +1,14 @@
+####################################
+####							####
+####		 Yakra XIII			####
+####							####
+####################################
 battle # yakra xiii
-# throne, basement, shell (shell again? several times?), basement, throne, keeper's dome 1, 2, 1
+# throne, basement, shell, basement, throne, keeper's dome 1, 2, 1
 # death peak 1, 2, 3, 4
-room 12
+room 8 ###### GO BACK AND GET STRENGTH CAPSULE!!!! #######
+portal
+room 3
 battle # lavos spawn
 room 9 # death peak 5, 6, 7, 6, 5, 4, 3, 8, 9
 battle # lavos spawn
@@ -13,12 +20,26 @@ room 2 # 10,11
 battle # grind
 room 2 # 10,11
 battle # grind
-room # 12,13
+room 2 # 12,13
 battle # lavos spawn
-room # peak
+portal # peak
 portal # lavos
 room # peak
 portal # eot
 portal # epoch
 portal # epoch
-room # geno 1 START HERE
+room 3 # geno 1, conveyer entrance, conveyer
+battle # conveyer 1
+battle # conveyer 2
+battle # conveyer 3
+battle # conveyer 4
+battle # conveyer 5
+room 2 # end of conveyer, geno 2
+battle
+battle
+battle
+room 2 # elevator, geno 3
+battle
+battle # lady robot
+battle
+battle

@@ -1,0 +1,16 @@
+####################################
+####							####
+####		   Melphyx			####
+####							####
+####################################
+battle melphyx
+room 7 # desert 2, ozzie 1,2,3,4,5,6
+battle # ozzie, slash, flea
+room 1 # ozzie 7
+battle # ozzie
+room 2 # ozzie 6, 7
+battle # ozzie
+# ozzie 6,5,4,3,2,1, fiona, shrine, campfire 1, 2, lucca's room, hallway, entrance, room, campfire 2, omen entrance
+room 16
+battle
+room # omen 2

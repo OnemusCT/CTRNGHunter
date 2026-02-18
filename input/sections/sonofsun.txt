@@ -3,13 +3,14 @@
 ####		 Son of Sun			####
 ####							####
 ####################################
-battle E1,E2 # son of sun, B9-DB (BR R)
-# sun shrine bc, 1000, mayor, 1000, future, lucca house, fair, clone game
+battle_with_rng E1,E2 son-of-sun # son of sun, B9-DB (BR R) (Uses enemy Slots 1-6)
+# sun shrine bc, 1000, mayor, 1000, future, lucca house, fair
+room 7
+portal # clone game
 # fair, crono's house, crono's room, crono's house, throne room
 # right stairs up 1, 2, 3, 4, trial, 4, 3, 2, 1, throne, basement
-room 24
+room 16
 battle
-room 2 # trial, basement
-battle
-room 10 # shell, trial, shell, basement, throne, up 1, 2, 3, 4, trial
-battle # yakra xiii
+# The screen wipes burn a lot of RNG values, I hope this is consistent!
+room 88
+heal 21

@@ -73,18 +73,3 @@ Run and go up (he'll move out of the way)
 Run up to the sword
 
 {% include "masamune_battle" %}
-
-**Masamune (3600 HP)**
-{{<battlebox>}}Note:
-Auto-battle x6
-Crono Mid-Potion Crono
-Auto-battle x2
-Crono Wind Slash Masamune
-Auto-battle x6
-Lucca Mid-Potion Crono
-Auto-battle x3
-Crono Wind Slash
-Lucca Mid-Potion Robo
-Auto-battle x5
-Crono Wind Slash
-Auto-battle{{</battlebox>}}
