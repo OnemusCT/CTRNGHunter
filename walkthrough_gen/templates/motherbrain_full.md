@@ -1,122 +1,3 @@
-## Mother Brain
-
-### End of Time
-
-**Menu**  
-Party (Robo / Magus / Lucca)
-
-* Frog <-> Robo  
-* Frog <-> Lucca  
-* Magus <-> Ayla
-
-Board Epoch and go to Future (Down)
-
-### Geno Dome
-
-Fly down+right until end of continent then right to Geno Dome
-
-**Menu**  
-Inventory
-
-* Shelter
-
-Examine console to open door then enter
-
-**Deverminator EX x2**  
-**Version 4.0 x2**  
-**Deverminator EX x4**  
-**Deverminator EX x2, Version 4.0 x2**  
-**Deverminator EX x4, Version 4.0 x2**
-{{<battlebox>}}Magus Ice II{{</battlebox>}}
-
-Go right (avoid robot), up the conveyor belt and hit the switch on the left side  
-Go back to entrance and go all the way left
-
-**Deverminator EX x2**
-{{<battlebox>}}Magus Ice II{{</battlebox>}}
-
-Go to the right hallway and up then right
-
-**Version 4.0 x3**
-{{<battlebox>}}Magus Ice II  
-Note: Robo learns Rapid-fire Fist{{</battlebox>}}
-
-Hit the switch, enter pod to get charge  
-Take left door and all the way up
-
-**Laser Guard x4**
-{{<battlebox>}}Magus Ice II{{</battlebox>}}
-
-Hit **right** and **left switch** (don't hit middle)  
-Go down and enter left pod to open door, **pick doll**
-
-Go back to charge pod and then go to the opened pod at the left side of conveyor belt  
-Window is tight so keep good movement  
-Go up until robot and **pick Turbo Ether** and **Hi-Ether**
-
-Walking the robot back:
-
-* Go out of door, right until yellow line and wait until robot is out of door  
-* Go right of conveyor belt (laser) and wait until robot is on conveyor belt  
-* Go all the way down and wait until robot appears the screen
-
-Go to where you picked the doll and **pick Speed Capsule**
-
-Go back to charging room to meet the robot:
-
-* Wait on left wall until robot is aligned with south wall  
-* Go all the way down and wait until robot is past the stairs  
-* Go left and wait until robot is past yellow line  
-* Go up and wait until robots meet
-
-**Pick the doll** and enter the door near the robot we've been avoiding  
-Take the elevator
-
-**Menu**  
-Equipment
-
-* Magus (Doom Scythe / Gloom Helm / Gloom Cape / **Guardian Bangle**)  
-  * Guardian Bangle  
-* Robo (**Gigaton Arm** / Prismatic Helm / Aeonian Suit / **Prism Spectacles**)  
-  * Gigaton Arm  
-  * Prism Spectacles
-
-Inventory
-
-* Shelter (insta close menu)  
-* Speed Capsule x2 -> Robo  
-* Magic Capsule x3 -> Lucca
-
-**Laser Guard x2**
-{{<battlebox>}}Magus Ice II
-Magus learns Dark Mist{{</battlebox>}}
-
-**Atropos (6000 HP)**
-{{<battlebox>}}Robo Rapid-fire Fist x5{{</battlebox>}}
-
-**Menu**  
-Equipment
-
-* Robo (Gigaton Arm / Prismatic Helm / Aeonian Suit / **Speed Belt**)  
-  * Speed Belt  
-* Magus (Doom Scythe / Gloom Helm / Gloom Cape / **Prism Spectacles**)  
-  * Prism Spectacles
-
-Inventory
-
-* Hi-Potion x2 -> Robo  
-* Mid-Ether x2 -> Robo
-
-Continue left
-
-**Laser Guard x6**
-{{<battlebox>}}Magus Ice II{{</battlebox>}}
-
-**Laser Guard x6**
-{{<battlebox>}}Magus Ice II{{</battlebox>}}
-
-Place the dolls
-
 **Mother Brain (5000 HP)**
 {{<battlebox>}}Magus Dark Mist
 If Laser on Robo  
@@ -130,3 +11,244 @@ Else
 Robo should end with 9{{</battlebox>}}
 
 Board Epoch and go to the Middle Ages (Down x3)
+
+## Melphyx
+
+### Sunken Desert
+
+Fly straight right and park below hole  
+Fall down then run down+left
+
+**Sandrago x3, Vilepillar**
+{{<battlebox>}}Magus Ice II{{</battlebox>}}
+
+Run down+left
+
+**Vilepillar x3**
+{{<battlebox>}}Magus Ice II{{</battlebox>}}
+
+Run down-left a little then down to avoid encounter
+
+**Menu**  
+Equipment
+
+* Magus (Doom Scythe / Gloom Helm / Gloom Cape / **Guardian Bangle**)
+  * Guardian Bangle
+* Robo (**Crisis Arm** / Prismatic Helm / Aeonian Suit / **Prism Spectacles**)
+  * Crisis Arm (Down x3)
+  * Prism Spectacles
+
+Run down/right, boss scene, run down/right and keep bonking on middle until boss appears
+
+## Giga Mutant
+
+### Ozzie's Fort
+
+Fly up+right until Black Omen and then right to Ozzie's Fort
+
+**Menu**  
+Equipment
+
+* Robo (Crisis Arm / Prismatic Helm / Aeonian Suit / **Blue Gemstone**)
+  * Blue Gemstone (Down x5)
+* Lucca (Wondershot / Prismatic Helm / Taban's Suit / **Prism Spectacles**)
+  * Prism Spectacles (Down x5)
+* Magus (Doom Scythe / Gloom Helm / Gloom Cape / **Sunglasses**)
+  * Sunglasses (Down x5)
+
+Inventory
+
+* Shelter
+
+**Ozzie (6000 HP), Flea (4000 HP), Slash (4000 HP)**
+{{<battlebox>}}Omega Flare
+Lucca Megaton Bomb{{</battlebox>}}
+
+**Pick Speed Ring** (left chest) and go north
+
+**Ozzie**
+{{<battlebox>}}Magus Attack Switch (Left){{</battlebox>}}
+
+Go back to Ozzie then exit
+
+### Fiona's Villa
+
+Fly left until Black Omen then down+left to find Fiona's Villa (north of Sunken Desert)  
+**Pick Mid-Ether** (one on each chest, optional)  
+Talk to Fiona then go back to Epoch and go to Present (Up)
+
+Enter Fiona's Shrine, run up and inspect Robo  
+When Lucca wakes up, go right and enter portal  
+Go downstairs then down, examine bottom machine when turned on (1 textbox)  
+Password is: L A R A  
+Enter portal, talk to Robo from below
+
+**Menu**  
+Party (Magus / Lucca / Robo)
+
+* Crono <-> Magus
+
+Inventory
+
+* Shelter
+
+Settings
+
+* Battle Speed: 5
+
+Fly up+right to Black Omen
+
+### Black Omen
+
+**Laser Guard x6**
+{{<battlebox>}}Magus Ice II{{</battlebox>}}
+
+**Mega Mutant (3850/4600 Upper/Lower HP)**
+{{<battlebox>}}Omega Flare{{</battlebox>}}
+
+**Menu**  
+Party (Ayla / Lucca / Robo)
+
+* Magus <-> Ayla
+
+Equipment
+
+* Ayla (Fist / Stone Helm / Red Plate or Red Vest / **Speed Ring**)
+  * Speed Ring (Down)
+
+**Shieldsman x2**
+{{<battlebox>}}Escape (don't attack)
+Set Ayla on Charm{{</battlebox>}}
+
+Enter right door and hug left wall going up on next screen
+
+**Fangbeast x2**
+
+{{<battlebox>}}Escape (menu trick){{</battlebox>}}
+
+**Synchrite x2, Martello**
+{{<battlebox>}}Ayla Charm Synchrite (Golden Earring)  
+Escape
+
+Note: Go north to next room and come back if failed{{</battlebox>}}
+
+**Panel x2**
+{{<battlebox>}}Ayla Charm Panel (Speed Capsule)
++ Wait Lucca ATB  
+  Lucca Flare once Charm succeed{{</battlebox>}}
+
+**Panel x2**
+{{<battlebox>}}Ayla Charm Panel (Speed Capsule)
++ Wait Lucca ATB  
+  Lucca Flare once Charm succeed{{</battlebox>}}
+
+Go to the next room and check enemy eye  
+If open, go back and reset room  
+If closed, go past him
+
+Walk up until you see next 2 enemies  
+When they move, run past them  
+Continue up
+
+**Watcher, Nomad x2**
+{{<battlebox>}}Escape{{</battlebox>}}
+
+Go up and left to the next room  
+Go up after moving mutant and go right of the next one going up
+
+**Metal Mutant x2, Flycops x2**
+{{<battlebox>}}Escape{{</battlebox>}}
+
+**Menu**  
+Inventory
+
+* Hi-Ether -> Lucca (insta close)
+* Speed Capsule x2 -> Lucca
+* Strength Capsule x2 -> Robo
+
+Party (Magus / Lucca / Robo)
+
+* Ayla<-> Magus
+
+Go up and take teleport  
+Go down to elevator and hit the left switch (down+left)
+
+**Elevator fights (Random)**
+{{<battlebox>}}Lucca Flare  
+If Fangbeasts, Magus Ice II after Flare{{</battlebox>}}
+
+Right+Up when enter room to avoid encounter, continue  
+**Pick Megalixir** (right chest before stairs, optional)  
+Bonk on bottom-right corner of carpet then up to avoid encounter  
+![](/images/speedruns/ct-rng-manip-100/omen1.png)
+
+On the next room, just hold up to skip first encounter  
+![](/images/speedruns/ct-rng-manip-100/omen2.png)
+
+To skip the next encounter, align Magus with center of orange tile before the stairs  
+Run until Magus' head align with top, then hold left and exit top  
+![](/images/speedruns/ct-rng-manip-100/omen3.png)
+
+**Pick Nova Armor** (left chest of save point)  
+**Pick Megalixir** (right chest of save point)  
+**Pick Megalixir** (left chest on top)  
+**Pick Haste Helm** (right chest on top)  
+Open door behind Nus
+
+**Blubber Hulk**
+{{<battlebox>}}Escape (don't attack){{</battlebox>}}
+
+Go to the next screen
+
+**Cybot x2**
+{{<battlebox>}}Escape{{</battlebox>}}
+
+Go up-left after fight to avoid shield  
+![](/images/speedruns/ct-rng-manip-100/omen4.png)
+
+Run between Hydracondas (wait on top-right spot) and go to the next room  
+Run past first eye (when closed) and go between them  
+Run against second eye until closed and go right (can also fight and escape)
+
+**Fangbeast x2, Flycops**
+{{<battlebox>}}Escape{{</battlebox>}}
+
+**Pick Megalixir** (chest after fight)
+
+**Watcher x2, Nomad x4**
+{{<battlebox>}}Escape{{</battlebox>}}
+
+Keep going down
+
+**Blubber Hulk, Flycops x2**
+{{<battlebox>}}Escape (don't attack){{</battlebox>}}
+
+Walk down until stairs, walk left and right 4 times and continue down  
+**Pick Speed Capsule** when he faces down  
+Go to the next screen when he faces left
+
+Run past door and **pick Speed Capsule** from the chest  
+Go into the door and take teleport
+
+Go up, all the way left (don't go to bottom more than needed) on first fork, all the way up, right  
+Go top of the left eyes and middle of right eyes  
+![](/images/speedruns/ct-rng-manip-100/omen5.png)  
+Go right, up, left, **pick Speed Capsule** and **Megalixir** from the two chests  
+![](/images/speedruns/ct-rng-manip-100/omen6.png)  
+Go up to the next room
+
+**Menu**  
+Equipment
+
+* Robo (Crisis Arm / **Haste Helm** / **Nova Armor** / **Golden Earring**)
+  * Haste Helm
+  * Nova Armor
+  * Golden Earring
+* Magus (Doom Scythe / Gloom Helm / Gloom Cape / **Blue Gemstone**)
+  * Blue Gemstone
+
+Inventory
+
+* Shelter (insta close menu)
+* Speed Capsule x2 -> Lucca
+* Speed Capsule x1 -> Robo

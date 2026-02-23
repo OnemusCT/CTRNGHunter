@@ -1,0 +1,23 @@
+battle_with_rng 61,62,63,64,65,66,67,68,69,6A,6B,6C,6D,6E,6F,70,71,72,73,74,75,76,77,78,79,7A,7B,7C,7D,7E,7F,80,81,82,83,84,85,86 ghosts # ghosts x2
+battle_with_rng 61,62,63,64,65,66,67,68,69,6A,6B,6C,6D,6E,6F,70,71,72,73,74,75,76,77,78,79,7A,7B,7C,7D,7E,7F,80,81,82,83,84,85,86 # ghosts x2
+battle_with_rng 2E,2F,30,31,32,33,34,35,36 # ghosts x4 FB-02, 09-0C, 3E-3D, DC-E0 1 counter
+# entrance, residence, entrance, left stairs, cyrus grave,
+# left stairs, entrance,
+room 7
+portal # ozzie fort 1
+room # ozzie fort 2
+battle # flea 2
+room 2 # fort 3, 4
+battle # slash 2
+room 4 # chest room, 4, 3, 2,
+portal # fort 1
+room 3 # tyranno 1, 2, 3
+battle
+room 2 # 4,5
+battle
+room 2 # 6,5
+battle
+room 5 # 6,7,8,9,10
+battle # rubble
+battle # rubble
+room 4 # 11,12,13,14

@@ -3,29 +3,5 @@
 ####		 Giga Mutant   		####
 ####							####
 ####################################
-battle gigamutant
-battle
-room # black omen 3
-battle
-battle
-room # omen 4
-battle
-battle
-room 3 # omen 5, 4, 5 (eye closed)
-battle
-room # omen 6
-battle # optional??
-battle
-room 8 # teleporter 1, 2, elevator 1, 2, omen 7, 8, 9, 10
-battle # heckran
-room # omen 11
-battle # gatos
-battle # optional?
-room # omen 12
-battle # red eye thing
-battle # eyes
-room # omen 13
-battle # heckran
-room # omen 14, teleporter 3, 4, omen 15, 16
-battle # gigamutant again?
+battle # gigamutant
 room # teleporter 5, 6, elevator 1, 2, 3?

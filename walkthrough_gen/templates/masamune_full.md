@@ -1,75 +1,108 @@
-## Masamune
+{% include "masamune_battle" %}
 
-### Dorino Village
+## Nizbel
 
-Enter Market (left house)
+Menu
+* Robo (Mirage Hand / Iron Helm / Titanium Vest / **Guardian Ring**)
 
-**Shop**  
-Sell
+### Tata's House
 
-* Mid-Ether (all)  
-* All weapons except Airgun
+Go to Tata's House (bottom house) and talk to him to get the Hero's Badge
 
-Buy
+### Cursed Woods
 
-* Shelter x11  
-* Athenian Water x21  
-* Panacea x11  
-* Mid-Potion (rest)
+Talk to Frog  
+**Pick the Broken Hilt** (left chest)  
+Go out (careful with last snakes, don't go too much to the left to avoid them)
+
+### Truce Canyon
+
+**Fiendillo, Green Imp**
+{{<battlebox>}}Escape (don't attack){{</battlebox>}}
+
+Take the portal to the end of time and take the top-center pillar (Medina Village, 1000 A.D.)
+
+### Medina Village
+
+**Eat the cake** (optional, if Crono or Robo low HP)  
+Enter Melchior's Cabin and talk to him  
+Back to the end of time and take the bottom-center pillar (Mystic Mountain, 65000000 B.C.)
+
+### Mystic Mountains
+
+**Reptite x5**
+{{<battlebox>}}Crono Attack + Robo Laser Spin{{</battlebox>}}
+
+Mash Cancel to skip FMV
+
+**Reptite x4**
+{{<battlebox>}}Robo Laser Spin + Crono Wind Slash{{</battlebox>}}
+
+Name Ayla (Down, Confirm, Up, Confirm)  
+**Pick Berserker Ring** on next screen  
+Run right to skip Crested Sprinters
+
+**Kilwala x2, Crested Sprinters x4**
+{{<battlebox>}}Escape (menu trick)  
+Set Crono on Wind Slash{{</battlebox>}}
+
+Run right to skip Crested Sprinters  
+Go out and enter top-left hut, talk to Ayla
+
+Talk to Robo, stand between Robo and Lucca and wait until Robo dances 4 times  
+Talk to Robo, run to Ayla and talk to her  
+Mash Confirm to win minigame  
+Talk to Ayla in her hut
 
 **Menu**  
-Inventory
+Party (Crono / Ayla / Robo)
 
-* Shelter
+* Lucca <-> Robo (Confirm, Right, Confirm)
 
-### Denadoro Mountains
+### Forest Maze
 
-Run straight up to avoid battle and go to next screen  
-**Pick Mirage Hand** then go back
+Talk to Kino, go right, down two green vines, over brown trunk  
+Go up, right then down
 
-**Ogan**
-{{<battlebox>}}Auto-battle{{</battlebox>}}
+![](/images/speedruns/ct-rng-manip-100/forestmaze1.png)
 
-**Ogan**
-{{<battlebox>}}Robo Attack
-Lucca Flamethrower
+Go up, left, down (skip encounter)  
+Go left, ignore first way up and take second, skip encounter, out
+
+![](/images/speedruns/ct-rng-manip-100/forestmaze2.png)
+
+### Reptite Lair
+
+Fall down hole
+
+**Aecyto Weevil x2**
+{{<battlebox>}}Ayla Attack + Crono Wind Slash (Mash Confirm)
 Auto-battle{{</battlebox>}}
 
-Go to the next screen
+Fall down hole
 
-**Ogan x2**
+**Megasaur**
+{{<battlebox>}}Crono Lightning  
+Auto-battle{{</battlebox>}}
+
+Fall down hole  
+**Pick Stone Helm** on bottom-left chest  
+Go right to the next room
+
+Hold Up+Right, wait on narrow part until enemy starts to go down and proceed
+
+**Megasaur, Reptite x2**
 {{<battlebox>}}Escape{{</battlebox>}}
 
 **Menu**  
 Equipment
 
-* Robo (**Mirage Hand** / Iron Helm / Titanium Vest / Berserker)
+* Ayla (Fist / Stone Helm / **Padded Vest** / **Berserker Ring** (Down))
+* Robo (Mirage Hand / Iron Helm / Titanium Vest / **Berserker Ring** (Down x2))
+* Crono (Crimson Blade / **Stone Helm** / **Ruby Vest** / **Silver Earring** (Down))
 
-Hug cliff to avoid charging Ogan and go to the next screen
+Inventory
 
-Hold right until bonk, go up two ladders, up+left then left asap when out of ladder  
-Go to the next screen
+* Shelter
 
-**Pick Mid-Ether** and go to the next screen
-
-Hold right, go up the ladder and hug left to avoid encounter
-
-Two steps up then left to next screen
-
-Bird skip and fall down left side of waterfall  
-Ignore first chest and take second to **get Silver Earring**
-
-Back to bird skip, go up and then down-left to skip encounter, go to the next screen
-
-Talk to "Mountains are so nice." 4 times to **get Magic Capsule**  
-Go to the next screen
-
-Down 2 ladders and **pick Speed Capsule** on left side  
-Go to the next screen
-
-Go down the ladder, one step down+right, wait stone  
-Run and go up (he'll move out of the way)
-
-Run up to the sword
-
-{% include "masamune_battle" %}
+[Backup](/speedruns/ct/rng-manip-100-full/backups/nizbel/main/)

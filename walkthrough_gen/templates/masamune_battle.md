@@ -16,7 +16,7 @@ Crono auto-battle{{</battlebox>}}
 
 **Masamune (3600 HP)**
 {{<battlebox>}}
-{% if rng.masamune == 1 %}Auto-battle x6
+{% if rng.masamune == 1 -%}Auto-battle x6
 Crono Mid-Potion Crono
 Auto-battle x2
 Crono Wind Slash
@@ -27,7 +27,7 @@ Crono Wind Slash
 Lucca Mid-Potion Robo
 Auto-battle x5
 Crono Wind Slash
-Auto-battle{% elseif rng.masamune == 35 %}Auto-battle x9
+Auto-battle{% else if rng.masamune == 35 -%}Auto-battle x9
 Crono Wind Slash
 Lucca Potion Crono
 Auto-battle x5, wait for tornado
@@ -35,7 +35,7 @@ Lucca Potion Robo
 Auto-battle x7 + Robo auto-attack
 Crono Wind Slash
 Lucca Potion Crono
-Auto-battle{% elseif rng.masamune == 37 %}Auto-battle x9
+Auto-battle{% else if rng.masamune == 37 -%}Auto-battle x9
 Wind Slash
 Potion Crono
 Auto-battle x6

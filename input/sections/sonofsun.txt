@@ -3,7 +3,7 @@
 ####		 Son of Sun			####
 ####							####
 ####################################
-battle_with_rng E1,E2 son-of-sun # son of sun, B9-DB (BR R) (Uses enemy Slots 1-6)
+battle_with_rng E1,E2 sonofsun # son of sun, B9-DB (BR R) (Uses enemy Slots 1-6)
 # sun shrine bc, 1000, mayor, 1000, future, lucca house, fair
 room 7
 portal # clone game

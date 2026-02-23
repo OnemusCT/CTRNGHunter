@@ -1,63 +1,3 @@
-## Heckran
-
-### The End of Time
-
-**Heal at the bucket**, talk to old man (default party)  
-Examine bucket, talk to old man and enter door
-
-Talk to Spekkio, go clockwise around room 3 times
-
-* Start at right side of door  
-* End after past the door
-
-**2nd option** after Lucca received magic
-
-Go back and take the top pillar (Medina Village, 1000 A.D.)
-
-### Medina Village
-
-Go out and enter north house  
-**Pick Speed Capsule** (1st floor)  
-**Pick Magic Capsule** (2nd floor)  
-Go to Melchior's Cabin
-
-**Shop**  
-Buy
-
-* Crimson Blade  
-* Mid-Potion max (R, Up x2)
-
-Equip
-
-* Crono (**Crimson Blade** / Hide Cap / **Titanium Vest** / Power Glove)  
-
-**Menu**  
-Settings
-
-* Battle Speed: 4
-
-### Heckran Cave
-
-**Underling x2**
-{{<battlebox>}}Crono Wind Slash
-Lucca Flamethrower{{</battlebox>}}
-
-**Djinn Bottle, Cave Stalker x3**
-{{<battlebox>}}Escape{{</battlebox>}}
-
-Rhino Weevil skip: Hug top to avoid enemies
-
-**Pick Mid-Ether**
-
-**Rhino Weevil x4**
-{{<battlebox>}}Escape{{</battlebox>}}
-
-**Boundillo x4**
-{{<battlebox>}}Escape{{</battlebox>}}
-
-Cave Bat skip: Hug top to avoid bats  
-Djinn Bottle skip: Hug right wall on next screen
-
 **Heckran (2100 HP)**
 {{<battlebox>}}Cycle 1  
 Crono Lightning
@@ -82,6 +22,34 @@ Potion / Mid-Potion everyone
 
 Cycle 3  
 Lucca or Marle Antipode Bomb
-Crono Wind Slash  
-Crono Wind Slash  
+Crono Lightning
+Crono Lightning  
 Lucca or Marle Antipode Bomb{{</battlebox>}}
+
+## Zombor
+
+### Lucca's House
+
+Go to Lara's room (right), hold down on stairs, wait first Taban textbox to appear and go back  
+Talk to Taban to **get Taban's Vest**
+
+### Leene Square
+
+Heal with the pink bag (2nd screen)
+
+**Gato**
+{{<battlebox>}}Auto-battle
+Repeat 3 times{{</battlebox>}}
+
+Enter the portal then take the top-left pillar (Truce Canyon, 600 A.D.)
+
+### Truce Canyon
+
+Perform Bird Skip
+
+### Zenan Bridge / Guardia Castle
+
+Talk to Commander at Zenan Bridge (1 textbox) then go to Guardia Castle  
+Go to Kitchen (right) and talk to Master of Kitchen  
+Wait at stairs until "Mind your own business" (2 textboxes after pause) and exit  
+Go back to Bridge and talk to Commander until soldier leaves

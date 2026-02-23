@@ -1,68 +1,88 @@
-## Son of Sun
+Enter and go straight up
 
-### Guardia Forest
+**Son of Sun (10 hits)**
+{{<battlebox>}}
+Magus Barrier Sphere -> Ayla (Cursor should be on Tech)  
+Wait Shuffle  
+Attack top 10x
+Wait then Auto-battle after dying animation{{</battlebox>}}
+![](/images/speedruns/ct-rng-manip-100/sonofsun.png)
 
-Go right and **pick Speed Capsule**
+**Pick Moon Stone** and go out
 
-### Porre Village
+## Yakra XIII
 
-Fly north to Porre and enter Elder's House (top house on the left side)  
-Talk to Mother and select the **2nd option** ("Take it for free") on 2nd textbox  
-Go to the Future (Up x3)
+### Sun Shrine
 
-### Sun Temple
+Board Epoch and go to Prehistory (Down x5)  
+Fly down+left until grass disappears on right side then left to Sun Shrine  
+Leave the Moon Stone there, go back
 
-Fly right to Sun Temple
+Board Epoch and go to Present (Up x3)  
+Enter Sun Shrine and check Moon Stone (it was stolen)  
+Fly up+right until light blue water appears, then right to shining house  
+Talk to Mayor on couch and go out
+
+Fly down+left until mountains disappear on right side then left until Sun Shrine  
+Place the Moon Stone there and go out
+
+Board Epoch and go to Future (Up x2)  
+Enter Sun Shrine and examine the Moon Stone  
+**Get Wondershot** and **Sunglasses** at Lucca's House
+
+### Leene Square
+
+Fly to Leene Square and enter the rightmost tent on first screen  
+2 textboxes after clone is out
+
+* Warp: Left arm
+* Confirm: Right arm
+* Menu: Laugh
+* Cancel: Surprise
+
+Get 4 correct then lose, go to Crono's House  
+Interact with Doppel Doll (to talk to mom), **pick Doppel Doll**  
+Fly to Guardia Castle
+
+### Guardia Castle
 
 **Menu**  
-Party (Ayla / Magus / Lucca)
+Inventory
 
-* Magus <-> Ayla  
+* Shelter (**before party change**)
+
+Party (Frog / Magus / Marle)
+
+* Ayla <-> Frog
 * Marle <-> Lucca
 
 Equipment
 
-* Ayla (First / Stone Helm / **Red Plate** / Headband)  
-  * Red Plate (Down)  
-* Robo (Mirage Hand / Iron Helm / Titanium Vest / **Guardian Bangle**)  
-  * Guardian Bangle  
-* Magus (Doom Scythe / Gloom Helm / Ruby Vest / **Silver Earring**)  
-  * Silver Earring (Down x2)  
-* Lucca (Plasma Gun / **Taban's Helm** / **Taban's Suit** / **Speed Belt**)  
-  * Taban's Helm  
-  * Taban's Suit  
-  * Speed Belt
-
-Inventory
-
-* Shelter
+* Frog (Masamune / Bronze Helm / Titanium Vest / **Sight Scope**)
+  * Sight Scope (Down)
+* Magus (Doom Scythe / Gloom Helm / **Gloom Cape** / **Berserker Ring**)
+  * Gloom Cape
+  * Berserker Ring (Down x2)
 
 Settings
 
-* Battle Speed: 6
+* Battle Speed: 3
 
-Enter and go straight up
+Enter Castle, go right and all the way upstairs (4 screens) and talk to guards  
+After the chancellor scene, go back and down to basement (right stairs)
 
-**Son of Sun (10 hits)**
-{{<battlebox>}}* General notes  
-  * Shuffle -> Flare -> Beam -> Repeat  
-  * If core gets attacked he'll counter with Flare  
-  * Ayla absorbs Flare  
-  * Counter order on image below  
-  * Press Right input for 1, 2 and 3  
-  * Press Left input for 4 and 5  
-* Fight  
-  * Magus Barrier Sphere -> Ayla  
-    * Cursor should be on Tech  
-  * Wait Shuffle  
-    * Flamethrower 1  
-    * Attack the one that didn't counter or 4 and 5 if all counter  
-    * Lucca / Magus / Ayla Attack  
-    * Athenian Water + Hi-Potion as needed  
-    * Repeat  
-  * Losing it's Fire  
-    * Revive anyone dead  
-    * Wait then Auto-battle after dying animation{{</battlebox>}}
-![](/images/speedruns/ct-rng-manip-100/sonofsun.png)
+**Viper x2**
+{{<battlebox>}}Auto-battle{{</battlebox>}}
 
-**Pick Moon Stone** and go out
+**Viper, Naga**
+{{<battlebox>}}Auto-battle{{</battlebox>}}
+
+Buffer run up after battle and hug **right wall**, go to next screen  
+Run up but **walk for a bit** to avoid snakes on both corridors then interact with the Rainbow Shell
+
+Run straight down after scenes (will avoid Vipers)  
+Wait for Naga to avoid encounter
+
+![](/images/speedruns/ct-rng-manip-100/castle.png)
+
+Go back to the court

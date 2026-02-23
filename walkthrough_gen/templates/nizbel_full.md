@@ -1,108 +1,3 @@
-## Nizbel
-
-Menu
-* Robo (Mirage Hand / Iron Helm / Titanium Vest / **Guardian Ring**)
-
-### Tata's House
-
-Go to Tata's House (bottom house) and talk to him to get the Hero's Badge
-
-### Cursed Woods
-
-Talk to Frog  
-**Pick the Broken Hilt** (left chest)  
-Go out (careful with last snakes, don't go too much to the left to avoid them)
-
-### Truce Canyon
-
-**Fiendillo, Green Imp**
-{{<battlebox>}}Escape (don't attack){{</battlebox>}}
-
-Take the portal to the end of time and take the top-center pillar (Medina Village, 1000 A.D.)
-
-### Medina Village
-
-**Eat the cake** (optional, if Crono or Robo low HP)  
-Enter Melchior's Cabin and talk to him  
-Back to the end of time and take the bottom-center pillar (Mystic Mountain, 65000000 B.C.)
-
-### Mystic Mountains
-
-**Reptite x5**
-{{<battlebox>}}Crono Attack + Robo Laser Spin{{</battlebox>}}
-
-Mash Cancel to skip FMV
-
-**Reptite x4**
-{{<battlebox>}}Robo Laser Spin + Crono Wind Slash{{</battlebox>}}
-
-Name Ayla (Down, Confirm, Up, Confirm)  
-**Pick Berserker Ring** on next screen  
-Run right to skip Crested Sprinters
-
-**Kilwala x2, Crested Sprinters x4**
-{{<battlebox>}}Escape (menu trick)  
-Set Crono on Wind Slash{{</battlebox>}}
-
-Run right to skip Crested Sprinters  
-Go out and enter top-left hut, talk to Ayla
-
-Talk to Robo, stand between Robo and Lucca and wait until Robo dances 4 times  
-Talk to Robo, run to Ayla and talk to her  
-Mash Confirm to win minigame  
-Talk to Ayla in her hut
-
-**Menu**  
-Party (Crono / Ayla / Robo)
-
-* Lucca <-> Robo (Confirm, Right, Confirm)
-
-### Forest Maze
-
-Talk to Kino, go right, down two green vines, over brown trunk  
-Go up, right then down
-
-![](/images/speedruns/ct-rng-manip-100/forestmaze1.png)
-
-Go up, left, down (skip encounter)  
-Go left, ignore first way up and take second, skip encounter, out
-
-![](/images/speedruns/ct-rng-manip-100/forestmaze2.png)
-
-### Reptite Lair
-
-Fall down hole
-
-**Aecyto Weevil x2**
-{{<battlebox>}}Ayla Attack + Crono Wind Slash (Mash Confirm) 
-Auto-battle{{</battlebox>}}
-
-Fall down hole
-
-**Megasaur**
-{{<battlebox>}}Crono Lightning  
-Auto-battle{{</battlebox>}}
-
-Fall down hole  
-**Pick Stone Helm** on bottom-left chest  
-Go right to the next room
-
-Hold Up+Right, wait on narrow part until enemy starts to go down and proceed
-
-**Megasaur, Reptite x2**
-{{<battlebox>}}Escape{{</battlebox>}}
-
-**Menu**  
-Equipment
-
-* Ayla (Fist / Stone Helm / **Padded Vest** / **Berserker Ring** (Down))  
-* Robo (Mirage Hand / Iron Helm / Titanium Vest / **Berserker Ring** (Down x2))  
-* Crono (Crimson Blade / **Stone Helm** / **Ruby Vest** / **Silver Earring** (Down))  
-
-Inventory
-
-* Shelter
-
 {% include "nizbel_battle" %}
 
 Ayla skip: hold down+right then exit to avoid dialogue
@@ -123,3 +18,71 @@ Go past Crested Sprinters then trigger fight
 {{<battlebox>}}Escape{{</battlebox>}}
 
 Go back to the end of time and enter the top-center pillar (Medina Village, 1000 A.D.)
+
+## Flea
+
+### Melchior's Cabin
+
+Talk to Melchior, go downstairs and wait until Masamune is fixed
+
+* Run towards Melchior when he's at the left side
+* Run towards Melchior when he's taking the blade from the table
+* Run towards Melchior when he's at the top
+* 2 textboxes when Lucca goes to Red Rock then keep running
+* 1 textbox after Lucca put the Red Rock then keep running
+
+Go back to the end of time and take the top-left pillar (Truce Canyon, 600 A.D.)
+
+### Truce Canyon
+
+Perform Bird Skip
+
+### Cursed Woods
+
+Talk to Frog
+
+**Menu**  
+Party (Crono / Frog / Robo)
+
+* Lucca <-> Robo (Confirm, Right, Confirm)
+
+### Magic Cave
+
+Mash Cancel when Frog takes Masamune to skip FMV
+
+**Vampire Bat, Grimling x2**
+{{<battlebox>}}Escape{{</battlebox>}}
+
+Mash to skip dialogue after fight  
+Run up and keep right to avoid next fight
+
+### Fiendlord's Keep
+
+Take left path  
+Go to Slash screen (2nd) and then go back
+
+Take right path  
+Go to Flea screen (3rd) and then go back
+
+Touch Save Point
+
+**Vampire Bat x2, Underling x4**
+{{<battlebox>}}Crono Cyclone 2 bottom (Left)  
+Frog Attack Left  
+Robo Laser Spin  
+Auto-battle{{</battlebox>}}
+
+Take right path and talk to the bottom kid
+
+**Shadow x4**
+{{<battlebox>}}Crono Wind Slash all{{</battlebox>}}
+
+**Pick Barrier Sphere**  
+**Pick Mid-Ether** on left side of 2nd screen
+
+**Menu**  
+Equipment
+
+* Frog (Masamune / Bronze Helm / **Titanium Vest** / **Berserker Ring** (Down x2))
+
+[Backup](/speedruns/ct/rng-manip-100-full/backups/flea/main/)

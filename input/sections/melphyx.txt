@@ -4,13 +4,24 @@
 ####							####
 ####################################
 battle melphyx
-room 7 # desert 2, ozzie 1,2,3,4,5,6
+room # desert 2
+portal # ozzie 1
+room 4 # ozzie 2,3,4,5
+portal # ozzie 6
 battle # ozzie, slash, flea
 room 1 # ozzie 7
 battle # ozzie
-room 2 # ozzie 6, 7
-battle # ozzie
-# ozzie 6,5,4,3,2,1, fiona, shrine, campfire 1, 2, lucca's room, hallway, entrance, room, campfire 2, omen entrance
-room 16
-battle
-room # omen 2
+portal # ozzie 6
+room # ozzie 7
+portal # ozzie 6
+room 4 # ozzie 5,4,3,2
+portal # ozzie 1
+room 2 # fiona, shrine
+portal # campfire 1
+portal # campfire 1 again
+portal # campfire 2
+portal # lucca's room
+portal # hallway
+portal # entrance
+portal # lucca's room
+portal # campfire 2

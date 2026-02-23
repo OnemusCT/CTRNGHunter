@@ -1,145 +1,3 @@
-## Black Tyranno
-
-### Laruba Ruins
-
-Go to Laruba Ruins and approach Ayla  
-Go out to Dactyl Nest
-
-### Dactyl Nest
-
-Force battle on first rock on right
-
-**Cave Ape, Schist x2**
-
-{{<battlebox>}}Escape (menu trick){{</battlebox>}}
-
-**Avian Rex x2**
-
-{{<battlebox>}}Escape{{</battlebox>}}
-
-Go behind rocks to the next screen  
-![](/images/speedruns/ct-rng-manip-100/dactylskip1.png)
-
-Go behind the rock to avoid encounter  
-![](/images/speedruns/ct-rng-manip-100/dactylskip2.png)
-
-**Pick Mesozoic Mail**
-
-Align Crono foot with yellowish part of the grass then hold up (can be 1 pixel off)  
-![](/images/speedruns/ct-rng-manip-100/dactylskip3.png)
-
-**Menu**  
-Party
-
-* Crono / Ayla / Lucca (Cancel)
-
-Mash Cancel to skip FMV
-
-### Tyranno Lair
-
-Fly down+right to Tyranno Lair
-
-**Menu**  
-Equipment
-
-* Crono  
-  * Headband  
-* Ayla (Fist / Stone Helm / **Mist Robe** / **Power Scarf**)  
-  * Mist Robe  
-  * Power Scarf (Down)  
-* Lucca (Plasma Gun / Hide Cap / Taban's Vest / **Silver Earring**)  
-  * Silver Earring  
-* Crono (Slasher / Stone Helm / Dark Mail / **Speed Belt**)  
-  * Speed Belt
-
-Go straight up then right
-
-**Reptite x2**
-
-{{<battlebox>}}Escape{{</battlebox>}}
-
-**Reptite x2**
-
-{{<battlebox>}}Escape{{</battlebox>}}
-
-**Reptite x3**
-{{<battlebox>}}* Escape (menu trick)  
-* Set Crono on Cyclone{{</battlebox>}}
-
-Talk to Kino  
-Go back and enter left skull  
-Step on left side switch and go out  
-Wait a little bit for enemies to move then go left  
-Up+Left on tile room
-
-![](/images/speedruns/ct-rng-manip-100/tyranno1.png)
-
-Step on **right switch** then press **switch at the end** of the room and go back
-
-![](/images/speedruns/ct-rng-manip-100/tyranno2.png)
-
-**Reptite, Volcanite x2**
-{{<battlebox>}}* Cyclone all  
-* Auto-battle{{</battlebox>}}
-
-Go inside then back and repeat this fight 7 times total
-
-* Run one step right then up+left to trigger the fight  
-* Crono should be at 24 MP at the end  
-* Learn Cat Attack
-
-**Menu**  
-Inventory
-
-* Shelter
-
-Settings
-
-* Battle Speed: 5
-
-**Nizbel 2 (6500 HP)**
-{{<battlebox>}}General notes  
-  If can't survive discharge on Phase 2, Mid-Potion everyone  
-  Discharge dmg: Crono ~165, Ayla ~215, Lucca ~205  
- 
-Phase 1  
-  Crono Thunder Chomp, (Nizbel) + Lucca Mid-Potion Crono  
-  (Nizbel) + Ayla Thunder Chomp, Lucca Mid-Potion who got attacked  
-  Crono Thunder Chomp (discharge)  
-Phase 2  
-  Lucca Mid-Potion, Crono / Ayla Thunder Chomp  
-  Lucca Mid-Potion, Crono / Ayla Thunder Chomp  
-  Crono / Ayla Thunder Chomp + Lucca Mid-Potion (discharge)  
-Phase 3  
-  Crono / Lucca Fire Sword + Ayla Cat Attack (set){{</battlebox>}}
-
-Just keep hugging top and go right to the next screen  
-Step on **middle switch**
-
-**Menu**  
-Equipment
-
-* Crono (Slasher / Stone Helm / **Ruby Vest** / **Power Glove**)  
-  * Ruby Vest (Down)  
-  * Power Glove (Down x2)  
-* Lucca (Plasma Gun / Hide Cap / Taban's Vest / **Speed Belt**)  
-  * Speed Belt (Down x2)  
-* Frog (Masamune / Bronze Helm / Titanium Vest / **Guardian Bangle**)  
-  * Guardian Bangle (Down x3)
-
-Inventory
-
-* Shelter
-
-Settings
-
-* Battle Speed: 1
-
-Open skull, **pick Hi-Ether**, hit the switch
-
-Head back, align Crono's foot then move straight up  
-![](/images/speedruns/ct-rng-manip-100/tyranno3.png)
-
 **Black Tyranno (10500 HP)**
 {{<battlebox>}}General notes  
   Don't heal, only revive  
@@ -159,3 +17,106 @@ Phase 3
   Wait until "Lowers Defense" (3 sucks)  
 Phase 4  
   Ayla Cat Attack + Crono / Lucca Fire Sword until dead{{</battlebox>}}
+
+## Mud Imp
+
+### Antiquity
+
+Enter Tyranno Lair Ruins and take the portal to Antiquity, 12000 B.C.  
+Go right, take portal  
+Go up, take portal  
+Go up then left, take portal
+
+### Kajar
+
+Go to the back and then right into green carpet room  
+**Pick Speed Capsule**
+
+![](/images/speedruns/ct-rng-manip-100/zealcapsule.png)
+
+Go out and continue
+
+### Zeal Palace
+
+Go to the back and right door to Schala scene  
+Go back and then center of main hall to another scene (Schala opens door)  
+Go back and into left door (behind Nu) then interact with Mammon Machine  
+Go back to sealed door
+
+**Golem**
+{{<battlebox>}}(Ball)
+Wind Slash (quick)
+Wait until dead{{</battlebox>}}
+
+### Mystic Mountains
+
+Go down+right to Dactyls then fly left to Mystic Mountains  
+Go to the end of time and take the top-center pillar (Medina Village, 1000 A.D.)
+
+### Medina Village
+
+Go north to Forest Ruins and **pick Swallow** (right chest)  
+Back to the end of time and take the center pillar (Proto Dome, 2300 A.D.)
+
+### Proto Dome
+
+Walk to skip encounter  
+![](/images/speedruns/ct-rng-manip-100/protodomeskip.png)
+
+### Site 32
+
+**Mutant x3**
+
+{{<battlebox>}}Escape{{</battlebox>}}
+
+**Mutant x2**
+
+{{<battlebox>}}Escape{{</battlebox>}}
+
+Skip last encounter  
+![](/images/speedruns/ct-rng-manip-100/site32skip.png)
+
+### Abandoned Sewers
+
+**Menu**  
+Equipment
+
+* Crono (**Swallow** / Stone Helm / Ruby Vest / **Headband**)
+  * Swallow
+  * Headband
+
+Inventory
+
+* Shelter
+
+Enter sewers and go left
+
+**Dondrago x2**
+{{<battlebox>}}Auto-battle{{</battlebox>}}
+
+Follow the frogs to the next screen  
+Go right and ignore all the items to the next screen  
+Hold up+left (avoid enemies) up and take right path, hit the switch  
+Go through the door but don't go straight down
+
+![](/images/speedruns/ct-rng-manip-100/sewer1.png)
+
+**Krawlie (500 HP)**
+{{<battlebox>}} Crono Fire Sword (quick) + Ayla Roundillo Kick (set){{</battlebox>}}
+
+![](/images/speedruns/ct-rng-manip-100/sewer2.png)
+
+Go out thought the middle ladders
+
+### Keeper's Dome
+
+Go to the back door (don't talk to Nu)  
+Go to the back of Epoch by the right side then try to leave  
+Name Epoch (Down, Confirm, Up, Confirm) and get on it  
+Go to Antiquity (Down x4)  
+Mash Cancel to skip FMV
+
+### Terra Cave
+
+Go left then up and enter Terra Cave  
+Go down all the ladders  

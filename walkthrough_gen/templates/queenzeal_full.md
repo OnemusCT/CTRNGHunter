@@ -45,4 +45,3 @@ Hallation
 MP Buster  
   * Magus Turbo-Ether Robo (Right)  
   * Double Bomb{{</battlebox>}}
-

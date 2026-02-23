@@ -1,0 +1,27 @@
+room # omen entrance
+battle
+room # omen 2
+battle # megamutant
+battle # shieldsman
+room # black omen 3
+battle # fangbeast
+battle # synchrite x3, Martello (Ayla charm Golden Earring)
+room # omen 4
+battle # panel (Ayla charm Panel)
+battle # panel (Ayla charm Panel)
+room 3 # omen 5, 4, 5 (eye closed)
+battle # watcher
+room # omen 6
+battle # optional??
+battle
+room 8 # teleporter 1, 2, elevator 1, 2, omen 7, 8, 9, 10
+battle # heckran
+room # omen 11
+battle # gatos
+battle # optional?
+room # omen 12
+battle # red eye thing
+battle # eyes
+room # omen 13
+battle # heckran
+room # omen 14, teleporter 3, 4, omen 15, 16

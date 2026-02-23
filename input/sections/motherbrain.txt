@@ -3,8 +3,12 @@
 ####		Motherbrain			####
 ####							####
 ####################################
+battle
+battle # lady robot
+battle
+battle
 battle # motherbrain
 room 2 # desert 1, 2
 battle
 battle
-room 3 # desert 3
+room # desert 3

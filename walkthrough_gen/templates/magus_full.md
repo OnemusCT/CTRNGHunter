@@ -1,81 +1,96 @@
-## Magus
+{% include "magus_battle" %}
 
-**Underling x2**
+## Black Tyranno
+
+### Laruba Ruins
+
+Go to Laruba Ruins and approach Ayla  
+Go out to Dactyl Nest
+
+### Dactyl Nest
+
+Force battle on first rock on right
+
+**Cave Ape, Schist x2**
+
+{{<battlebox>}}Escape (menu trick){{</battlebox>}}
+
+**Avian Rex x2**
 
 {{<battlebox>}}Escape{{</battlebox>}}
 
-**Underling x2, Blue Gargoyle x2**
-{{<battlebox>}}Crono Attack bottom-left Gargoyle (Right x2)  
-Lucca Flamethrower top-right Underling (Right, should hit 2 enemies)  
-Frog Slurp Slash top-left Underling  
-Auto-battle if Flamethrower missed{{</battlebox>}}
+Go behind rocks to the next screen  
+![](/images/speedruns/ct-rng-manip-100/dactylskip1.png)
 
-**Underling x2, Sorcerer x2**
+Go behind the rock to avoid encounter  
+![](/images/speedruns/ct-rng-manip-100/dactylskip2.png)
 
-{{<battlebox>}}Escape{{</battlebox>}}
+**Pick Mesozoic Mail**
 
-**Underling x2, Sorcerer x2, Blue Gargoyle x2**
+Align Crono foot with yellowish part of the grass then hold up (can be 1 pixel off)  
+![](/images/speedruns/ct-rng-manip-100/dactylskip3.png)
 
-{{<battlebox>}}Escape{{</battlebox>}}
+**Menu**  
+Party
 
-**Pick Mist Robe** then talk to Ozzie
+* Crono / Ayla / Lucca (Cancel)
 
-Guillotine
+Mash Cancel to skip FMV
 
-* 1st axe: wait sparks then run  
-* 2nd axe: run past and **pick Dark Mail**  
-* 3rd axe: wait sparks then just run until the end
+### Tyranno Lair
 
-Stop when Roundillo passing through Crono
-
-Hold Down+Right, go right (hug wall), stop at center "Diamond"  
-Go up two "Diamonds" (aligned with left pillar, look at Crono's foot) then right and up  
-If fall, number indicates exit  
-![](/images/speedruns/ct-rng-manip-100/pitroom.png)
-
-Stop when Roundillo passing through Crono  
-Face opposite way to move bird out of the way
-
-**Outlaw x2, Servant x2**
-{{<battlebox>}}Crono Wind Slash bottom-left Servant (Right x2)  
-Frog Slurp Slash top-left Outlaw  
-Lucca Flamethrower bottom-right Servant  
-Auto-battle{{</battlebox>}}
-
-**Outlaw x2, Juggler x2**
-{{<battlebox>}}Escape (don't attack){{</battlebox>}}
-
-**Juggler x4**
-{{<battlebox>}}Lucca Hypnowave  
-Crono / Frog X-Strike each  
-Lucca Barrier Sphere (set)  
-Will Learn Cleave + Fire Sword{{</battlebox>}}
-
-**Pick Speed Belt**  
-Hold up-right on next screen and go up hugging the wall  
-Go to the next screen facing left to avoid encounter
-
-**Ozzie**
-{{<battlebox>}}* Crono Attack x4 (Confirm, Left, Confirm){{</battlebox>}}
+Fly down+right to Tyranno Lair
 
 **Menu**  
 Equipment
 
-* Crono (Slasher / Stone Helm / **Dark Mail** / **Silver Earring**)  
-  * Dark Mail  
-  * Silver Earring (Down x2)  
-* Frog (Masamune / Bronze Helm / Titanium Vest / **Berserker Ring**)  
-  * Berserker Ring (Down)  
-* Lucca (Plasma Gun / Hide Cap / Taban's Vest / **Speed Belt**)  
-  * Speed Belt
+* Crono
+    * Headband
+* Ayla (Fist / Stone Helm / **Mist Robe** / **Power Scarf**)
+    * Mist Robe
+    * Power Scarf (Down)
+* Lucca (Plasma Gun / Hide Cap / Taban's Vest / **Silver Earring**)
+    * Silver Earring
+* Crono (Slasher / Stone Helm / Dark Mail / **Speed Belt**)
+    * Speed Belt
 
+Go straight up then right
+
+**Reptite x2**
+
+{{<battlebox>}}Escape{{</battlebox>}}
+
+**Reptite x2**
+
+{{<battlebox>}}Escape{{</battlebox>}}
+
+**Reptite x3**
+{{<battlebox>}}* Escape (menu trick)
+* Set Crono on Cyclone{{</battlebox>}}
+
+Talk to Kino  
+Go back and enter left skull  
+Step on left side switch and go out  
+Wait a little bit for enemies to move then go left  
+Up+Left on tile room
+
+![](/images/speedruns/ct-rng-manip-100/tyranno1.png)
+
+Step on **right switch** then press **switch at the end** of the room and go back
+
+![](/images/speedruns/ct-rng-manip-100/tyranno2.png)
+
+**Reptite, Volcanite x2**
+{{<battlebox>}}* Cyclone all
+* Auto-battle{{</battlebox>}}
+
+Go inside then back and repeat this fight 7 times total
+
+* Run one step right then up+left to trigger the fight
+* Crono should be at 24 MP at the end
+* Learn Cat Attack
+
+**Menu**  
 Inventory
 
 * Shelter
-
-Touch left save point to teleport  
-Run left to avoid bats  
-If Cleave not learned, Cyclone bats before Magus  
-Mash Cancel to skip FMV when approaching Magus
-
-{% include "magus_battle" %}

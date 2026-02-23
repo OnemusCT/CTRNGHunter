@@ -1,31 +1,3 @@
-## Zombor
-
-### Lucca's House
-
-Go to Lara's room (right), hold down on stairs, wait first Taban textbox to appear and go back  
-Talk to Taban to **get Taban's Vest**
-
-### Leene Square
-
-Heal with the pink bag (2nd screen)
-
-**Gato**
-{{<battlebox>}}Auto-battle
-Repeat 3 times{{</battlebox>}}
-
-Enter the portal then take the top-left pillar (Truce Canyon, 600 A.D.)
-
-### Truce Canyon
-
-Perform Bird Skip
-
-### Zenan Bridge / Guardia Castle
-
-Talk to Commander at Zenan Bridge (1 textbox) then go to Guardia Castle  
-Go to Kitchen (right) and talk to Master of Kitchen  
-Wait at stairs until "Mind your own business" (2 textboxes after pause) and exit  
-Go back to Bridge and talk to Commander until soldier leaves
-
 {% include "zombor_rooms" -%}
 
 **Menu**  
@@ -38,6 +10,8 @@ Inventory
 * Strength Capsule -> Crono  
 * Magic Capsule -> Lucca  
 * Speed Capsule -> Lucca
+
+[Backup](/speedruns/ct/rng-manip-100-full/backups/zombor/main/)
 
 **Ozzie, Skeleton x2**
 {{<battlebox>}}Crono Attack Ozzie (Left)  
@@ -54,3 +28,79 @@ Party (Crono / Robo / Lucca)
 * Marle <-> Robo
 
 {% include "zombor_battle" %}
+
+## Masamune
+
+### Dorino Village
+
+Enter Market (left house)
+
+**Shop**  
+Sell
+
+* Mid-Ether (all)
+* All weapons except Airgun
+
+Buy
+
+* Shelter x11
+* Athenian Water x21
+* Panacea x11
+* Mid-Potion (rest)
+
+**Menu**  
+Inventory
+
+* Shelter
+
+### Denadoro Mountains
+
+Run straight up to avoid battle and go to next screen  
+**Pick Mirage Hand** then go back
+
+**Ogan**
+{{<battlebox>}}Auto-battle{{</battlebox>}}
+
+**Ogan**
+{{<battlebox>}}Robo Attack
+Lucca Flamethrower
+Auto-battle{{</battlebox>}}
+
+Go to the next screen
+
+**Ogan x2**
+{{<battlebox>}}Escape{{</battlebox>}}
+
+**Menu**  
+Equipment
+
+* Robo (**Mirage Hand** / Iron Helm / Titanium Vest / Berserker)
+
+Hug cliff to avoid charging Ogan and go to the next screen
+
+Hold right until bonk, go up two ladders, up+left then left asap when out of ladder  
+Go to the next screen
+
+**Pick Mid-Ether** and go to the next screen
+
+Hold right, go up the ladder and hug left to avoid encounter
+
+Two steps up then left to next screen
+
+Bird skip and fall down left side of waterfall  
+Ignore first chest and take second to **get Silver Earring**
+
+Back to bird skip, go up and then down-left to skip encounter, go to the next screen
+
+Talk to "Mountains are so nice." 4 times to **get Magic Capsule**  
+Go to the next screen
+
+Down 2 ladders and **pick Speed Capsule** on left side  
+Go to the next screen
+
+Go down the ladder, one step down+right, wait stone  
+Run and go up (he'll move out of the way)
+
+Run up to the sword
+
+[Backup](/speedruns/ct/rng-manip-100-full/backups/masamune/main/)

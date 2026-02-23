@@ -39,7 +39,3 @@ battle
 battle
 battle
 room 2 # elevator, geno 3
-battle
-battle # lady robot
-battle
-battle
