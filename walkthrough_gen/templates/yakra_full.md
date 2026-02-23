@@ -46,4 +46,4 @@ Settings
 
 **Get Mid-Potion x5** from the supervisor (optional)
 
-[Backup](/speedruns/ct/rng-manip-100-full/backups/dragontank/main/)
+[Backup](/speedruns/ct/rng-manip-100-full/backups/dragontank/)

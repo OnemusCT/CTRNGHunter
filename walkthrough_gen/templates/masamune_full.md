@@ -105,4 +105,4 @@ Inventory
 
 * Shelter
 
-[Backup](/speedruns/ct/rng-manip-100-full/backups/nizbel/main/)
+[Backup](/speedruns/ct/rng-manip-100-full/backups/nizbel/)

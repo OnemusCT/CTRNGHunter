@@ -131,3 +131,5 @@ Inventory
 * Shelter
 
 **Pick Elixir**
+
+[Backup](/speedruns/ct/rng-manip-100-full/backups/golemtwins/)

@@ -26,3 +26,5 @@ Open skull, **pick Hi-Ether**, hit the switch
 
 Head back, align Crono's foot then move straight up  
 ![](/images/speedruns/ct-rng-manip-100/tyranno3.png)
+
+[Backup](/speedruns/ct/rng-manip-100-full/backups/blacktyranno/)

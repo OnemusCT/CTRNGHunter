@@ -1,10 +1,8 @@
 **Slash 1 (3200 HP)**
-{{<battlebox>}}
-Auto-battle{{</battlebox>}}
+{{<battlebox>}}Auto-battle{{</battlebox>}}
 
 **Slash 2 (5200 HP)**
-{{<battlebox>}}
-Phase 1 (\> 2600 HP)  
+{{<battlebox>}}Phase 1 (\> 2600 HP)  
  First 2k dmg: Mid-Potion < 100 HP  
  After: Mid-Potion < 150 HP  
  Crono / Robo Attack  
@@ -118,5 +116,5 @@ Run left to avoid bats
 If Cleave not learned, Cyclone bats before Magus  
 Mash Cancel to skip FMV when approaching Magus
 
-[Backup](/speedruns/ct/rng-manip-100-full/backups/magus/main/)
+[Backup](/speedruns/ct/rng-manip-100-full/backups/magus/)
 

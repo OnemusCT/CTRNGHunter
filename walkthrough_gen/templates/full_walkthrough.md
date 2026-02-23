@@ -33,7 +33,7 @@ If you aren't me I'm sorry.
 {% include "flea_full" %}
 
 {%- endif -%}
-{%- if existsIn(rng, "slash") -%}
+{%- if existsIn(rng, "slash1") -%}
 {% include "slash_full" %}
 
 {%- endif -%}
@@ -53,10 +53,13 @@ If you aren't me I'm sorry.
 {% include "mudimp_full" %}
 
 {% include "gigagaia_full" %}
-
+{%- endif -%}
+{%- if existsIn(rng, "golemtwins") -%}
 {% include "golemtwins_full" %}
 
 {% include "dalton_full" %}
+{%- endif -%}
+{%- if existsIn(rng, "ghosts") -%}{% include "ghosts_full" %}
 {%- endif -%}
 {%- if existsIn(rng, "rusttyranno") -%}{% include "rusttyranno_full" %}
 {%- endif -%}

@@ -57,3 +57,5 @@ Inventory
 Settings
 
 * Battle Speed: 6
+
+[Backup](/speedruns/ct/rng-manip-100-full/backups/sonofsun/)

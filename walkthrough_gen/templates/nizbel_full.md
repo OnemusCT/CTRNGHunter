@@ -85,4 +85,8 @@ Equipment
 
 * Frog (Masamune / Bronze Helm / **Titanium Vest** / **Berserker Ring** (Down x2))
 
-[Backup](/speedruns/ct/rng-manip-100-full/backups/flea/main/)
+Use Tech heals once each on Crono and Robo.
+{% if "flea" in heals and heals.flea > 0 -%}
+{{<color "red">}}Perform {$ heals.flea $} additional Tech heals prior to the Flea? battle. Tech heals will advance RNG even if the target is full health.{{</color>}}
+{% endif %}
+

@@ -1,3 +1,7 @@
 load
 import sections/blacktyranno.txt
 import sections/mudimp.txt
+import sections/gigagaia.txt
+import sections/dalton.txt
+import sections/golemtwins.txt
+import sections/daltonplus.txt

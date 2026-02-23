@@ -225,7 +225,5 @@ std::string sim_guardian(uint8_t rng, const std::vector<Character>& p1_turn_orde
     // ReSharper disable once CppDFAConstantConditions
     result += format_phase(phase2, "Phase 2", phase1.redirects == 0 && phase2.redirects == 0);
     result += "    Auto-battle to end";
-
-    std::println("\nTotal attacks: {}", phase1.actions.size() + phase2.actions.size());
     return result;
 }

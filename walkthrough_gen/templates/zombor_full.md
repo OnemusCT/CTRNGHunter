@@ -1,18 +1,3 @@
-{% include "zombor_rooms" -%}
-
-**Menu**  
-Equipment
-
-* Lucca (**Plasma Gun** / Hide Cap / **Taban's Vest** / Headband)  
-
-Inventory
-
-* Strength Capsule -> Crono  
-* Magic Capsule -> Lucca  
-* Speed Capsule -> Lucca
-
-[Backup](/speedruns/ct/rng-manip-100-full/backups/zombor/main/)
-
 **Ozzie, Skeleton x2**
 {{<battlebox>}}Crono Attack Ozzie (Left)  
 Marle Attack Ozzie (Left)  
@@ -103,4 +88,4 @@ Run and go up (he'll move out of the way)
 
 Run up to the sword
 
-[Backup](/speedruns/ct/rng-manip-100-full/backups/masamune/main/)
+[Backup](/speedruns/ct/rng-manip-100-full/backups/masamune/)

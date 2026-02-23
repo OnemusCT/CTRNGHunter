@@ -1,2 +1,5 @@
 load
 import sections/gigagaia.txt
+import sections/dalton.txt
+import sections/golemtwins.txt
+import sections/daltonplus.txt

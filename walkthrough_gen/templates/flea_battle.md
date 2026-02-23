@@ -1,7 +1,3 @@
-Use Tech heals once on each character.
-{% if "flea" in heals and heals.flea > 0 -%}
-	{{<color "red">}}Perform {$ heals.flea $} additional Tech heals prior to the Flea? battle. Tech heals will advance RNG even if the target is full health.{{</color>}}
-{% endif %}
 {% if "flea" in rooms and rooms.flea > 0 -%}
 	{{<color "red">}}Do {$ rooms.flea $} extra sets of room transitions prior to the Flea? battle.{{</color>}}
 {% endif %}

@@ -120,3 +120,5 @@ Mash Cancel to skip FMV
 
 Go left then up and enter Terra Cave  
 Go down all the ladders  
+
+[Backup](/speedruns/ct/rng-manip-100-full/backups/mudimp/)

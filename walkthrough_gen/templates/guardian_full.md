@@ -1,3 +1,4 @@
+
 **Guardian (1200/200/200 HP)**
 {% include "guardian_battle" %}
 

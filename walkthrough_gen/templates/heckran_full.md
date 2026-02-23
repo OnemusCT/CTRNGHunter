@@ -53,3 +53,18 @@ Talk to Commander at Zenan Bridge (1 textbox) then go to Guardia Castle
 Go to Kitchen (right) and talk to Master of Kitchen  
 Wait at stairs until "Mind your own business" (2 textboxes after pause) and exit  
 Go back to Bridge and talk to Commander until soldier leaves
+
+{% include "zombor_rooms" -%}
+
+**Menu**  
+Equipment
+
+* Lucca (**Plasma Gun** / Hide Cap / **Taban's Vest** / Headband)
+
+Inventory
+
+* Strength Capsule -> Crono
+* Magic Capsule -> Lucca
+* Speed Capsule -> Lucca
+
+[Backup](/speedruns/ct/rng-manip-100-full/backups/zombor/)

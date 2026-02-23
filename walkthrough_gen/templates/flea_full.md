@@ -11,10 +11,9 @@ Go back (avoid NPCs) and take left path
 Techs
 
 * Robo
-    * Cure Beam everyone
+    * Cure Beam everyone twice each
 
 Go up and talk to middle girl
 
 **Lancer x5**
-{{<battlebox>}}
-Auto-battle{{</battlebox>}}
+{{<battlebox>}}Auto-battle{{</battlebox>}}

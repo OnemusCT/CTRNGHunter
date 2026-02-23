@@ -130,3 +130,5 @@ Party (Magus / Ayla / Marle)
 
 Go to the next room and open right chest (**hold Up**)  
 Go to where Kino was, **pick Mid-Ether** and continue  
+
+[Backup](/speedruns/ct/rng-manip-100-full/backups/rusttyranno/)

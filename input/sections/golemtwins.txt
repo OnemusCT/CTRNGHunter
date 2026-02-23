@@ -3,7 +3,7 @@
 ####		 Golem Twins		####
 ####							####
 ####################################
-battle # golem-twins
+battle_with_rng C7 golemtwins
 portal # mammon
 portal # lavos
 battle # lavos
