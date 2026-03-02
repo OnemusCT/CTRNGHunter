@@ -1,5 +1,4 @@
 load
-import sections/ghosts.txt
 import sections/ozzie.txt
 import sections/rusttyranno.txt
 import sections/sonofsun.txt

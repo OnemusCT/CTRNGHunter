@@ -3,7 +3,10 @@
 ####		 Yakra XIII			####
 ####							####
 ####################################
-battle # yakra xiii
+# another screen wipe
+room 7
+heal 25
+battle_with_rng 1 yakraxiii # yakra xiii 1 (10), more options if we swap magus and marle, but slower due to menuing
 # throne, basement, shell, basement, throne, keeper's dome 1, 2, 1
 # death peak 1, 2, 3, 4
 room 8 ###### GO BACK AND GET STRENGTH CAPSULE!!!! #######

@@ -2,12 +2,12 @@
 {{<battlebox>}}Auto-battle{{</battlebox>}}
 
 **Slash 2 (5200 HP)**
-{{<battlebox>}}Phase 1 (\> 2600 HP)  
+{{<battlebox>}}Phase 1 (> 2600 HP)  
  First 2k dmg: Mid-Potion < 100 HP  
  After: Mid-Potion < 150 HP  
  Crono / Robo Attack  
-Phase 2 (\> 600 HP)  
- Will use Jump Attack (\~130 dmg)  
+Phase 2 (> 600 HP)  
+ Will use Jump Attack (~130 dmg)  
  Crono / Robo Attack (stop when near 4600 dmg)  
 * Phase 3 (< 600 HP)  
  Counter phase, only Frog Attack  
@@ -22,11 +22,10 @@ Party (Crono / Frog / Lucca)
 
 Equipment
 
-* Crono (**Slasher** / Stone Helm / Ruby Vest / **Power Glove**)  
-  * Slasher  
-  * Power Glove (Down)  
-* Frog (Masamune / Bronze Helm / Titanium Vest / **Power Scarf**)  
-  * Power Scarf
+* Crono (**Slasher** / Stone Helm / Ruby Vest / Power Scarf)  
+  * Slasher
+* Frog (Masamune / Bronze Helm / Titanium Vest / **Power Glove**)  
+  * Power Glove
 
 Inventory
 
@@ -99,9 +98,7 @@ Go to the next screen facing left to avoid encounter
 **Menu**  
 Equipment
 
-* Crono (Slasher / Stone Helm / **Dark Mail** / **Silver Earring**)
-    * Dark Mail
-    * Silver Earring (Down x2)
+* Crono (Slasher / Stone Helm / Red Vest / Power Scarf)
 * Frog (Masamune / Bronze Helm / Titanium Vest / **Berserker Ring**)
     * Berserker Ring (Down)
 * Lucca (Plasma Gun / Hide Cap / Taban's Vest / **Speed Belt**)

@@ -1,7 +1,7 @@
 **Golem Twins (7000 HP)**
 {{<battlebox>}}Crono Lightning II  
 Ayla Boogie (repeat if miss)  
-Crono / Ayla Falcon Strike x5  
+Crono / Ayla Falcon Strike x5  (Careful with Ayla!)
 Robo Mid Tonic self if < 280 HP{{</battlebox>}}
 
 Continue, talk to Nu, continue  

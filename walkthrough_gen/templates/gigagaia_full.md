@@ -30,10 +30,11 @@ Talk to plant lady and select the **1st option** ("Yes") then the **2nd option**
 Go up and left then enter the middle hall
 
 **Dalton (3500 HP)**
-{{<battlebox>}}Crono Falcon Strike
+{{<battlebox>}}Note: Attackers are important because of counters
+Crono Falcon Strike (Mash if good Giga Gaia)
 Ayla Falcon Strike
 Lucca Fire
-Falcon Strike{{</battlebox>}}
+Crono or Ayla Falcon Strike{{</battlebox>}}
 
 ### Ocean Palace
 
@@ -87,13 +88,17 @@ Continue down
 Talk to Masa then continue to the elevator
 
 **Zealot Mage, Blue Scouter x2, Scouter x2**
-{{<battlebox>}}Crono Falcon Strike top row (starts on Cyclone)
+{{<battlebox>}}Note: Don't mash for second Falcon Strike in case Ayla comes up first
+
+Crono Falcon Strike top row (starts on Cyclone)
 Crono Falcon Strike bottom row{{</battlebox>}}
 
 Go back inside and repeat fight (Lucca should learn Fire II)
 
 **Zealot Mage, Blue Scouter x2, Scouter x2**
-{{<battlebox>}}Crono Falcon Strike top row  
+{{<battlebox>}}Note: Don't mash for second Falcon Strike in case Ayla comes up first
+
+Crono Falcon Strike top row  
 Crono Falcon Strike bottom row{{</battlebox>}}
 
 **Menu**  
@@ -118,7 +123,9 @@ Falcon Strike bottom row{{</battlebox>}}
 Robo Tackle, Boogie and Spin Kick learned
 
 **Red Scouter x2, Blue Scouter x2, Scouter x2**
-{{<battlebox>}}Crono Falcon Strike bottom row  
+{{<battlebox>}}Note: Don't attack with Robo or they counter!
+
+Crono Falcon Strike bottom row  
 Crono Falcon Strike top row{{</battlebox>}}
 
 Go inside, go left and hit the switch (escape from scouters, **don't attack**)  

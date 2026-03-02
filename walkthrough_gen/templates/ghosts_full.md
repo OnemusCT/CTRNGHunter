@@ -54,21 +54,37 @@ Party (Frog / Ayla / Marle)
 
 ![](/images/speedruns/ct-rng-manip-100/ozzietreasure.png)
 
-Go back to world map
+**Menu**
+Party (Magus / Ayla / Marle)
+
+* Frog <-> Magus
+
+* Magus (**Doom Scythe** / **Gloom Helm** / **Gloom Cape** / **Berserker Ring**)
+  * Doom Scythe
+  * Gloom Helm
+  * Gloom Cape
+  * Berserker Ring
+
+**Ozzie Trio**
+{{<battlebox>}}Auto-battle when Slash kills Ayla{{</battlebox>}}
+
+Continue north, attack switch, north, leave
+
+Fly south to Giant's Claw
 
 **Menu**  
 Party (Magus / Lucca / Robo)
 
-* Frog <-> Magus
 * Lucca <-> Ayla
 * Marle <-> Robo
+
+* Magus (Doom Scyth / Gloom Helm / Gloom Vest / **Guardian Bangle**)
+  * Guardian Bangle
 
 Inventory
 
 * Shelter (insta close menu)
 * Speed Capsule x2 -> Magus
-
-Fly south to Giant's Claw
 
 ### Giant's Claw
 
@@ -107,10 +123,8 @@ Step on right switch
 **Menu**  
 Equipment
 
-* Magus (**Doom Scythe** / **Gloom Helm** / **Ruby Vest** / **Berserker Ring**)
-    * Doom Scythe
-    * Gloom Helm
-    * Ruby Vest (Down x2)
+* Magus (Doom Scythe / Gloom Helm / **Ruby Vest** / **Berserker Ring**)
+    * Ruby Vest
     * Berserker Ring (Down)
 
 Exit down

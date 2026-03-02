@@ -1,7 +1,7 @@
 **Magus (6666 HP)**
 {{<battlebox>}}Phase 1
 Frog berserk attack 
-+ Crono Barrier self 
++ Crono Mid-Potion self 
 + Lucca attack
 
 Fire-Counter 1
@@ -27,7 +27,7 @@ Crono Mid-potion Lucca
 Fire-Counter 3
 Magus Fire Counter + Magus attack Lucca
 Crono Mid-potion 
-+ Lucca Mid-potion
++ Lucca Barrier Crono
 Magus Geyser
 Crono Fire Sword
 

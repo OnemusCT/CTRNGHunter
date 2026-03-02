@@ -9,15 +9,5 @@ room # ozzie fort 2
 battle_with_crits 23 1 2 flea2
 room 2 # fort 3, 4
 battle_with_crits 23 1 2 slash2
-room 4 # chest room, 4, 3, 2,
-portal # fort 1
-room 3 # tyranno 1, 2, 3
-battle
-room 2 # 4,5
-battle
-room 2 # 6,5
-battle
-room 5 # 6,7,8,9,10
-battle # rubble
-battle # rubble
-room 4 # 11,12,13,14
+room 1 # chest room
+portal # ozzie 5

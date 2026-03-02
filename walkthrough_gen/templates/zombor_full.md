@@ -72,10 +72,7 @@ Hold right, go up the ladder and hug left to avoid encounter
 
 Two steps up then left to next screen
 
-Bird skip and fall down left side of waterfall  
-Ignore first chest and take second to **get Silver Earring**
-
-Back to bird skip, go up and then down-left to skip encounter, go to the next screen
+Bird skip, go up and then down-left to skip encounter, go to the next screen
 
 Talk to "Mountains are so nice." 4 times to **get Magic Capsule**  
 Go to the next screen

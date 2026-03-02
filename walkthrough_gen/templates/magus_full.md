@@ -49,8 +49,8 @@ Equipment
 * Ayla (Fist / Stone Helm / **Mist Robe** / **Power Scarf**)
     * Mist Robe
     * Power Scarf (Down)
-* Lucca (Plasma Gun / Hide Cap / Taban's Vest / **Silver Earring**)
-    * Silver Earring
+* Lucca (Plasma Gun / Hide Cap / Taban's Vest / **Guardian Ring**)
+    * Guardian Ring
 * Crono (Slasher / Stone Helm / Dark Mail / **Speed Belt**)
     * Speed Belt
 

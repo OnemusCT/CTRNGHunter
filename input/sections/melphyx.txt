@@ -5,17 +5,6 @@
 ####################################
 battle melphyx
 room # desert 2
-portal # ozzie 1
-room 4 # ozzie 2,3,4,5
-portal # ozzie 6
-battle # ozzie, slash, flea
-room 1 # ozzie 7
-battle # ozzie
-portal # ozzie 6
-room # ozzie 7
-portal # ozzie 6
-room 4 # ozzie 5,4,3,2
-portal # ozzie 1
 room 2 # fiona, shrine
 portal # campfire 1
 portal # campfire 1 again

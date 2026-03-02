@@ -1,0 +1,18 @@
+battle_with_rng 3 ozzie-trio
+room # ozzie 6
+battle # ozzie
+portal # ozzie 5
+room # ozzie 6
+portal # ozzie 5
+room 4 # ozzie chest,4,3,2
+portal # ozzie 1
+room 3 # tyranno 1, 2, 3
+battle
+room 2 # 4,5
+battle
+room 2 # 6,5
+battle
+room 5 # 6,7,8,9,10
+battle # rubble
+battle # rubble
+room 4 # 11,12,13,14
