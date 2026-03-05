@@ -2,7 +2,7 @@
 The format of these templates is catered towards onemus.net.
 If you aren't me I'm sorry.
 -->
-**Load Seed: {$ seed $}**
+**Load Seed: {$ seed $} ({$ seedString $})**
 
 {%- if existsIn(rng, "yakra") -%}
 {% include "newgame_full" %}

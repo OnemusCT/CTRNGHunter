@@ -68,9 +68,7 @@ Party (Magus / Ayla / Marle)
 **Ozzie Trio**
 {{<battlebox>}}Auto-battle when Slash kills Ayla{{</battlebox>}}
 
-Continue north, attack switch, north, leave
-
-Fly south to Giant's Claw
+**REMOVE BERSERKER FROM MAGUS!!!**
 
 **Menu**  
 Party (Magus / Lucca / Robo)
@@ -80,6 +78,10 @@ Party (Magus / Lucca / Robo)
 
 * Magus (Doom Scyth / Gloom Helm / Gloom Vest / **Guardian Bangle**)
   * Guardian Bangle
+
+Continue north, attack switch, north, leave
+
+Fly south to Giant's Claw
 
 Inventory
 

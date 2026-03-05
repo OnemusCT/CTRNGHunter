@@ -48,6 +48,10 @@ Inventory
 
 * Shelter
 
+Settings
+
+* Battle Speed: 3
+
 Talk to Mune then go to the next screen  
 Go right, enter door, step on the switch
 
@@ -138,5 +142,9 @@ Inventory
 * Shelter
 
 **Pick Elixir**
+
+Settings
+
+* Battle Speed: 2
 
 [Backup](/speedruns/ct/rng-manip-100-full/backups/golemtwins/)

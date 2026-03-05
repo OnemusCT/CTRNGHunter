@@ -20,7 +20,7 @@ Inventory
 
 Settings
 
-* Battle Speed: 1
+* Battle Speed: 2
 
 Open skull, **pick Hi-Ether**, hit the switch
 

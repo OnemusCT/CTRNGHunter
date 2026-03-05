@@ -12,6 +12,8 @@ Lucca Attack head
 Crono Cyclone
 Robo auto head crit
 Lucca Attack head
+Zombor drain Lucca
++ Crono wait in menu during drain, close and reopen Tech menu for Lucca's ATB
 Crono Cyclone
 Lucca Attack head
 Robo auto head crit 
