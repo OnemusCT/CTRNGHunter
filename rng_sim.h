@@ -6,6 +6,8 @@
 #include <unordered_map>
 #include <string>
 
+#include "msvc_rand_wrapper.h"
+
 /**
  * Simulates Chrono Trigger's RNG consumption during a speedrun route.
  *
@@ -17,7 +19,6 @@
  */
 class RNGSim {
     public:
-        virtual ~RNGSim() = default;
 
         RNGSim() = default;
 
@@ -30,74 +31,89 @@ class RNGSim {
         };
 
         // Seeds the internal RNG and resets all state (extra rooms, heals, encounter maps).
-        virtual void init(time_t seed) = 0;
+        void init(time_t seed);
 
         // Simulates loading a save file (advances RNG by 42 steps).
-        virtual bool load(LogLevel log_level) = 0;
+        bool load(LogLevel log_level);
 
         // Simulates traversing `num` room transitions (advances RNG by 33 * num steps).
-        virtual bool room(int num, LogLevel log_level) = 0;
+        bool room(int num, LogLevel log_level);
 
         // Adds an extra pair of room transitions for RNG manipulation (advances RNG by 66 steps).
         // Returns false if extra rooms are currently disabled.
-        virtual bool extra_rooms(LogLevel log_level) = 0;
+        bool extra_rooms(LogLevel log_level);
 
         // Simulates a battle encounter (advances RNG by 1 step), computing the battle RNG value.
-        virtual bool battle(std::string_view name, LogLevel log_level) = 0;
+        bool battle(std::string_view name, LogLevel log_level);
 
         // Simulates a battle and checks if the resulting RNG value matches any value in `rng_vals`.
         // On match, records the encounter data under `name`. Returns true if a match is found.
-        virtual bool battle_with_rng(std::vector<int> rng_vals, std::string_view name, LogLevel log_level) = 0;
+        bool battle_with_rng(const std::vector<int>& rng_vals, std::string_view name, LogLevel log_level);
 
         // Simulates a battle and checks if enough critical hits occur.
         // Uses `threshold` (crit chances per turn, cycled), counts crits over `max_turns`,
         // and returns true if crits >= `min_crits`. Records encounter data under `name` on success.
-        virtual bool battle_with_crits(std::vector<int> threshold, int min_crits, int max_turns, std::string_view name,
-                                       LogLevel log_level) = 0;
+        bool battle_with_crits(const std::vector<int>& threshold, int min_crits, int max_turns, std::string_view name,
+                               LogLevel log_level);
 
         // Simulates starting a new game (advances RNG by 35 steps).
-        virtual bool new_game(LogLevel log_level) = 0;
+        bool new_game(LogLevel log_level);
 
         // Simulates a portal/end-of-time/special room transition (advances RNG by 1 step).
-        virtual bool portal(LogLevel log_level) = 0;
+        bool portal(LogLevel log_level);
 
         // Simulates `num` healing actions (advances RNG by `num` steps).
-        virtual bool heal(int num, LogLevel log_level) = 0;
+        bool heal(int num, LogLevel log_level);
 
         // Adds an extra heal action for RNG manipulation (advances RNG by 1 step).
         // Returns false if extra heals are currently disabled.
-        virtual bool extra_heal(LogLevel log_level) = 0;
+        bool extra_heal(LogLevel log_level);
 
         // Disables extra room transitions. extra_rooms() will return false until re-enabled.
-        virtual bool disable_extra_rooms(LogLevel log_level) = 0;
+        bool disable_extra_rooms(LogLevel log_level);
 
         // Enables extra room transitions (enabled by default after init).
-        virtual bool enable_extra_rooms(LogLevel log_level) = 0;
+        bool enable_extra_rooms(LogLevel log_level);
 
         // Enables extra healing actions (disabled by default after init).
-        virtual bool enable_extra_heals(LogLevel log_level) = 0;
+        bool enable_extra_heals(LogLevel log_level);
 
         // Disables extra healing actions.
-        virtual bool disable_extra_heals(LogLevel log_level) = 0;
+        bool disable_extra_heals(LogLevel log_level);
 
         // Reverses the RNG state by `steps` individual steps.
-        virtual void roll_back_rng(int steps) = 0;
+        void roll_back_rng(int steps);
 
         // Reverses the RNG state by the number of steps consumed by the last operation.
-        virtual void roll_back_last_rng() = 0;
+        void roll_back_last_rng();
 
         // Burns (discards) `num` RNG values, advancing the state without game effect.
-        virtual void burn(int num, LogLevel log_level) = 0;
+        void burn(int num, LogLevel log_level);
 
-        // Returns a map of encounter name -> number of extra room transition pairs added before it.
-        virtual std::unordered_map<std::string, int> get_extra_rooms_per_encounter() = 0;
+        struct EncounterStats {
+            int extra_rooms = 0;
+            int battle_rng = 0;
+            int extra_heals = 0;
+        };
 
-        // Returns a map of encounter name -> battle RNG value that was rolled.
-        virtual std::unordered_map<std::string, int> get_battle_rng_per_encounter() = 0;
-
-        // Returns a map of encounter name -> number of extra heals added before it.
-        virtual std::unordered_map<std::string, int> get_extra_heals_per_encounter() = 0;
+        // Returns a map of encounter name -> encounter statistics.
+        std::unordered_map<std::string, EncounterStats> get_encounter_stats();
 
         // Factory method. Returns a new RNGSim instance.
         static std::unique_ptr<RNGSim> Create();
+        
+    private:
+        // Advances the RNG by `n` steps. In FULL log mode, prints each individual value;
+        // otherwise uses the multi-step fast path.
+        void roll_rng(int n, std::string_view type, LogLevel log_level);
+
+        MSVCRandWrapper rng_;
+
+        int last_steps = 0; // Steps consumed by the most recent operation (for rollback)
+        bool extra_rooms_enabled_ = true; // Whether extra_rooms() is allowed
+        bool extra_heals_enabled_ = false; // Whether extra_heal() is allowed
+        int extra_room_count_ = 0; // Running count of extra rooms since last encounter
+        int extra_heals_count_ = 0; // Running count of extra heals since last encounter
+        int last_battle_rng_ = 0; // Battle RNG value from the most recent battle
+        std::unordered_map<std::string, EncounterStats> stats_map_; // encounter name -> stats
 };

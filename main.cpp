@@ -9,123 +9,7 @@
 #include "rng_hunter.h"
 #include "msvc_rand_wrapper.h"
 #include "guardian_sim.h"
-
-// Prints the raw RNG output and battle RNG index for each of the first `num_output`
-// calls from the given seed.
-void print_rng_values(time_t seed, int num_output) {
-    MSVCRandWrapper rand = {};
-    rand.srand(seed);
-    for (int i = 0; i < num_output; i++) {
-        int r = rand.rand();
-        int rng_index = (r % 0xFF) + 1;
-        std::print("{:4}: 0x{:04X}, 0x{:02X}\n", i, r, rng_index);
-    }
-}
-
-// Prints whether each of the 256 RNG table entries would produce a critical hit
-// at the given crit chance threshold.
-void print_crit_values(int threshold) {
-    for (int i = 0; i < 256; i++) {
-        std::println("0x{:02X} (0x{:02X}): {:5}", i, rng_table(i), crit_table(i, threshold));
-    }
-}
-
-// Simulates Chrono Trigger's battle turn-order initialization for player characters
-// and enemies.
-// Starting from RNG table index `rng`, walks the table assigning slots to `players`
-// characters and 8 enemy slots. Returns the RNG index after all 11 slots are assigned.
-int turn_order(int rng, int players = 3) {
-    std::set<int> seen;
-    int t = 10;
-    for (int i = 3; i > players; i--) {
-        seen.insert(t--);
-    }
-    for (int i = rng; i != rng - 1; i++) {
-        if (i == 256) i = 0;
-        //std::print("i: {:02X} ({:02X})", i, rng_table(i));
-        seen.insert(rng_table(i) % 11);
-        if (seen.size() == 11) {
-            return (i + 1) % 256;
-        }
-    }
-    return -1;
-}
-
-// Continues turn-order initialization for enemies. Starting from RNG table index `rng`,
-// walks the table until every enemy in `enemy_indices` has been assigned a slot.
-// Returns the RNG index after all enemies are placed.
-int enemy_order(int rng, const std::set<int>& enemy_indices) {
-    std::set<int> seen;
-    for (int i = rng; i != rng - 1; i++) {
-        if (i == 256) i = 0;
-        if (int index = rng_table(i) % 8;
-            enemy_indices.contains(index)) {
-            seen.insert(index);
-        }
-        if (seen.size() == enemy_indices.size()) {
-            return (i + 1) % 256;
-        }
-    }
-    return -1;
-}
-
-// Prints a 16x16 table showing the post-initialization RNG index for every possible
-// starting RNG index (0x00-0xFF), given `players` party members and `enemies` slots.
-void print_init_table(int players = 3, const std::set<int>& enemies = {0}) {
-    std::println("RNG Post initialization for {} characters and {} enemies", players, enemies);
-    std::print("\t");
-    for (int i = 0; i < 16; i++) {
-        std::print("x{:1X}\t", i);
-    }
-    std::print("\n");
-    for (int i = 0; i < 256; i++) {
-        if (i % 16 == 0) {
-            std::print("{:1X}x\t", i / 16);
-        }
-        int temp = turn_order(i, players);
-        int rng = enemy_order(temp, enemies);
-        std::print("{:02X}\t", rng);
-        if (i % 16 == 15) std::print("\n");
-    }
-}
-
-// Prints the full turn processing order for a battle starting at RNG index `rng`,
-// with `players` party members and `enemies` enemy count. Active entities are bolded.
-void print_init_order(int rng, int players, int enemies) {
-    std::set<int> exist;
-    std::vector<int> order;
-    std::vector<int> entities;
-    for (int i = 0; i < players; i++) {
-        entities.push_back(i);
-        exist.insert(i);
-    }
-    for (int i = 0; i < 8; i++) {
-        entities.push_back(10 - i);
-    }
-    for (int i = 0; i < enemies; i++) {
-        exist.insert(3 + i);
-    }
-    while (entities.size() < 11) {
-        entities.push_back(0xFF);
-    }
-    while (order.size() < 11UL - (3 - players)) {
-        int c = rng_table(rng) % 11;
-        if (entities[c] != 0xFF) {
-            order.push_back(entities[c]);
-            entities[c] = 0xFF;
-        }
-        ++rng;
-    }
-    std::print("[ ");
-    for (int e: order) {
-        if (exist.contains(e)) {
-            std::print("**0x{:1X}** ", e);
-        } else {
-            std::print("0x{:1X} ", e);
-        }
-    }
-    std::println("]");
-}
+#include "utils.h"
 
 int main(int argc, char* argv[]) {
     CLI::App app("CT RNG Hunter");
@@ -218,12 +102,16 @@ int main(int argc, char* argv[]) {
         hunter.logSeed(seed, verbose ? RNGSim::LogLevel::FULL : RNGSim::LogLevel::PARTIAL);
     });
 
+    WalkthroughType walkthrough_type{WalkthroughType::FULL};
+    std::map<std::string, WalkthroughType> map{{"full", WalkthroughType::FULL}, {"simple", WalkthroughType::SIMPLE}};
     std::string out;
     CLI::App* generate_walkthrough = app.add_subcommand("generate_walkthrough",
                                                         "Executes and logs the results of the given seed");
     generate_walkthrough->add_option("-f,--filename", filename, "The file to execute")->required();
     generate_walkthrough->add_option("-s,--seed", seed, "The seed to run");
     generate_walkthrough->add_option("-o,--out", out, "The output file to write")->required();
+    generate_walkthrough->add_option("-t,--type", walkthrough_type, "The type of the walkthrough")
+        ->transform(CLI::CheckedTransformer(map, CLI::ignore_case));
     generate_walkthrough->callback([&] {
         RNGHunter hunter(1);
         if (!hunter.parseFile(filename)) {
@@ -233,7 +121,7 @@ int main(int argc, char* argv[]) {
         if (!out_file) {
             std::println(stderr, "Error opening file {}", out);
         } else {
-            hunter.generateWalkthrough(seed, out_file);
+            hunter.generateWalkthrough(walkthrough_type, seed, out_file);
             out_file.close();
         }
     });

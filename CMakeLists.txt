@@ -23,7 +23,8 @@ set(LIB_SOURCES
         msvc_rand_wrapper.cpp
         rng_sim.cpp
         walkthrough_gen/walkthrough_gen.cpp
-        guardian_sim.cpp)
+        guardian_sim.cpp
+        utils.cpp)
 
 # Header files
 set(HEADERS
@@ -36,7 +37,8 @@ set(HEADERS
         nlohmann/json.hpp
         inja/inja.hpp
         walkthrough_gen/walkthrough_gen.h
-        guardian_sim.h)
+        guardian_sim.h
+        utils.h)
 
 
 file(GLOB TEMPLATE_FILES
@@ -160,6 +162,8 @@ enable_testing()
 add_executable(ctrng_tests
         tests/msvc_rand_wrapper_test.cpp
         tests/rng_sim_test.cpp
+        tests/rng_hunter_test.cpp
+        tests/hunter_statistics_test.cpp
 )
 target_link_libraries(ctrng_tests PRIVATE ctrng_lib GTest::gtest_main)
 set_target_properties(ctrng_tests PROPERTIES

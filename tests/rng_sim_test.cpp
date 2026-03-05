@@ -189,9 +189,9 @@ TEST(RNGSimTest, BattleWithRngTracksEncounterData) {
 	sim->init(seed);
 	sim->battle_with_rng({CalcExpectedRNG(r)}, "boss1", RNGSim::NONE);
 
-	auto rng_map = sim->get_battle_rng_per_encounter();
-	ASSERT_TRUE(rng_map.count("boss1"));
-	EXPECT_EQ(rng_map["boss1"], CalcExpectedRNG(r));
+	auto stats_map = sim->get_encounter_stats();
+	ASSERT_TRUE(stats_map.count("boss1"));
+	EXPECT_EQ(stats_map["boss1"].battle_rng, CalcExpectedRNG(r));
 }
 
 TEST(RNGSimTest, ExtraRoomsCountTrackedPerEncounter) {
@@ -211,9 +211,9 @@ TEST(RNGSimTest, ExtraRoomsCountTrackedPerEncounter) {
 
 	sim->battle_with_rng({CalcExpectedRNG(r)}, "boss2", RNGSim::NONE);
 
-	auto rooms_map = sim->get_extra_rooms_per_encounter();
-	ASSERT_TRUE(rooms_map.count("boss2"));
-	EXPECT_EQ(rooms_map["boss2"], 2);
+	auto stats_map = sim->get_encounter_stats();
+	ASSERT_TRUE(stats_map.count("boss2"));
+	EXPECT_EQ(stats_map["boss2"].extra_rooms, 2);
 }
 
 TEST(RNGSimTest, InitResetsState) {
