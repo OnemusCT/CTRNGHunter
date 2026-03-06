@@ -174,6 +174,14 @@ set_target_properties(ctrng_tests PROPERTIES
 include(GoogleTest)
 gtest_discover_tests(ctrng_tests)
 
+# Benchmark executable
+add_executable(ctrng_benchmark tests/rng_hunter_benchmark.cpp)
+target_link_libraries(ctrng_benchmark PRIVATE ctrng_lib)
+set_target_properties(ctrng_benchmark PROPERTIES
+    CXX_STANDARD 23
+    CXX_STANDARD_REQUIRED ON
+)
+
 # Print configuration summary
 message(STATUS "")
 message(STATUS "CTRNGHunter Configuration:")
