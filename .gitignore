@@ -362,3 +362,7 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /CMakeSettings.json
+
+# Temporary
+generate_walkthrough.bat
+tests/rng_hunter_test.cpp
