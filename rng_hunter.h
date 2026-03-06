@@ -37,7 +37,7 @@ struct Action {
     int max_turns = 0;        // Used by battle_with_crits
     int name_idx = -1;        // Index in RNGHunter::action_names_
     int values_idx = -1;      // Index in RNGHunter::action_values_
-    
+
     // Executes this action on the given simulator
     bool execute(RNGSim& sim, RNGSim::LogLevel log_level, const RNGHunter& hunter) const;
 };
@@ -65,11 +65,12 @@ class RNGHunter {
 
         // Marks a seed for verbose debug logging during findSeeds().
         void addDebugSeed(time_t seed);
-        
+
         std::string_view getActionName(int idx) const {
-            return idx >= 0 ? action_names_[idx] : "";
+            if (idx >= 0) return action_names_[idx];
+            return "";
         }
-        
+
         const std::vector<int>& getActionValues(int idx) const {
             return action_values_[idx];
         }
@@ -103,16 +104,6 @@ class RNGHunter {
                                                                       RNGSim::LogLevel log_level);
 
     private:
-        // Helper to add an action to all simulator instances in the pool.
-        template <typename Func>
-        void addSimAction(Func action) {
-            for (size_t i = 0; i < rng_sim_pool_.size(); i++) {
-                functions_[i].emplace_back([this, i, action](RNGSim::LogLevel log_level) {
-                    return action(*rng_sim_pool_[i], log_level);
-                });
-            }
-        }
-
         // Tests a single seed, inserting extra rooms/heals as needed to make all actions pass.
         // Returns the (possibly extended) function sequence, or empty if the seed is invalid.
         std::vector<Action> findSeedHelper(int sim_index, time_t seed, int allowable_heals,
@@ -122,11 +113,6 @@ class RNGHunter {
         bool tryExtendWithRoomsAndHeals(int sim_index, const Action& func, int& curr_allowable_room_pairs,
                                         int allowable_heals, RNGSim::LogLevel log_level,
                                         std::vector<Action>& curr_results);
-
-        // Uses extra heuristics (rooms/heals) to attempt to salvage a failing action.
-        bool tryExtendWithRoomsAndHeals(int sim_index, const RNGSimFunc& func, int& curr_allowable_room_pairs,
-                                        int allowable_heals, RNGSim::LogLevel log_level,
-                                        std::vector<RNGSimFunc>& curr_results);
 
         size_t max_seeds_;
         std::vector<Action> functions_;

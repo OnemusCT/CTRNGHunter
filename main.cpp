@@ -75,7 +75,7 @@ int main(int argc, char* argv[]) {
         //hunter.addDebugSeed(1097631540);
         try {
             for (int i = min_rooms; i <= max_rooms; i++) {
-                std::unordered_map<time_t, std::vector<RNGSimFunc>> valid_seeds = hunter.findSeeds(
+                std::unordered_map<time_t, std::vector<Action>> valid_seeds = hunter.findSeeds(
                     start, end, max_heals, i, RNGSim::LogLevel::NONE);
                 if (!valid_seeds.empty()) {
                     for (const auto& [curr_seed, functions]: valid_seeds) {
