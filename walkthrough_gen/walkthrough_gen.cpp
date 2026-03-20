@@ -49,8 +49,12 @@ void generate_walkthrough(WalkthroughType type, time_t seed,
     try {
         add_templates(env);
         inja::Template walkthrough;
+        bool onemus = false;
         switch (type) {
+            case WalkthroughType::ONEMUS:
+                onemus = true;
             case WalkthroughType::FULL:
+                data["onemus"] = onemus;
                 walkthrough = env.parse(templates::full_walkthrough);
                 env.render_to(out, walkthrough, data);
                 break;

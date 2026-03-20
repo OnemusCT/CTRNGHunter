@@ -85,7 +85,11 @@ bool RNGSim::battle(std::string_view name, LogLevel log_level) {
         stats_map_[std::string(name)].battle_rng = val;
     }
     last_battle_rng_ = val;
-    if (log_level == LogLevel::FULL) std::println("\tbattle: {} {:02X} ({:04X})", name, val, r);
+    if (name.empty()) {
+        if (log_level == LogLevel::FULL) std::println("\tbattle: {} {:02X} ({:04X})", name, val, r);
+    } else {
+        if (log_level >= LogLevel::PARTIAL) std::println("\tbattle: {} {:02X} ({:04X})", name, val, r);
+    }
     return true;
 }
 

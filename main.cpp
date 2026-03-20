@@ -103,7 +103,7 @@ int main(int argc, char* argv[]) {
     });
 
     WalkthroughType walkthrough_type{WalkthroughType::FULL};
-    std::map<std::string, WalkthroughType> map{{"full", WalkthroughType::FULL}, {"simple", WalkthroughType::SIMPLE}};
+    std::map<std::string, WalkthroughType> map{{"full", WalkthroughType::FULL}, {"onemus", WalkthroughType::ONEMUS}, {"simple", WalkthroughType::SIMPLE}};
     std::string out;
     CLI::App* generate_walkthrough = app.add_subcommand("generate_walkthrough",
                                                         "Executes and logs the results of the given seed");

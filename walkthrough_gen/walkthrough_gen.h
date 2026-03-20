@@ -8,6 +8,7 @@
 
 enum WalkthroughType {
     SIMPLE,
+    ONEMUS,
     FULL,
 };
 
